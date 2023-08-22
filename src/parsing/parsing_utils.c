@@ -16,6 +16,7 @@ int ft_parsing_error(char *str)
 {
     write(STDERR_FILENO, "Parsing error: ", 15);
     write(STDERR_FILENO, str, ft_strlen(str));
+    write(STDERR_FILENO, "\n", 1);
     return (EXIT_FAILURE);
 }
 
@@ -43,4 +44,33 @@ int ft_strncmp_rev(char *str, char *str_to_find, int n)
         n--;
     }
     return (0);
+}
+
+char	*ft_strrchr(const char *str, int c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	while (i >= 0)
+	{
+		if (str[i] == (char)c)
+			return ((char *)&str[i]);
+		i--;
+	}
+	return (0);
+}
+
+void	free_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }

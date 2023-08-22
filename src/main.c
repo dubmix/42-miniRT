@@ -42,17 +42,17 @@ void ft_put_pixel(void *param)
 
 int main(int argc, char *argv[])
 {
-	mlx_t *mlx;
+	//mlx_t *mlx;
 
 	argc = 0;
 	argv = NULL;
-	//parsing_main("template.rt");
-	mlx = mlx_init(WIDTH, HEIGHT, "miniRT", 1);
-	scene = mlx_new_image(mlx, 128, 128);
-	mlx_image_to_window(mlx, scene, 100, 100);
-	mlx_loop_hook(mlx, ft_put_pixel, mlx);
-	mlx_loop_hook(mlx, ft_hook, mlx);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	parsing_main("scenes/template.rt");
+	// mlx = mlx_init(WIDTH, HEIGHT, "miniRT", 1);
+	// scene = mlx_new_image(mlx, 128, 128);
+	// mlx_image_to_window(mlx, scene, 100, 100);
+	// mlx_loop_hook(mlx, ft_put_pixel, mlx);
+	// mlx_loop_hook(mlx, ft_hook, mlx);
+	// mlx_loop(mlx);
+	// mlx_terminate(mlx);
 	return (0);
 }

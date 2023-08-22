@@ -14,7 +14,12 @@ NAME = miniRT
 
 MLX_PATH = ./mlx/build/
 
-SRCS = src/main.c src/parsing/parsing.c src/parsing/parsing_utils.c
+SRCS = 	src/main.c \
+		src/parsing/parsing.c \
+		src/parsing/parsing_utils.c \
+		src/utils/get_next_line.c \
+		src/utils/get_next_line_utils.c \
+		src/utils/ft_split.c
 
 OBJS = $(SRCS:.c=.o)
 

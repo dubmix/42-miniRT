@@ -22,6 +22,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include "src/parsing/parsing.h"
+# include "src/utils/utils.h"
 
 # define WIDTH 512
 # define HEIGHT 512
