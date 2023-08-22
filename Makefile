@@ -6,7 +6,7 @@
 #    By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 11:47:51 by pdelanno          #+#    #+#              #
-#    Updated: 2023/08/21 11:57:09 by pdelanno         ###   ########.fr        #
+#    Updated: 2023/08/22 15:25:41 by pdelanno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = miniRT
 
 MLX_PATH = ./mlx/build/
 
-SRCS = src/main.c
+SRCS = src/main.c src/parsing/parsing.c src/parsing/parsing_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -49,9 +49,8 @@ reall:
 cleanall: fclean
 			rm -rf ./mlx
 
-fclean:
+fclean:	clean
 			@rm -f ${NAME}
-			//@rm -f ${OBJS}
 			@echo "\033[1mAll clean!\033[0m"
 
 re: fclean all

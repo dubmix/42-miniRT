@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/21 11:58:07 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/21 11:59:44 by pdelanno         ###   ########.fr       */
+/*   Created: 2023/08/22 15:08:57 by pdelanno          #+#    #+#             */
+/*   Updated: 2023/08/22 15:09:55 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
+#ifndef PARSING_H
 
-# define MINIRT_H
+# define PARSING_H
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <stdbool.h>
-# include "mlx/include/MLX42/MLX42.h"
-# include <unistd.h>
-# include <math.h>
-# include <fcntl.h>
-# include "src/parsing/parsing.h"
+int     parsing_main(char *file_name);
 
-# define WIDTH 512
-# define HEIGHT 512
-
-static mlx_image_t *scene;
-
-typedef struct s_color
-{
-    uint32_t r;
-    uint32_t g;
-    uint32_t b;
-}   t_color;
+int     ft_parsing_error(char *str);
+int     ft_strncmp_rev(char *str, char *str_to_find, int n);
+int	    ft_strlen(char *str);
 
 #endif
