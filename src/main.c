@@ -12,4 +12,10 @@
 
 #include "../miniRT.h"
 
-
+int main(int argc, char *argv[])
+{
+	printf("Hello World");
+	argc = 0;
+	argv = NULL;
+	return (0);
+}

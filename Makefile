@@ -12,6 +12,8 @@
 
 NAME = miniRT
 
+MLX_PATH = ./mlx/build/
+
 SRCS = src/main.c
 
 OBJS = $(SRCS:.c=.o)
@@ -20,21 +22,36 @@ HEADERS = miniRT.h
 
 CFLAGS = -Wall -Werror -Wextra -g
 
+MLXFLAG = -Iinclude -lglfw
+
 .c.o:
 			@cc ${CFLAGS} -c $^ -o $@
 
 all:		$(NAME)
 
-${NAME}:	$(OBJS)
-					@cc ${OBJS} $(CFLAGS) -o $(NAME)
-					@echo "\033[1;5mProgram is ready!\033[0m"
+${NAME}:	mlx $(OBJS)
+				@cc $(CFLAGS) ${OBJS} -L$(MLX_PATH) -lmlx42 $(MLXFLAG) -o $(NAME)
+				@echo "\033[1;5mProgram is ready!\033[0m"
+					
+mlx:
+			@if ! [ -d "./mlx" ]; then \
+				git clone https://github.com/codam-coding-college/MLX42.git mlx; \
+				cd ./mlx; cmake -B build; cmake --build build -j4; \
+			fi
 
 clean:
 			@rm -f ${OBJS}
+			
+reall:
+			rm -rf ./mlx
+			make re
+			
+cleanall: fclean
+			rm -rf ./mlx
 
 fclean:
-			@cd src && rm -f ${NAME}
 			@rm -f ${NAME}
+			//@rm -f ${OBJS}
 			@echo "\033[1mAll clean!\033[0m"
 
 re: fclean all
