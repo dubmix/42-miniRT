@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   algebra.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/21 11:58:07 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/23 10:35:19 by aehrlich         ###   ########.fr       */
+/*   Created: 2023/08/23 09:47:57 by aehrlich          #+#    #+#             */
+/*   Updated: 2023/08/23 10:00:14 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
+#include "raytracing.h"
 
-# define MINIRT_H
+void init_point(t_point *p, int x, int y, int z)
+{
+	p->x = x;
+	p->y = y;
+	p->z = z;
+}
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <stdbool.h>
-# include "mlx/include/MLX42/MLX42.h"
-# include <unistd.h>
-# include <math.h>
-# include <fcntl.h>
-# include "src/parsing/parsing.h"
-# include "src/utils/utils.h"
+void init_vector(t_vector *v, int x, int y, int z)
+{
+	v->x = x;
+	v->y = y;
+	v->z = z;
+}
 
-# define WIDTH 512
-# define HEIGHT 512
-
-static mlx_image_t *scene;
-
-#endif
+float	dot_product(t_vector v1, t_vector v2)
+{
+	return (v1.x * v2.x + v1.y * v2.y + v1.z + v2.z);
+}

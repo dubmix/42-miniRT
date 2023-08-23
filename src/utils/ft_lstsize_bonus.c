@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/21 11:58:07 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/23 10:35:19 by aehrlich         ###   ########.fr       */
+/*   Created: 2022/12/08 18:47:30 by aehrlich          #+#    #+#             */
+/*   Updated: 2023/02/13 10:17:33 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
+#include "../libft.h"
 
-# define MINIRT_H
+int	ft_lstsize(t_list *lst)
+{
+	int	cnt;
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <stdbool.h>
-# include "mlx/include/MLX42/MLX42.h"
-# include <unistd.h>
-# include <math.h>
-# include <fcntl.h>
-# include "src/parsing/parsing.h"
-# include "src/utils/utils.h"
-
-# define WIDTH 512
-# define HEIGHT 512
-
-static mlx_image_t *scene;
-
-#endif
+	cnt = 0;
+	if (lst == 0)
+		return (0);
+	while (lst)
+	{
+		lst = lst->next;
+		cnt++;
+	}
+	return (cnt);
+}

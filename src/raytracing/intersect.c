@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/21 11:58:07 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/23 10:35:19 by aehrlich         ###   ########.fr       */
+/*   Created: 2023/08/23 09:33:51 by aehrlich          #+#    #+#             */
+/*   Updated: 2023/08/23 10:02:51 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
+#include "raytracing.h"
 
-# define MINIRT_H
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <stdbool.h>
-# include "mlx/include/MLX42/MLX42.h"
-# include <unistd.h>
-# include <math.h>
-# include <fcntl.h>
-# include "src/parsing/parsing.h"
-# include "src/utils/utils.h"
+void test(){
+	t_ray		ray;
+	t_sphere	sphere;
 
-# define WIDTH 512
-# define HEIGHT 512
-
-static mlx_image_t *scene;
-
-#endif
+	init_point(&ray.origin, 0, 0, 0);
+	init_vector(&ray.direction, 1, 1, 1);
+	init_point(&sphere.center, 2, 2, 2);
+	sphere.diameter = 2;
+}
