@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:00:16 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/21 12:00:44 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:50:27 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 
 	argc = 0;
 	argv = NULL;
-	parsing_main("scenes/template.rt");
+	//parsing_main("scenes/template.rt");
 	// mlx = mlx_init(WIDTH, HEIGHT, "miniRT", 1);
 	// scene = mlx_new_image(mlx, 128, 128);
 	// mlx_image_to_window(mlx, scene, 100, 100);
@@ -54,5 +54,6 @@ int main(int argc, char *argv[])
 	// mlx_loop_hook(mlx, ft_hook, mlx);
 	// mlx_loop(mlx);
 	// mlx_terminate(mlx);
+	test();
 	return (0);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+         #
+#    By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 11:47:51 by pdelanno          #+#    #+#              #
-#    Updated: 2023/08/22 15:25:41 by pdelanno         ###   ########.fr        #
+#    Updated: 2023/08/23 11:57:32 by aehrlich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,15 +19,17 @@ SRCS = 	src/main.c \
 		src/parsing/parsing_utils.c \
 		src/utils/get_next_line.c \
 		src/utils/get_next_line_utils.c \
-		src/utils/ft_split.c
+		src/utils/ft_split.c \
+		src/raytracing/algebra.c \
+		src/raytracing/intersect.c \
 
 OBJS = $(SRCS:.c=.o)
 
 HEADERS = miniRT.h
 
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = #-Wall -Werror -Wextra -g
 
-MLXFLAG = -Iinclude -lglfw
+MLXFLAG = -Iinclude -lglfw -lm
 
 .c.o:
 			@cc ${CFLAGS} -c $^ -o $@

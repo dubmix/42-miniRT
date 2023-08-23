@@ -6,19 +6,12 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 08:49:13 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/08/23 10:37:25 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:47:43 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-typedef struct s_scene
-{
-	t_ambient	ambient;
-	t_camera	camera;
-	t_light		light;
-	t_list		*planes;
-	t_list		*spheres;
-	t_list		*cylinders;
-}				t_scene;
+#include "src/utils/utils.h"
+#include "miniRT.h"
 
 typedef struct s_color
 {
@@ -33,20 +26,6 @@ typedef struct s_ambient
 	t_color	color;
 }				t_ambient;
 
-typedef struct s_camera
-{
-	t_point		coordinates;
-	t_vector	orientation;
-	int			field_of_view;
-}				t_camera;
-
-typedef struct s_light
-{
-	t_point		coordinates;
-	float		brightness_ratio;
-
-}				t_light;
-
 typedef struct s_point
 {
 	float		x;
@@ -60,6 +39,20 @@ typedef struct s_vector
 	float		y;
 	float		z;
 }				t_vector;
+
+typedef struct s_camera
+{
+	t_point		coordinates;
+	t_vector	orientation;
+	int			field_of_view;
+}				t_camera;
+
+typedef struct s_light
+{
+	t_point		coordinates;
+	float		brightness_ratio;
+
+}				t_light;
 
 typedef struct s_ray
 {
@@ -89,3 +82,13 @@ typedef struct s_cylinder
 	float		height;
 	t_color		color;
 }				t_cylinder;
+
+typedef struct s_scene
+{
+	t_ambient	ambient;
+	t_camera	camera;
+	t_light		light;
+	t_list		*planes;
+	t_list		*spheres;
+	t_list		*cylinders;
+}				t_scene;

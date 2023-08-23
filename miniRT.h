@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:58:07 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/23 10:35:19 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:49:58 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@
 # define HEIGHT 512
 
 static mlx_image_t *scene;
+
+void test();
 
 #endif
