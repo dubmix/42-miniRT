@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:33:51 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/08/23 13:53:38 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:05:35 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sphere_intersect(t_sphere s, t_ray r, float *t1, float *t2)
 	float	d;
 	t_vector	origin_center;
 
-	init_vector(&origin_center, -s.center.x, -s.center.y, -s.center.z);
+	init_vector_p(&origin_center, r.origin, s.center);
 	a = dot_product(r.direction, r.direction);
 	b = 2 * dot_product(origin_center, r.direction);
 	c = dot_product(origin_center, origin_center) - (s.diameter/2 * s.diameter/2);
@@ -37,9 +37,9 @@ void test(){
 	t_sphere	sphere;
 
 	init_point(&ray.origin, 0, 0, 0);
-	init_vector(&ray.direction, 1, 1, 1);
-	init_point(&sphere.center, 2, 2, 2);
-	sphere.diameter = 2;
+	init_vector(&ray.direction, 0, 0, 1);
+	init_point(&sphere.center, 0, 0, 3);
+	sphere.diameter = 2.5;
 
 	float t1 = -1;
 	float t2 = -1;
