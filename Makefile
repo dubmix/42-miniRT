@@ -17,9 +17,21 @@ MLX_PATH = ./mlx/build/
 SRCS = 	src/main.c \
 		src/parsing/parsing.c \
 		src/parsing/parsing_utils.c \
+		src/parsing/parsing_ambient.c \
+		src/parsing/parsing_camera.c \
+		src/parsing/parsing_light.c \
 		src/utils/get_next_line.c \
 		src/utils/get_next_line_utils.c \
-		src/utils/ft_split.c
+		src/utils/ft_split.c \
+		src/utils/ft_lst/ft_lstadd_back.c \
+		src/utils/ft_lst/ft_lstadd_front.c \
+		src/utils/ft_lst/ft_lstclear.c \
+		src/utils/ft_lst/ft_lstdelone.c \
+		src/utils/ft_lst/ft_lstiter.c \
+		src/utils/ft_lst/ft_lstlast.c \
+		src/utils/ft_lst/ft_lstmap.c \
+		src/utils/ft_lst/ft_lstnew.c \
+		src/utils/ft_lst/ft_lstsize.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "utils.h"
-#include "../../miniRT.h"
 
 char	*get_next_line(int fd)
 {
@@ -29,7 +28,7 @@ char	*get_next_line(int fd)
     {
         free(stash);
 		free(line);
-        ft_parsing_error("file has tabs");
+        ft_parsing_error("file has tabs", 0);
 		return (NULL);
     }
 	return (line);

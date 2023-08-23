@@ -100,7 +100,6 @@ char	**ft_split(char const *s, char c)
 }
 
 unsigned int	ft_strlcpy(char *dest, const char *src, size_t size)
-
 {
 	unsigned int	i;
 
