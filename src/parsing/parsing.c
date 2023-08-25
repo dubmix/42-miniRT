@@ -97,6 +97,7 @@ int find_id(t_scene *scene, char **split)
         return (0);
     else if (ft_strncmp(split[0], "pl", 2) == 0)
         return (0);
+    //return (process_pl(scene, split));
     else if (ft_strncmp(split[0], "cy", 2) == 0)
         return (0);
     else

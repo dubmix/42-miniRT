@@ -16,8 +16,8 @@ int process_ambient(t_scene *scene, char **split)
 {
     if (ft_count_str(split) != 3)
         return (ft_parsing_error("unvalid ambient params", 0));
-    if (str_to_float(split[1]) >= 0.0 && str_to_float(split[1]) <= 1.0)
-        scene->ambient.ratio = str_to_float(split[1]);
+    if (ft_stof(split[1]) >= 0.0 && ft_stof(split[1]) <= 1.0)
+        scene->ambient.ratio = ft_stof(split[1]);
     else
         return (ft_parsing_error("ambient ratio out of range", 0));
     if (process_ambient_rgb(scene, split[2]) != 0)

@@ -128,7 +128,7 @@ int	ft_atoi(const char *str)
 	return (neg * nb);
 }
 
-float str_to_float(char *str)
+float ft_stof(char *str)
 {
 	float	result;
 	int		i;
@@ -168,12 +168,19 @@ int	ft_isdigit(int c)
 int ft_isnumber(char *str)
 {
 	int	i;
+	int dec;
 
 	i = 0;
+	dec = 0;
 	if (str[i] == '-' && str[i + 1] != '\0')
 		i++;
 	while (str[i])
 	{
+		if (str[i] == '.' && dec == 0 && i != 0)
+		{
+			dec = 1;
+			i++;
+		}
 		if (ft_isdigit(str[i]) == 0)
 			return (0);
 		i++;

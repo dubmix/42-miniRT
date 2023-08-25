@@ -52,7 +52,7 @@ void	free_arr(char **arr);
 int     ft_count_str(char **split);
 int	    ft_strncmp(const char *str1, const char *str2, size_t n);
 int	    ft_atoi(const char *str);
-float   str_to_float(char *str);
+float   ft_stof(char *str);
 int	    ft_isdigit(int c);
 int     ft_isnumber(char *str);
 

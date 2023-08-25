@@ -18,8 +18,8 @@ int process_light(t_scene *scene, char **split)
         return (ft_parsing_error("unvalid light params", 0));
     if (process_light_coordinates(scene, split[1]) != 0)
         return (0);
-    if (str_to_float(split[2]) >= 0.0 && str_to_float(split[2]) <= 1.0)
-        scene->light.brightness_ratio = str_to_float(split[2]);
+    if (ft_stof(split[2]) >= 0.0 && ft_stof(split[2]) <= 1.0)
+        scene->light.brightness_ratio = ft_stof(split[2]);
     else
         return (ft_parsing_error("light brightness out of range", 0));
     return (0);

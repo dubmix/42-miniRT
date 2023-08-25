@@ -20,6 +20,7 @@ SRCS = 	src/main.c \
 		src/parsing/parsing_ambient.c \
 		src/parsing/parsing_camera.c \
 		src/parsing/parsing_light.c \
+		src/parsing/parsing_pl.c \
 		src/utils/get_next_line.c \
 		src/utils/get_next_line_utils.c \
 		src/utils/ft_split.c \
