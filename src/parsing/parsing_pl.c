@@ -14,39 +14,27 @@
 
 int process_pl(t_scene *scene, char **split)
 {
+    t_list  *new_object;
+    t_plane *plane;
+
     if (ft_count_str(split) != 4)
-        return (ft_parsing_error("unvalid plane params", 0));
-    create_pl_list(scene);
-    if (process_pl_coordinates(scene, split[1]) != 0)
-        return (0);
-    if (process_pl_vector(scene, split[2]) != 0)
-        return (0);
-    if (process_pl_rgb(scene, split[3]) != 0)
-        return (0);
+        return (ft_parsing_error("unvalid plane params", 0));    
+    plane = (t_plane *)malloc(sizeof(t_plane));
+    if (process_pl_coordinates(plane, split[1]) != 0)
+        return (free_plane(scene->planes, plane), 1);
+    if (process_pl_vector(plane, split[2]) != 0)
+        return (free_plane(scene->planes, plane), 1);
+    if (process_pl_rgb(plane, split[3]) != 0)
+        return (free_plane(scene->planes, plane), 1);
+    new_object = ft_lstnew(plane);
+    ft_lstadd_back(&(scene->planes), new_object);
     return (0);
 }
 
-void    create_pl_list(t_scene *scene)
-{
-    t_list *new_object;
-    t_list *current_object;
-
-    new_object = ft_lstnew(NULL);
-    if (scene->planes == NULL)
-        scene->planes = new_object;
-    else
-    {
-        current_object = scene->planes;
-        current_object->next = new_object;
-    }
-}
-
-int process_pl_coordinates(t_scene *scene, char *str)
+int process_pl_coordinates(t_plane *plane, char *str)
 {
     char **sub_split;
-    t_plane *plane;
 
-    plane = (t_plane *)scene->planes;
     sub_split = ft_split(str, ',');
     if (ft_count_str(sub_split) != 3)
     {   
@@ -70,14 +58,12 @@ int process_pl_coordinates(t_scene *scene, char *str)
     return (0);
 }
 
-int process_pl_vector(t_scene *scene, char *str)
+int process_pl_vector(t_plane *plane, char *str)
 {
     char **sub_split;
-    t_plane *plane;
 
-    plane = (t_plane *)scene->planes;
     sub_split = ft_split(str, ',');
-    if (ft_count_str(sub_split) != 3)
+    if (ft_count_str(sub_split) != 3 && check_if_nb(sub_split) != 0)
     {   
         free_arr(sub_split);
         return (ft_parsing_error("unvalid plane vector", 1));
@@ -99,14 +85,12 @@ int process_pl_vector(t_scene *scene, char *str)
     return (0);
 }
 
-int process_pl_rgb(t_scene *scene, char *str)
+int process_pl_rgb(t_plane *plane, char *str)
 {
     char **sub_split;
-    t_plane *plane;
-    
-    plane = (t_plane *)scene->planes;
+
     sub_split = ft_split(str, ',');
-    if (ft_count_str(sub_split) != 3)
+    if (ft_count_str(sub_split) != 3 && check_if_nb(sub_split) != 0)
     {   
         free_arr(sub_split);
         return (ft_parsing_error("unvalid plane rgb params", 1));

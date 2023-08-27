@@ -45,6 +45,29 @@ int     process_camera_orientation(t_scene *scene, char *str);
 int     process_light(t_scene *scene, char **split);
 int     process_light_coordinates(t_scene *scene, char *str);
 
+int     process_pl(t_scene *scene, char **split);
+int     process_pl_coordinates(t_plane *plane, char *str);
+int     process_pl_vector(t_plane *plane, char *str);
+int     process_pl_rgb(t_plane *plane, char *str);
+
+int     process_sp(t_scene *scene, char **split);
+int     process_sp_coordinates(t_sphere *sphere, char *str);
+int     process_sp_rgb(t_sphere *sphere, char *str);
+void    free_sphere(t_list *list, t_sphere *sphere);
+void    del_sphere(void *content);
+
+int     process_cy(t_scene *scene, char **split);
+int     process_cy_coordinates(t_cylinder *cylinder, char *str);
+int     process_cy_vector(t_cylinder *cylinder, char *str);
+int     process_cy_rgb(t_cylinder *cylinder, char *str);
+void    del_cylinder(void *content);
+void    free_cylinder(t_list *list, t_cylinder *cylinder);
+
+void    print_list(t_list *list);
+void    free_plane(t_list *list, t_plane *plane);
+void    del_plane(void *content);
+int     check_if_nb(char **sub_split);
+
 int     ft_strncmp_rev(char *str, char *str_to_find, int n);
 int	    ft_strlen(char *str);
 char	*ft_strrchr(const char *str, int c);

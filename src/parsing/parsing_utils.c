@@ -187,3 +187,99 @@ int ft_isnumber(char *str)
 	}
 	return (1);
 }
+
+int check_if_nb(char **sub_split)
+{
+    if (ft_isnumber(sub_split[0]) != 1)
+        return (1);
+    if (ft_isnumber(sub_split[1]) != 1)
+        return (1);
+    if (ft_isnumber(sub_split[2]) != 1)
+        return (1);
+    return (0);
+}
+
+void    print_list(t_list *list)
+{
+    t_list *current;
+    //t_plane *plane;
+	t_cylinder *cylinder;
+
+    current = list;
+    while (current != NULL)
+    {
+        //plane = (t_plane *)(current->content);
+		cylinder = (t_cylinder *)(current->content);
+        // printf("plane x is: %f\n", plane->plane_point.x);
+        // printf("plane x vector is: %f\n", plane->normal_vector.x);
+        // printf("plane b color is: %u\n", plane->color.b);
+		printf("cylinder b color is: %f\n", cylinder->diameter);
+        current = current->next;
+    }
+}
+
+void    del_plane(void *content)
+{
+    t_plane *plane;
+
+    if (content)
+    {
+        plane = (t_plane *)content;
+        free(plane);
+    }
+}
+
+void    free_plane(t_list *list, t_plane *plane)
+{
+    if (ft_lstsize(list) == 0)
+        return (free(plane));
+    else
+    {   
+        free(plane);
+        ft_lstclear(&list, del_plane);
+    }
+}
+
+void    del_sphere(void *content)
+{
+    t_sphere *sphere;
+
+    if (content)
+    {
+        sphere = (t_sphere *)content;
+        free(sphere);
+    }
+}
+
+void    free_sphere(t_list *list, t_sphere *sphere)
+{
+    if (ft_lstsize(list) == 0)
+        return (free(sphere));
+    else
+    {   
+        free(sphere);
+        ft_lstclear(&list, del_sphere);
+    }
+}
+
+void    del_cylinder(void *content)
+{
+    t_cylinder *cylinder;
+
+    if (content)
+    {
+        cylinder = (t_cylinder *)content;
+        free(cylinder);
+    }
+}
+
+void    free_cylinder(t_list *list, t_cylinder *cylinder)
+{
+    if (ft_lstsize(list) == 0)
+        return (free(cylinder));
+    else
+    {   
+        free(cylinder);
+        ft_lstclear(&list, del_cylinder);
+    }
+}

@@ -76,6 +76,7 @@ int parsing_line(t_scene *scene, char *line)
         if (find_id(scene, split) != 0)
         {   
             free_arr(split);
+            //free_all
             return (1);
         }
         free_arr(split);
@@ -94,12 +95,11 @@ int find_id(t_scene *scene, char **split)
     else if (ft_strncmp(split[0], "L", 1) == 0)
         return (process_light(scene, split));
     else if (ft_strncmp(split[0], "sp", 2) == 0)
-        return (0);
+        return (process_sp(scene, split));
     else if (ft_strncmp(split[0], "pl", 2) == 0)
-        return (0);
-    //return (process_pl(scene, split));
+        return (process_pl(scene, split));
     else if (ft_strncmp(split[0], "cy", 2) == 0)
-        return (0);
+        return (process_cy(scene, split));
     else
         return (ft_parsing_error("unvalid id", 0));
 }

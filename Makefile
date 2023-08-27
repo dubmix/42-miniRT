@@ -21,6 +21,8 @@ SRCS = 	src/main.c \
 		src/parsing/parsing_camera.c \
 		src/parsing/parsing_light.c \
 		src/parsing/parsing_pl.c \
+		src/parsing/parsing_sp.c \
+		src/parsing/parsing_cy.c \
 		src/utils/get_next_line.c \
 		src/utils/get_next_line_utils.c \
 		src/utils/ft_split.c \
