@@ -6,71 +6,29 @@
 /*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:59:46 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/22 15:00:10 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/08/28 09:36:17 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../miniRT.h"
+#include "parsing.h"
 
-int ft_parsing_error(char *str)
-{
-    write(STDERR_FILENO, "Parsing error: ", 15);
-    write(STDERR_FILENO, str, ft_strlen(str));
-    write(STDERR_FILENO, "\n", 1);
-    return (EXIT_FAILURE);
-}
-
-int	ft_strlen(char *str)
+int	ft_count_str(char **split)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (split[i])
 		i++;
 	return (i);
 }
 
-int ft_strncmp_rev(char *str, char *str_to_find, int n)
+int	check_if_nb(char **sub_split)
 {
-    int i;
-    int j;
-
-    i = ft_strlen(str);
-    j = ft_strlen(str_to_find);
-    while (i >= 0 && j >= 0 && n >= 0)
-    {
-        if (str[i--] != str_to_find[j--])
-            return (1);
-        n--;
-    }
-    return (0);
-}
-
-char	*ft_strrchr(const char *str, int c)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	while (i >= 0)
-	{
-		if (str[i] == (char)c)
-			return ((char *)&str[i]);
-		i--;
-	}
+	if (ft_isnumber(sub_split[0]) != 1)
+		return (1);
+	if (ft_isnumber(sub_split[1]) != 1)
+		return (1);
+	if (ft_isnumber(sub_split[2]) != 1)
+		return (1);
 	return (0);
-}
-
-void	free_arr(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i] != NULL)
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
 }

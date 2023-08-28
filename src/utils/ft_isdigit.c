@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 18:40:34 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/02/13 10:17:33 by aehrlich         ###   ########.fr       */
+/*   Created: 2023/08/28 08:46:48 by pdelanno          #+#    #+#             */
+/*   Updated: 2023/08/28 08:46:49 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "utils.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+int	ft_isdigit(int c)
 {
-	if (lst == 0 || new == 0)
-		return ;
-	new->next = *lst;
-	*lst = new;
+	if (c >= 48 && c <= 57)
+		return (1);
+	else
+		return (0);
 }

@@ -1,19 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   ft_isnumber.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/22 15:08:57 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/22 15:09:55 by pdelanno         ###   ########.fr       */
+/*   Created: 2023/08/28 08:46:56 by pdelanno          #+#    #+#             */
+/*   Updated: 2023/08/28 08:47:06 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
+#include "utils.h"
 
-# define PARSING_H
+int ft_isnumber(char *str)
+{
+	int	i;
+	int dec;
 
-# include "../../miniRT.h"
-
-#endif
+	i = 0;
+	dec = 0;
+	if (str[i] == '-' && str[i + 1] != '\0')
+		i++;
+	while (str[i])
+	{
+		if (str[i] == '.' && dec == 0 && i != 0)
+		{
+			dec = 1;
+			i++;
+		}
+		if (ft_isdigit(str[i]) == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}

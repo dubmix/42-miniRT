@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:00:16 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/23 11:50:27 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/28 14:25:30 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,36 @@ void ft_put_pixel(void *param)
 	}
 }
 
+void    print_list(t_list *list)
+{
+    t_list *current;
+    //t_plane *plane;
+	t_cylinder *cylinder;
+
+    current = list;
+    while (current != NULL)
+    {
+        //plane = (t_plane *)(current->content);
+		cylinder = (t_cylinder *)(current->content);
+        // printf("plane x is: %f\n", plane->plane_point.x);
+        // printf("plane x vector is: %f\n", plane->normal_vector.x);
+        // printf("plane b color is: %u\n", plane->color.b);
+		printf("cylinder diameter is: %f\n", cylinder->diameter);
+        current = current->next;
+    }
+}
+
 int main(int argc, char *argv[])
 {
 	//mlx_t *mlx;
+	t_scene	scene;
+	t_scene *ptr;
 
-	argc = 0;
-	argv = NULL;
-	//parsing_main("scenes/template.rt");
+	//argv = NULL;
+	ptr = &scene;
+	if (argc != 2)
+		return (ft_parsing_error("./miniRT needs one file", "", 0));
+	parsing_main(ptr, argv[1]);
 	// mlx = mlx_init(WIDTH, HEIGHT, "miniRT", 1);
 	// scene = mlx_new_image(mlx, 128, 128);
 	// mlx_image_to_window(mlx, scene, 100, 100);

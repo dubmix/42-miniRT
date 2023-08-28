@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/22 15:08:57 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/22 15:09:55 by pdelanno         ###   ########.fr       */
+/*   Created: 2022/12/08 18:36:24 by aehrlich          #+#    #+#             */
+/*   Updated: 2023/08/23 11:01:59 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
+#include "../utils.h"
 
-# define PARSING_H
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*ret;
 
-# include "../../miniRT.h"
-
-#endif
+	ret = malloc(sizeof(t_list));
+	if (ret == NULL)
+		return (NULL);
+	ret->content = content;
+	ret->next = NULL;
+	return (ret);
+}

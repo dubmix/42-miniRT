@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 14:52:07 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/02/13 10:17:33 by aehrlich         ###   ########.fr       */
+/*   Created: 2022/12/08 18:47:30 by aehrlich          #+#    #+#             */
+/*   Updated: 2023/08/23 11:02:10 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../utils.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+int	ft_lstsize(t_list *lst)
 {
-	t_list	*ret;
-	t_list	*node;
+	int	cnt;
 
-	if (!lst || !f || !del)
+	cnt = 0;
+	if (lst == 0)
 		return (0);
-	ret = 0;
 	while (lst)
 	{
-		node = ft_lstnew((*f)(lst->content));
-		if (!node)
-		{
-			ft_lstclear(&ret, del);
-			return (NULL);
-		}
-		ft_lstadd_back(&ret, node);
 		lst = lst->next;
+		cnt++;
 	}
-	return (ret);
+	return (cnt);
 }

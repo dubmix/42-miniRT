@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/22 15:08:57 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/22 15:09:55 by pdelanno         ###   ########.fr       */
+/*   Created: 2022/12/08 18:40:34 by aehrlich          #+#    #+#             */
+/*   Updated: 2023/08/23 11:00:18 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
+#include "../utils.h"
 
-# define PARSING_H
-
-# include "../../miniRT.h"
-
-#endif
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	if (lst == 0 || new == 0)
+		return ;
+	new->next = *lst;
+	*lst = new;
+}

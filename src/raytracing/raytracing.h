@@ -6,11 +6,10 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:49:28 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/08/28 11:37:21 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/28 14:53:38 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../types.h"
 #include "../../miniRT.h"
 
 void	init_point(t_point *p, float x, float y, float z);

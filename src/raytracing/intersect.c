@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:33:51 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/08/28 11:55:00 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/28 14:57:04 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void test(){
 	t_ray		ray;
 	t_sphere	sphere;
 	t_plane		plane;
-	t_cylinder	cylinder;
 
 	init_point(&ray.origin, 0, 0, 0);
 	init_vector(&ray.direction, 0, 0, 1);
