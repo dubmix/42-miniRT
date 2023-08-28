@@ -1,34 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*   ft_stof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/22 14:59:46 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/28 09:36:17 by pdelanno         ###   ########.fr       */
+/*   Created: 2023/08/28 08:46:31 by pdelanno          #+#    #+#             */
+/*   Updated: 2023/08/28 08:46:37 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "utils.h"
 
-int	ft_count_str(char **split)
+float ft_stof(char *str)
 {
-	int	i;
+	float	result;
+	int		i;
+	int		neg;
 
+	result = 0.0;
 	i = 0;
-	while (split[i])
+	neg = 0;
+	if (str[i] == '-')
+	{
+		neg = 1;
 		i++;
-	return (i);
-}
-
-int	check_if_nb(char **sub_split)
-{
-	if (ft_isnumber(sub_split[0]) != 1)
-		return (1);
-	if (ft_isnumber(sub_split[1]) != 1)
-		return (1);
-	if (ft_isnumber(sub_split[2]) != 1)
-		return (1);
-	return (0);
+	}
+	while (ft_isdigit((int)str[i]) == 1)
+	{
+		result = result * 10 + (str[i] - 48);
+		i++;
+	}
+	if (str[i] == '.')
+	{
+		i++;
+		result += (str[i] - 48) / 10.0;
+	}
+	if (neg == 1)
+		result = -result;
+	return (result);
 }

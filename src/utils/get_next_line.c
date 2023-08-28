@@ -12,11 +12,13 @@
 
 #include "utils.h"
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int flag)
 {
 	static char	*stash;
 	char		*line;
 
+	if (flag == 1)
+		return (free(stash), NULL);
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	stash = readtext(fd, stash);
@@ -24,13 +26,6 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = split(stash);
 	stash = ft_memcpy(stash);
-	if (ft_strrchr(line, '\t') != 0)
-    {
-        free(stash);
-		free(line);
-        ft_parsing_error("file has tabs", 0);
-		return (NULL);
-    }
 	return (line);
 }
 

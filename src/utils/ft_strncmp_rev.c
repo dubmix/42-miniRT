@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*   ft_strncmp_rev.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/22 14:59:46 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/28 09:36:17 by pdelanno         ###   ########.fr       */
+/*   Created: 2023/08/28 08:45:08 by pdelanno          #+#    #+#             */
+/*   Updated: 2023/08/28 08:45:10 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "utils.h"
 
-int	ft_count_str(char **split)
+int ft_strncmp_rev(char *str, char *str_to_find, int n)
 {
-	int	i;
+    int i;
+    int j;
 
-	i = 0;
-	while (split[i])
-		i++;
-	return (i);
-}
-
-int	check_if_nb(char **sub_split)
-{
-	if (ft_isnumber(sub_split[0]) != 1)
-		return (1);
-	if (ft_isnumber(sub_split[1]) != 1)
-		return (1);
-	if (ft_isnumber(sub_split[2]) != 1)
-		return (1);
-	return (0);
+    i = ft_strlen(str);
+    j = ft_strlen(str_to_find);
+    while (i >= 0 && j >= 0 && n >= 0)
+    {
+        if (str[i--] != str_to_find[j--])
+            return (1);
+        n--;
+    }
+    return (0);
 }

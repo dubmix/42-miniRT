@@ -1,14 +1,13 @@
 ### Ambient lighting ###
 # Ambient lighting ratio in range [0.0, 1.0]                                                 | RGB
 
-A 0.0                                                                                          30,255,255
+A 0.0                                                                                          30,255,230
 
 
 ### Camera ###
 # XYZ coordinates of viewpoint    | Orientation vector [-1, 1]   | Field of view ° [0-180]
 
-C -50,0,20                          0,0,-1                         30
-
+C -50,0,20                          0,0,-1                         180
 
 
 ### Light ###
@@ -28,11 +27,11 @@ sp 0.0,0.0,20.6                                                    12.6         
 ### Plane ###
 # XYZ coordinates of a pl point   | Normal vector [-1, 1]                                    | RGB
 
-pl -3.0,0.4,-10.0                    0.0,1.0,0.0                                                0,0,225
+pl -3.0,0.4,-10.0                   0.0,1.0,0.0                                                0,0,225
 
 pl 2.0,0.4,-10.0                    0.0,1.0,0.0                                                0,0,223
 
-pl 5.0,0.4,-10.0                    -1.0,1.0,0.0                                                0,0,221
+pl 5.0,0.4,-10.0                    -1.0,1.0,0.0                                               0,0,221
 
 
 

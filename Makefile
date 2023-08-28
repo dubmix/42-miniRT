@@ -23,9 +23,18 @@ SRCS = 	src/main.c \
 		src/parsing/parsing_pl.c \
 		src/parsing/parsing_sp.c \
 		src/parsing/parsing_cy.c \
+		src/parsing/parsing_error.c \
 		src/utils/get_next_line.c \
 		src/utils/get_next_line_utils.c \
 		src/utils/ft_split.c \
+		src/utils/ft_atoi.c \
+		src/utils/ft_isdigit.c \
+		src/utils/ft_isnumber.c \
+		src/utils/ft_stof.c \
+		src/utils/ft_strlen.c \
+		src/utils/ft_strncmp_rev.c \
+		src/utils/ft_strncmp.c \
+		src/utils/ft_strrchr.c \
 		src/utils/ft_lst/ft_lstadd_back.c \
 		src/utils/ft_lst/ft_lstadd_front.c \
 		src/utils/ft_lst/ft_lstclear.c \

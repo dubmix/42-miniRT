@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/22 14:59:46 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/28 09:36:17 by pdelanno         ###   ########.fr       */
+/*   Created: 2023/08/28 08:45:24 by pdelanno          #+#    #+#             */
+/*   Updated: 2023/08/28 08:45:26 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "utils.h"
 
-int	ft_count_str(char **split)
+char	*ft_strrchr(const char *str, int c)
 {
 	int	i;
 
 	i = 0;
-	while (split[i])
+	while (str[i] != '\0')
 		i++;
-	return (i);
-}
-
-int	check_if_nb(char **sub_split)
-{
-	if (ft_isnumber(sub_split[0]) != 1)
-		return (1);
-	if (ft_isnumber(sub_split[1]) != 1)
-		return (1);
-	if (ft_isnumber(sub_split[2]) != 1)
-		return (1);
+	while (i >= 0)
+	{
+		if (str[i] == (char)c)
+			return ((char *)&str[i]);
+		i--;
+	}
 	return (0);
 }

@@ -40,22 +40,35 @@ void ft_put_pixel(void *param)
 	}
 }
 
+void    print_list(t_list *list)
+{
+    t_list *current;
+    //t_plane *plane;
+	t_cylinder *cylinder;
+
+    current = list;
+    while (current != NULL)
+    {
+        //plane = (t_plane *)(current->content);
+		cylinder = (t_cylinder *)(current->content);
+        // printf("plane x is: %f\n", plane->plane_point.x);
+        // printf("plane x vector is: %f\n", plane->normal_vector.x);
+        // printf("plane b color is: %u\n", plane->color.b);
+		printf("cylinder diameter is: %f\n", cylinder->diameter);
+        current = current->next;
+    }
+}
+
 int main(int argc, char *argv[])
 {
 	//mlx_t *mlx;
 	t_scene	scene;
 	t_scene *ptr;
-	//t_plane *plane;
-	//t_plane *plane2;
-
 
 	//argv = NULL;
 	ptr = &scene;
 	if (argc != 2)
-		return (ft_parsing_error("./miniRT needs one file", 0));
-	scene.planes = NULL;
-	scene.spheres = NULL;
-	scene.cylinders = NULL;
+		return (ft_parsing_error("./miniRT needs one file", "", 0));
 	parsing_main(ptr, argv[1]);
 	// mlx = mlx_init(WIDTH, HEIGHT, "miniRT", 1);
 	// scene = mlx_new_image(mlx, 128, 128);
@@ -64,19 +77,5 @@ int main(int argc, char *argv[])
 	// mlx_loop_hook(mlx, ft_hook, mlx);
 	// mlx_loop(mlx);
 	// mlx_terminate(mlx);
-	// printf("int is %u\n", scene.ambient.color.b);
-	// printf("int is %u\n", scene.camera.field_of_view);
-	// printf("int is %f\n", scene.light.coordinates.x);
-	// printf("float is %f\n", scene.light.brightness_ratio);
-	if (scene.cylinders != NULL)
-    {	
-		print_list(scene.cylinders);
-		// plane = (t_plane *)scene.planes->content;
-		// plane2 = (t_plane *)scene.planes->next;
-		// printf("plane pointer: %p\n", (void *)plane);
-		// printf("plane x is %f\n", plane->plane_point.x);
-		// printf("plane pointer: %p\n", (void *)plane2);
-		// printf("plane x is %f\n", plane2->plane_point.x);
-	}
 	return (0);
 }
