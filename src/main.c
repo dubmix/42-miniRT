@@ -15,10 +15,28 @@
 void ft_hook(void *param)
 {
 	mlx_t *mlx;
+	//t_xy	*ptr;
 
 	mlx = param;
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx);
+// 	if (mlx_is_key_down(mlx, MLX_KEY_S))// && mlx_is_key_down(mlx, MLX_KEY_UP))
+// 		ptr->x += 5;	
+// }
+}
+
+void update_pos(void *param)
+{
+	t_scene *scene;
+
+	scene = param;
+	if (mlx_is_key_down(scene->mlx, MLX_KEY_S)
+		&& mlx_is_key_down(scene->mlx, MLX_KEY_DOWN))
+	{
+		img->instances[0].x += 5;
+		//img = mlx_new_image(scene->mlx, 128, 128);
+		//mlx_image_to_window(scene->mlx, img, scene->xy->x, scene->xy->y);
+	}
 }
 
 void ft_put_pixel(void *param)
@@ -28,12 +46,13 @@ void ft_put_pixel(void *param)
 
 	param = NULL;
 	j = 0;
-	while (j < scene->width)
+	while (j < img->width)
 	{
+
 		i = 0;
-		while (i < scene->height)
+		while (i < img->height)
 		{
-			mlx_put_pixel(scene, j, i, 0xFF0000FF);
+			mlx_put_pixel(img, j, i, 0xFF0000FF);
 			i++;
 		}
 		j++;
@@ -65,17 +84,24 @@ int main(int argc, char *argv[])
 	t_scene	scene;
 	t_scene *ptr;
 
-	//argv = NULL;
+
+
 	ptr = &scene;
+	argv = NULL;
+	ptr->xy = (t_xy *)malloc(sizeof(t_xy));
+	ptr->xy->x = 0;
+	ptr->xy->y = 0;
 	if (argc != 2)
 		return (ft_parsing_error("./miniRT needs one file", "", 0));
-	parsing_main(ptr, argv[1]);
-	// mlx = mlx_init(WIDTH, HEIGHT, "miniRT", 1);
-	// scene = mlx_new_image(mlx, 128, 128);
-	// mlx_image_to_window(mlx, scene, 100, 100);
-	// mlx_loop_hook(mlx, ft_put_pixel, mlx);
-	// mlx_loop_hook(mlx, ft_hook, mlx);
-	// mlx_loop(mlx);
-	// mlx_terminate(mlx);
+	//parsing_main(ptr, argv[1]);
+	ptr->mlx = mlx_init(WIDTH, HEIGHT, "miniRT", 1);
+	img = mlx_new_image(ptr->mlx, 128, 128);
+	mlx_image_to_window(ptr->mlx, img, ptr->xy->x, ptr->xy->y);
+	mlx_loop_hook(ptr->mlx, ft_put_pixel, ptr->mlx);
+	mlx_loop_hook(ptr->mlx, ft_hook, ptr->mlx);
+	mlx_loop_hook(ptr->mlx, update_pos, ptr);
+	mlx_loop(ptr->mlx);
+	mlx_terminate(ptr->mlx);
+	printf("ptr is %d\n", ptr->xy->x);
 	return (0);
 }

@@ -26,7 +26,9 @@
 # define WIDTH 512
 # define HEIGHT 512
 
-static mlx_image_t *scene;
+static mlx_image_t *img;
+
+void    ft_hook(void *param);
 
 void	init_parsing(t_scene *scene);
 int     parsing_main(t_scene *scene, char *file_name);
