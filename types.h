@@ -90,12 +90,6 @@ typedef struct 	s_cylinder
 	t_color		color;
 }				t_cylinder;
 
-typedef struct s_xy
-{
-	int32_t x;
-	int32_t y;
-}			t_xy;
-
 typedef struct 	s_scene
 {
 	t_ambient	ambient;
@@ -105,5 +99,4 @@ typedef struct 	s_scene
 	t_list		*spheres;
 	t_list		*cylinders;
 	mlx_t		*mlx;
-	t_xy		*xy;
 }				t_scene;

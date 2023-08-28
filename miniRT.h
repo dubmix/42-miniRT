@@ -30,6 +30,8 @@ static mlx_image_t *img;
 
 void    ft_hook(void *param);
 
+t_point    pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y);
+
 void	init_parsing(t_scene *scene);
 int     parsing_main(t_scene *scene, char *file_name);
 int     ft_parsing_error(char *str, char *object, int return_value);

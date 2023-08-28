@@ -71,7 +71,6 @@ int	process_camera_orientation(t_scene *scene, char *str)
 		free_arr(sub_split);
 		return (ft_parsing_error("unvalid or. params: ", "camera", 1));
 	}
-	write(1, "l", 1);
 	if ((ft_atoi(sub_split[0]) >= -1 && ft_atoi(sub_split[0]) <= 1)
 		&& (ft_atoi(sub_split[1]) >= -1 && ft_atoi(sub_split[1]) <= 1)
 		&& (ft_atoi(sub_split[2]) >= -1 && ft_atoi(sub_split[2]) <= 1))
