@@ -6,11 +6,44 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:33:51 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/08/23 16:59:27 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/28 11:55:00 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracing.h"
+
+void	intersect_cylinder(t_cylinder cyl, t_ray r, float *t1, float *t2)
+{
+	float		a;
+	float		b;
+	float		c;
+	float		d;
+	float		m1;
+	float		m2;
+	t_vector	x;
+	t_vector	m_vec;
+	t_point		cap_center;
+	t_vector	cap_center_vec;
+	
+	init_vector(&m_vec, cyl.center.x, cyl.center.y, cyl.center.z);
+	subtract_vectors(&cap_center_vec, m_vec, scale_vec(cyl.axis, cyl.height / 2));
+	init_point(&cap_center, cap_center_vec.x, cap_center_vec.y, cap_center_vec.z);
+	subtract_points(&x, r.origin, cap_center);
+	a = dot_self(r.direction) - dot_product(r.direction, cyl.axis);
+	b = 2 * (dot_product(r.direction, x) - dot_product(r.direction, cyl.axis)*dot_product(x, cyl.axis));
+	c = dot_self(x) - powf(dot_product(x,cyl.axis), 2) - powf(cyl.diameter / 2, 2);
+
+	d = b * b - (4 * a * c);
+	if (d < 0)
+		return;
+	*t1 = (-b - sqrt(d)) / (2 * a);
+	m1 = dot_product(r.direction, cyl.axis) * *t1 + dot_product(x, cyl.axis);
+	if (d > 0)
+	{
+		*t2 = (-b + sqrt(d)) / (2 * a);
+		m2 = dot_product(r.direction, cyl.axis) * *t2 + dot_product(x, cyl.axis);
+	}
+}
 
 void	sphere_intersect(t_sphere s, t_ray r, float *t1, float *t2)
 {
@@ -21,9 +54,9 @@ void	sphere_intersect(t_sphere s, t_ray r, float *t1, float *t2)
 	t_vector	origin_center;
 
 	init_vector_p(&origin_center, r.origin, s.center);
-	a = dot_product(r.direction, r.direction);
+	a = dot_self(r.direction);
 	b = 2 * dot_product(origin_center, r.direction);
-	c = dot_product(origin_center, origin_center) - (s.diameter/2 * s.diameter/2);
+	c = dot_self(origin_center) - (s.diameter/2 * s.diameter/2);
 	d = b * b - (4 * a * c);
 	if (d < 0)
 		return;
@@ -58,6 +91,7 @@ void test(){
 	t_ray		ray;
 	t_sphere	sphere;
 	t_plane		plane;
+	t_cylinder	cylinder;
 
 	init_point(&ray.origin, 0, 0, 0);
 	init_vector(&ray.direction, 0, 0, 1);
@@ -67,6 +101,8 @@ void test(){
 	
 	init_point(&sphere.center, 0, 0, 3);
 	sphere.diameter = 2.5;
+
+	
 
 	float t1 = -1;
 	float t2 = -1;

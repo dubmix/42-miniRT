@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:47:57 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/08/23 14:04:49 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/28 11:25:07 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,27 @@ void	subtract_vectors(t_vector *result, t_vector v1, t_vector v2)
 	result->z = v1.z - v2.z;
 }
 
+void	subtract_points(t_vector *result, t_point p1, t_point p2)
+{
+	result->x = p1.x - p2.x;
+	result->y = p1.y - p2.y;
+	result->z = p1.z - p2.z;
+}
+
 float	dot_product(t_vector v1, t_vector v2)
 {
 	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
+}
+
+float	dot_self(t_vector v1)
+{
+	return (v1.x * v1.x + v1.y * v1.y + v1.z * v1.z);
+}
+
+t_vector	scale_vec(t_vector v, float s)
+{
+	v.x = v.x * s;
+	v.y = v.y * s;
+	v.z = v.z * s;
+	return (v);
 }
