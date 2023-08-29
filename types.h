@@ -6,9 +6,12 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 08:49:13 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/08/23 10:37:25 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/28 14:55:38 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef TYPES_H
+# define TYPES_H
 
 #include "miniRT.h"
 
@@ -18,12 +21,19 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
+
 typedef struct 	s_point
 {
 	float		x;
 	float		y;
 	float		z;
 }				t_point;
+
+typedef struct s_result
+{
+	t_point	*t;
+	bool	has_result;
+}			t_result;
 
 typedef struct 	s_vector
 {
@@ -64,7 +74,7 @@ typedef struct 	s_light
 typedef struct 	s_ray
 {
 	t_point		origin;
-	t_vector	direction;
+	t_vector	direction;		
 }				t_ray;
 
 typedef struct 	s_plane
@@ -100,3 +110,5 @@ typedef struct 	s_scene
 	t_list		*cylinders;
 	mlx_t		*mlx;
 }				t_scene;
+
+#endif

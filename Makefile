@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+         #
+#    By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 11:47:51 by pdelanno          #+#    #+#              #
-#    Updated: 2023/08/22 15:25:41 by pdelanno         ###   ########.fr        #
+#    Updated: 2023/08/28 14:56:35 by aehrlich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,12 @@ SRCS = 	src/main.c \
 		src/parsing/parsing_sp.c \
 		src/parsing/parsing_cy.c \
 		src/parsing/parsing_error.c \
+		src/graphics/graphics.c \
 		src/utils/get_next_line.c \
 		src/utils/get_next_line_utils.c \
 		src/utils/ft_split.c \
+		src/raytracing/algebra.c \
+		src/raytracing/intersect.c \
 		src/utils/ft_atoi.c \
 		src/utils/ft_isdigit.c \
 		src/utils/ft_isnumber.c \
@@ -49,9 +52,9 @@ OBJS = $(SRCS:.c=.o)
 
 HEADERS = miniRT.h
 
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = #-Wall -Werror -Wextra -g
 
-MLXFLAG = -Iinclude -lglfw
+MLXFLAG = -Iinclude -lglfw -lm
 
 .c.o:
 			@cc ${CFLAGS} -c $^ -o $@

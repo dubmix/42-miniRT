@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:58:07 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/23 10:35:19 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/28 14:30:26 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,16 @@
 # define WIDTH 512
 # define HEIGHT 512
 
-static mlx_image_t *img;
+extern mlx_image_t *img;
+//static mlx_image_t *img;
 
 void    ft_hook(void *param);
+void    ft_put_pixel(void *param);
+t_ray	create_ray(t_scene *scene, int pixel_x, int pixel_y);
+uint32_t trace_ray(t_scene *scene, t_ray ray);
+float	apply_light(t_scene *scene, t_point p);
 
+void	ft_render(void *param);
 t_point    pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y);
 
 void	init_parsing(t_scene *scene);
@@ -106,5 +112,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+void test(t_scene *scene);
 
 #endif
