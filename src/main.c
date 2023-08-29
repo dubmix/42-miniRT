@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:00:16 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/28 14:25:30 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/28 17:50:07 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ int main(int argc, char *argv[])
 	// mlx_loop_hook(mlx, ft_hook, mlx);
 	// mlx_loop(mlx);
 	// mlx_terminate(mlx);
-	test();
+	test(&scene);
 	return (0);
 }

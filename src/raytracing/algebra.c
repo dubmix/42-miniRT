@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:47:57 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/08/28 11:25:07 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/29 16:27:39 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,21 @@ t_vector	scale_vec(t_vector v, float s)
 	v.y = v.y * s;
 	v.z = v.z * s;
 	return (v);
+}
+
+float		vector_length(t_vector v)
+{
+	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
+}
+
+t_vector	normalize(t_vector v)
+{
+	t_vector	norm;
+	float		len;
+
+	len = vector_length(v);
+	norm.x = v.x / len;
+	norm.y = v.y / len;
+	norm.z = v.z / len;
+	return (norm);
 }
