@@ -30,7 +30,6 @@ extern mlx_image_t *img;
 //static mlx_image_t *img;
 
 void    ft_hook(void *param);
-void    ft_put_pixel(void *param);
 t_ray	create_ray(t_scene *scene, int pixel_x, int pixel_y);
 uint32_t trace_ray(t_scene *scene, t_ray ray);
 float	apply_light(t_scene *scene, t_point p);
@@ -75,6 +74,7 @@ void    del_cylinder(void *content);
 void    print_list(t_list *list);
 void    del_plane(void *content);
 int     check_if_nb(char **sub_split);
+int	    check_if_vec(char **sub_split);
 
 int     ft_strncmp_rev(char *str, char *str_to_find, int n);
 int	    ft_strlen(char *str);

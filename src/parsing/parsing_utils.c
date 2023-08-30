@@ -32,3 +32,12 @@ int	check_if_nb(char **sub_split)
 		return (1);
 	return (0);
 }
+
+int	check_if_vec(char **sub_split)
+{
+	if (ft_stof(sub_split[0]) == 0 && ft_stof(sub_split[1]) == 0
+			&& ft_stof(sub_split[2]) == 0)
+		return (1);
+	else
+		return (0);
+}

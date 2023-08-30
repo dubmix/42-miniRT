@@ -71,18 +71,19 @@ int	process_camera_orientation(t_scene *scene, char *str)
 		free_arr(sub_split);
 		return (ft_parsing_error("unvalid or. params: ", "camera", 1));
 	}
-	if ((ft_atoi(sub_split[0]) >= -1 && ft_atoi(sub_split[0]) <= 1)
-		&& (ft_atoi(sub_split[1]) >= -1 && ft_atoi(sub_split[1]) <= 1)
-		&& (ft_atoi(sub_split[2]) >= -1 && ft_atoi(sub_split[2]) <= 1))
+	if (((ft_stof(sub_split[0]) >= -1 && ft_stof(sub_split[0]) <= 1)
+		&& (ft_stof(sub_split[1]) >= -1 && ft_stof(sub_split[1]) <= 1)
+		&& (ft_stof(sub_split[2]) >= -1 && ft_stof(sub_split[2]) <= 1))
+		&& check_if_vec(sub_split) == 0)
 	{
-		scene->camera.orientation.x = ft_atoi(sub_split[0]);
-		scene->camera.orientation.x = ft_atoi(sub_split[1]);
-		scene->camera.orientation.x = ft_atoi(sub_split[2]);
+		scene->camera.orientation.x = ft_stof(sub_split[0]);
+		scene->camera.orientation.y = ft_stof(sub_split[1]);
+		scene->camera.orientation.z = ft_stof(sub_split[2]);
 	}
 	else
 	{
 		free_arr(sub_split);
-		return (ft_parsing_error("or. out of range: ", "camera", 0));
+		return (ft_parsing_error("or. out of range: ", "camera", 1));
 	}
 	free_arr(sub_split);
 	return (0);

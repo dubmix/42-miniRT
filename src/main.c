@@ -23,62 +23,6 @@ void ft_hook(void *param)
 		mlx_close_window(mlx);
 }
 
-void update_pos(void *param)
-{
-	t_scene *scene;
-
-	scene = param;
-	if (mlx_is_key_down(scene->mlx, MLX_KEY_S)
-		&& mlx_is_key_down(scene->mlx, MLX_KEY_DOWN))
-	{
-		img->instances[0].x += 5;
-	}
-}
-
-void ft_put_pixel(void *param)
-{
-	unsigned int i;
-	unsigned int j;
-
-	param = NULL;
-	j = 0;
-	while (j < img->width)
-	{
-
-		i = 0;
-		while (i < img->height)
-		{
-			mlx_put_pixel(img, j, i, 0xFF0000FF);
-			i++;
-		}
-		j++;
-	}
-}
-
-// void	ft_render(void *param)
-// {
-// 	//t_scene *scene;
-// 	//t_color	*color;
-// 	unsigned int pixel_x;
-// 	unsigned int pixel_y;
-// 	//t_ray *ray;
-
-// 	param = NULL;
-// 	pixel_x = 0;
-// 	while (pixel_x < img->width)
-// 	{
-//         pixel_y = 0;
-// 		while (pixel_y < img->height)
-// 		{
-// 			//ray = create_ray(scene, pixel_x, pixel_y);
-// 			//color = trace_ray(scene, ray);
-// 			mlx_put_pixel(img, pixel_x, pixel_y, 0xFF0000FF);
-// 			pixel_y++;
-// 		}
-// 		pixel_x++;
-// 	}
-// }
-
 void    print_list(t_list *list)
 {
     t_list *current;

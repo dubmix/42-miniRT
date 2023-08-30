@@ -76,9 +76,10 @@ int	process_cy_vector(t_cylinder *cylinder, char *str)
 		free_arr(sub_split);
 		return (ft_parsing_error("unvalid vector: ", "cylinder", 1));
 	}
-	if (ft_stof(sub_split[0]) >= -1 && ft_stof(sub_split[0]) <= 1
+	if ((ft_stof(sub_split[0]) >= -1 && ft_stof(sub_split[0]) <= 1
 		&& ft_stof(sub_split[1]) >= -1 && ft_stof(sub_split[1]) <= 1
 		&& ft_stof(sub_split[2]) >= -1 && ft_stof(sub_split[2]) <= 1)
+		&& check_if_vec(sub_split) == 0)
 	{
 		cylinder->axis.x = ft_stof(sub_split[0]);
 		cylinder->axis.y = ft_stof(sub_split[1]);

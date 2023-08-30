@@ -68,9 +68,10 @@ int	process_pl_vector(t_plane *plane, char *str)
 		free_arr(sub_split);
 		return (ft_parsing_error("unvalid vector: ", "plane", 1));
 	}
-	if (ft_stof(sub_split[0]) >= -1 && ft_stof(sub_split[0]) <= 1
+	if ((ft_stof(sub_split[0]) >= -1 && ft_stof(sub_split[0]) <= 1
 		&& ft_stof(sub_split[1]) >= -1 && ft_stof(sub_split[1]) <= 1
 		&& ft_stof(sub_split[2]) >= -1 && ft_stof(sub_split[2]) <= 1)
+		&& check_if_vec(sub_split) == 0)
 	{
 		plane->normal_vector.x = ft_stof(sub_split[0]);
 		plane->normal_vector.y = ft_stof(sub_split[1]);

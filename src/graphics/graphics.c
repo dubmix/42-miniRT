@@ -45,7 +45,7 @@ void	ft_render(void *param)
 		{
 			ray = create_ray(scene, pixel_x, pixel_y);
 			color = trace_ray(scene, ray);
-			color = color * 0.9;// apply_light(scene);
+			//color = (uint32_t)(color * 0.7);// apply_light(scene);
 			mlx_put_pixel(img, pixel_x, pixel_y, color);
 			pixel_y++;
 		}
@@ -97,6 +97,9 @@ float	apply_light(t_scene *scene, t_point p)
 		sphere = *((t_sphere *)temp->content);
 		normalize(&N, t1, sphere.center);
 		subtract_points(&L, scene->light.coordinates, t1);
+		//shadow_check;
+		//closest intersection;
+
 		if (dot_product(N, L) > 0)
 			i += scene->light.brightness_ratio * dot_product(N, L)/vector_length(scene->light.coordinates, t1);
 	}
@@ -113,9 +116,16 @@ t_ray	create_ray(t_scene *scene, int pixel_x, int pixel_y)
 	return (ray);
 }
 
-uint32_t rgb_to_uint32(uint32_t r, uint32_t g, uint32_t b)
+uint32_t rgb_to_uint32(uint32_t r, uint32_t g, uint32_t b, float brightness)
 {
-	return (r << 24 | g << 16 | b << 8 | 255);
+	uint32_t sc_r;
+	uint32_t sc_g;
+	uint32_t sc_b;
+
+	sc_r = (uint32_t)(r * brightness);
+	sc_g = (uint32_t)(g * brightness);
+	sc_b = (uint32_t)(b * brightness);
+	return (sc_r << 24 | sc_g << 16 | sc_b << 8 | 255);
 }
 
 uint32_t trace_ray(t_scene *scene, t_ray ray)
@@ -137,10 +147,10 @@ uint32_t trace_ray(t_scene *scene, t_ray ray)
 		if (t1 != -1)
 		{
 			color = rgb_to_uint32(sphere.color.r,
-					sphere.color.g, sphere.color.b);
+					sphere.color.g, sphere.color.b, scene->ambient.ratio);
 			return (color);
 		}
 		temp = temp->next;
 	}
-    return (rgb_to_uint32(0, 0, 0));
+    return (rgb_to_uint32(0, 0, 0, 0));
 }
