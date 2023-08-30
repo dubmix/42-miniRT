@@ -71,7 +71,7 @@ int	process_cy_vector(t_cylinder *cylinder, char *str)
 	char	**sub_split;
 
 	sub_split = ft_split(str, ',');
-	if (ft_count_str(sub_split) != 3 && check_if_nb(sub_split) != 0)
+	if (ft_count_str(sub_split) != 3 || check_if_nb(sub_split) != 0)
 	{
 		free_arr(sub_split);
 		return (ft_parsing_error("unvalid vector: ", "cylinder", 1));
@@ -99,10 +99,10 @@ int	process_cy_rgb(t_cylinder *cylinder, char *str)
 	char	**sub_split;
 
 	sub_split = ft_split(str, ',');
-	if (ft_count_str(sub_split) != 3 && check_if_nb(sub_split) != 0)
+	if (ft_count_str(sub_split) != 3 || check_if_nb(sub_split) != 1)
 	{
 		free_arr(sub_split);
-		return (ft_parsing_error("unvalid rgb params", "cylinder", 1));
+		return (ft_parsing_error("unvalid rgb params: ", "cylinder", 1));
 	}
 	if ((ft_atoi(sub_split[0]) >= 0 && ft_atoi(sub_split[0]) <= 255)
 		&& (ft_atoi(sub_split[1]) >= 0 && ft_atoi(sub_split[1]) <= 255)

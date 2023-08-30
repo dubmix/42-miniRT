@@ -21,28 +21,24 @@ void ft_hook(void *param)
 	scene = param;
 	if (mlx_is_key_down(scene->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(scene->mlx);
-	if (mlx_is_key_down(scene->mlx, MLX_KEY_S) 
-			&& mlx_is_key_down(scene->mlx, MLX_KEY_UP))
+	if (mlx_is_key_down(scene->mlx, MLX_KEY_UP))
 	{
-		scene->light.coordinates.z += 0.3;
+		scene->light.coordinates.z += 5.0;
 		ft_render(scene);
 	}
-	if (mlx_is_key_down(scene->mlx, MLX_KEY_S) 
-			&& mlx_is_key_down(scene->mlx, MLX_KEY_DOWN))
+	if (mlx_is_key_down(scene->mlx, MLX_KEY_DOWN))
 	{
-		scene->light.coordinates.z -= 0.3;
+		scene->light.coordinates.z -= 5.0;
 		ft_render(scene);
 	}
-	if (mlx_is_key_down(scene->mlx, MLX_KEY_S) 
-			&& mlx_is_key_down(scene->mlx, MLX_KEY_LEFT))
+	if (mlx_is_key_down(scene->mlx, MLX_KEY_LEFT))
 	{
-		scene->light.coordinates.x -= 0.3;
+		scene->light.coordinates.x -= 5.0;
 		ft_render(scene);
 	}
-	if (mlx_is_key_down(scene->mlx, MLX_KEY_S) 
-			&& mlx_is_key_down(scene->mlx, MLX_KEY_RIGHT))
+	if (mlx_is_key_down(scene->mlx, MLX_KEY_RIGHT))
 	{
-		scene->light.coordinates.x += 0.3;
+		scene->light.coordinates.x += 5.0;
 		ft_render(scene);
 	}
 }

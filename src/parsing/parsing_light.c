@@ -43,9 +43,9 @@ int	process_light_coordinates(t_scene *scene, char *str)
 		&& ft_isnumber(sub_split[1]) == 1
 		&& ft_isnumber(sub_split[2]) == 1)
 	{
-		scene->light.coordinates.x = ft_atoi(sub_split[0]);
-		scene->light.coordinates.y = ft_atoi(sub_split[1]);
-		scene->light.coordinates.z = ft_atoi(sub_split[2]);
+		scene->light.coordinates.x = ft_stof(sub_split[0]);
+		scene->light.coordinates.y = ft_stof(sub_split[1]);
+		scene->light.coordinates.z = ft_stof(sub_split[2]);
 	}
 	else
 	{
