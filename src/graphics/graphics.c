@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/30 11:18:14 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:15:27 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,17 +108,17 @@ uint32_t trace_ray(t_scene *scene, t_ray ray)
 {
     uint32_t color;
 	t_list *temp;
-	t_cylinder cylinder;
+	t_plane plane;
     t_point closest;
 
-	temp = scene->cylinders;
+	temp = scene->planes;
 	while (temp)
 	{
-		cylinder = *((t_cylinder *)temp->content);
-		if (cylinder_intersect(cylinder, ray, &closest))
+		plane = *((t_plane *)temp->content);
+		if (plane_intersect(plane, ray, &closest))
 		{
-			color = rgb_to_uint32(cylinder.color.r,
-					cylinder.color.g, cylinder.color.b, scene->ambient.ratio);
+			color = rgb_to_uint32(plane.color.r,
+					plane.color.g, plane.color.b, scene->ambient.ratio);
 			return (color);
 		}
 		temp = temp->next;

@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:33:51 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/08/30 16:48:24 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:12:38 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,9 @@ void test(t_scene *scene){
 	t_ray		ray;
 	t_point		point;
 
-	ray.origin = init_point(0, -5, 0);
-	ray.direction = normalize(init_vector_p(init_point(0, 0, 8), ray.origin));
-	if (cylinder_intersect(*((t_cylinder *)scene->cylinders->content), ray, &point))
+	ray.origin = init_point(0, 5, 0);
+	ray.direction = init_vector(0, 0, 1);
+	if (plane_intersect(*((t_plane *)scene->planes->content), ray, &point))
 		print_point(point, "Intersect");
 	else
 		printf("No intersection\n");
