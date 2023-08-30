@@ -78,7 +78,7 @@ float	apply_light(t_scene *scene, t_point closest)
 	// 	//closest intersection;
 
 	if (dot_product(N, L) > 0)
-		i += scene->light.brightness_ratio * dot_product(N, L)/(1.0/vector_length(L));
+		i += scene->light.brightness_ratio * dot_product(N, L)/(1/vector_length(L));
 	// }
 	return (i);
 }
