@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:00:16 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/30 13:20:06 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:32:41 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int main(int argc, char *argv[])
 	scene.mlx = mlx_init(WIDTH, HEIGHT, "miniRT", 1);
 	img = mlx_new_image(scene.mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(scene.mlx, img, 0, 0);
-	//ft_render(ptr);
-	test(&scene);
+	ft_render(ptr);
+	//test(&scene);
 	//test(ptr);
 	// mlx_loop_hook(scene.mlx, ft_put_pixel, scene.mlx);
 	mlx_loop_hook(scene.mlx, ft_hook, scene.mlx);

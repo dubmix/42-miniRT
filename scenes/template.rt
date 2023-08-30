@@ -42,6 +42,6 @@ pl 5.0,0.4,-10.0                    -1.0,1.0,0.0                                
 ### Cylinder ###
 # XYZ coordinates of cy center    | Axis of cy vector [-1, 1]    | cy diameter | cy height   | RGB
 
-cy 0,-3.0,10                    0,0,1                   2          4.0         10,0,255
+cy 0,0.0,10                    1,1,1                   2          4.0         10,0,255
 
 #cy 50.0,0.0,20.6                    0.0,0.0,1.0                    14.0          21.42         10,0,200

@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:33:51 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/08/30 13:14:04 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:48:24 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_point	*check_tube(t_ray r, t_cylinder cyl, t_point *hp1, t_point *hp2)
 	if (result.solution_type == NONE)
 		return (NULL);
 	m1 = dot_product(r.direction, cyl.axis) * result.t1 + dot_product(x, cyl.axis);
-	m2 = dot_product(r.direction, cyl.axis) * result.t1 + dot_product(x, cyl.axis);
+	m2 = dot_product(r.direction, cyl.axis) * result.t2 + dot_product(x, cyl.axis);
 	if (m1 >= 0 && m1 < cyl.height)
 		*hp2 = get_ray_point(result.t1, r);
 	if (m2 >= 0 && m2 <= cyl.height)
@@ -113,8 +113,8 @@ void test(t_scene *scene){
 	t_ray		ray;
 	t_point		point;
 
-	ray.origin = init_point(0, 0.0, 0.0);
-	ray.direction = init_vector(0, 0, 1);
+	ray.origin = init_point(0, -5, 0);
+	ray.direction = normalize(init_vector_p(init_point(0, 0, 8), ray.origin));
 	if (cylinder_intersect(*((t_cylinder *)scene->cylinders->content), ray, &point))
 		print_point(point, "Intersect");
 	else
