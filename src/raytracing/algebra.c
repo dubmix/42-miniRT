@@ -6,54 +6,81 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:47:57 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/08/29 16:27:39 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/30 07:57:19 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracing.h"
 
-void	init_point(t_point *p, float x, float y, float z)
+t_point	init_point(float x, float y, float z)
 {
-	p->x = x;
-	p->y = y;
-	p->z = z;
+	t_point	p;
+	
+	p.x = x;
+	p.y = y;
+	p.z = z;
+	return (p);
 }
 
-void	init_vector(t_vector *v, float x, float y, float z)
+t_vector	init_vector(float x, float y, float z)
 {
-	v->x = x;
-	v->y = y;
-	v->z = z;
+	t_vector	v;
+	
+	v.x = x;
+	v.y = y;
+	v.z = z;
+	return (v);
 }
 
-void	init_vector_p(t_vector *v, t_point p1, t_point p2)
+t_vector	init_vector_p(t_point p1, t_point p2)
 {
-	v->x = p1.x - p2.x;
-	v->y = p1.y - p2.y;
-	v->z = p1.z - p2.z;
+	t_vector	v;
+
+	v.x = p1.x - p2.x;
+	v.y = p1.y - p2.y;
+	v.z = p1.z - p2.z;
+	return (v);
 }
 
-void	add_vectors(t_vector *result, t_vector v1, t_vector v2)
+t_vector	add_vectors(t_vector v1, t_vector v2)
 {
-	result->x = v1.x + v2.x;
-	result->y = v1.y + v2.y;
-	result->z = v1.z + v2.z;
+	t_vector	result;
+
+	result.x = v1.x + v2.x;
+	result.y = v1.y + v2.y;
+	result.z = v1.z + v2.z;
+	return (result);
 }
 
-void	subtract_vectors(t_vector *result, t_vector v1, t_vector v2)
+t_vector	subtract_vectors(t_vector v1, t_vector v2)
 {
-	result->x = v1.x - v2.x;
-	result->y = v1.y - v2.y;
-	result->z = v1.z - v2.z;
+	t_vector	result;
+
+	result.x = v1.x - v2.x;
+	result.y = v1.y - v2.y;
+	result.z = v1.z - v2.z;
+	return (result);
 }
 
-void	subtract_points(t_vector *result, t_point p1, t_point p2)
+t_vector	subtract_points(t_point p1, t_point p2)
 {
-	result->x = p1.x - p2.x;
-	result->y = p1.y - p2.y;
-	result->z = p1.z - p2.z;
+	t_vector	result;
+
+	result.x = p1.x - p2.x;
+	result.y = p1.y - p2.y;
+	result.z = p1.z - p2.z;
+	return (result);
 }
 
+t_point	add_points(t_point p1, t_point p2)
+{
+	t_point	result;
+
+	result.x = p1.x + p2.x;
+	result.y = p1.y + p2.y;
+	result.z = p1.z + p2.z;
+	return (result);
+}
 float	dot_product(t_vector v1, t_vector v2)
 {
 	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
@@ -87,4 +114,23 @@ t_vector	normalize(t_vector v)
 	norm.y = v.y / len;
 	norm.z = v.z / len;
 	return (norm);
+}
+
+t_vector	p_to_origin_vec(t_point p)
+{
+	t_vector	v;
+	v.x = p.x;
+	v.y = p.y;
+	v.z = p.z;
+	return (v);
+}
+
+t_point	origin_vec_to_p(t_vector v)
+{
+	t_point	p;
+
+	p.x = v.x;
+	p.y = v.y;
+	p.z = v.z;
+	return (p);
 }
