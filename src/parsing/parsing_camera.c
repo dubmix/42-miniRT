@@ -49,8 +49,8 @@ int	process_camera_coordinates(t_scene *scene, char *str)
 		&& ft_isnumber(sub_split[2]) == 1)
 	{
 		scene->camera.coordinates.x = ft_atoi(sub_split[0]);
-		scene->camera.coordinates.x = ft_atoi(sub_split[1]);
-		scene->camera.coordinates.x = ft_atoi(sub_split[2]);
+		scene->camera.coordinates.y = ft_atoi(sub_split[1]);
+		scene->camera.coordinates.z = ft_atoi(sub_split[2]);
 	}
 	else
 	{

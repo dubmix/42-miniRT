@@ -53,34 +53,35 @@ void	ft_render(void *param)
 	}
 }
 
-/* float	apply_light(t_scene *scene, t_point p)
+float	apply_light(t_scene *scene, t_point closest)
 {
 	float i;
 	t_vector	N;
-	t_list *temp;
-	t_sphere sphere;
-	t_point t1;
+	// t_list *temp;
+	t_sphere *sphere;
+	// t_point t1;
 	t_vector L;
 
-	t1.x = 10.0;
-	t1.y = 10.0;
-	t1.z = 10.0;
-	temp = scene->spheres;
 	i = 0.0;
 	i += scene->ambient.ratio;
-	while (temp)
-	{
-		sphere = *((t_sphere *)temp->content);
-		normalize(&N, t1, sphere.center);
-		subtract_points(&L, scene->light.coordinates, t1);
-		//shadow_check;
-		//closest intersection;
+	sphere = (t_sphere *)scene->spheres->content;
+	N = subtract_points(closest, sphere->center);
+	N = normalize(N);
+	L = subtract_points(scene->light.coordinates, closest);
+	// temp = scene->spheres;
+	// while (temp)
+	// {
+	// 	sphere = *((t_sphere *)temp->content);
+	// 	normalize(&N, t1, sphere.center);
+	// 	subtract_points(&L, scene->light.coordinates, t1);
+	// 	//shadow_check;
+	// 	//closest intersection;
 
-		if (dot_product(N, L) > 0)
-			i += scene->light.brightness_ratio * dot_product(N, L)/vector_length(scene->light.coordinates, t1);
-	}
+	if (dot_product(N, L) > 0)
+		i += scene->light.brightness_ratio * dot_product(N, L)/(1.0/vector_length(L));
+	// }
 	return (i);
-} */
+}
 
 t_ray	create_ray(t_scene *scene, int pixel_x, int pixel_y)
 {
@@ -109,6 +110,7 @@ uint32_t trace_ray(t_scene *scene, t_ray ray)
     uint32_t color;
 	t_list *temp;
 	t_sphere sphere;
+	t_cylinder cylinder;
     t_point closest;
     //t_result result;
 
@@ -119,10 +121,22 @@ uint32_t trace_ray(t_scene *scene, t_ray ray)
 		if (sphere_intersect(sphere, ray, &closest))
 		{
 			color = rgb_to_uint32(sphere.color.r,
-					sphere.color.g, sphere.color.b, scene->ambient.ratio);
+					sphere.color.g, sphere.color.b, apply_light(scene, closest));
 			return (color);
 		}
 		temp = temp->next;
 	}
+	// temp = scene->cylinders;
+	// while (temp)
+	// {
+	// 	cylinder = *((t_cylinder *)temp->content);
+	// 	if (cylinder_intersect(cylinder, ray, &closest))
+	// 	{
+	// 		color = rgb_to_uint32(cylinder.color.r,
+	// 				cylinder.color.g, cylinder.color.b, scene->ambient.ratio);
+	// 		return (color);
+	// 	}
+	// 	temp = temp->next;
+	// }
     return (rgb_to_uint32(0, 0, 0, 0));
 }

@@ -16,11 +16,35 @@ mlx_image_t *img;
 
 void ft_hook(void *param)
 {
-	mlx_t *mlx;
+	t_scene *scene;
 
-	mlx = param;
-	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(mlx);
+	scene = param;
+	if (mlx_is_key_down(scene->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(scene->mlx);
+	if (mlx_is_key_down(scene->mlx, MLX_KEY_S) 
+			&& mlx_is_key_down(scene->mlx, MLX_KEY_UP))
+	{
+		scene->light.coordinates.z += 0.3;
+		ft_render(scene);
+	}
+	if (mlx_is_key_down(scene->mlx, MLX_KEY_S) 
+			&& mlx_is_key_down(scene->mlx, MLX_KEY_DOWN))
+	{
+		scene->light.coordinates.z -= 0.3;
+		ft_render(scene);
+	}
+	if (mlx_is_key_down(scene->mlx, MLX_KEY_S) 
+			&& mlx_is_key_down(scene->mlx, MLX_KEY_LEFT))
+	{
+		scene->light.coordinates.x -= 0.3;
+		ft_render(scene);
+	}
+	if (mlx_is_key_down(scene->mlx, MLX_KEY_S) 
+			&& mlx_is_key_down(scene->mlx, MLX_KEY_RIGHT))
+	{
+		scene->light.coordinates.x += 0.3;
+		ft_render(scene);
+	}
 }
 
 void    print_list(t_list *list)
@@ -58,10 +82,10 @@ int main(int argc, char *argv[])
 	scene.mlx = mlx_init(WIDTH, HEIGHT, "miniRT", 1);
 	img = mlx_new_image(scene.mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(scene.mlx, img, 0, 0);
+	mlx_loop_hook(scene.mlx, ft_hook, ptr);
 	ft_render(ptr);
 	//test(ptr);
 	// mlx_loop_hook(scene.mlx, ft_put_pixel, scene.mlx);
-	mlx_loop_hook(scene.mlx, ft_hook, scene.mlx);
 	mlx_loop(scene.mlx);
 	mlx_terminate(scene.mlx);
 	return (0);

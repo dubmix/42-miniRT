@@ -31,6 +31,7 @@ t_point	get_nearest_ray_point(t_result result, t_ray ray);
 t_point	get_nearest_point(t_point p1, t_point p2, t_point compare);
 t_point	get_ray_point(float t, t_ray r);
 t_result	solve_quadratic(float a, float b, float c);
+t_vector	normalize(t_vector v);
 
 t_point	*sphere_intersect(t_sphere s, t_ray r, t_point *p);
 t_point	*plane_intersect(t_plane p, t_ray r, t_point *point);
