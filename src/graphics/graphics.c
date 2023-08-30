@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/28 13:59:46 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/08/30 10:40:58 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,31 +53,7 @@ void	ft_render(void *param)
 	}
 }
 
-void normalize(t_vector *result, t_point p1, t_point p2)
-{
-	result->x = (p1.x - p2.x) / sqrt(((p1.x - p2.x) * (p1.x - p2.x))
-			+ ((p1.y - p2.y) * (p1.y - p2.y)) + ((p1.z - p2.z) * (p1.z - p2.z)));
-	result->y = (p1.y - p2.y) / sqrt(((p1.x - p2.x) * (p1.x - p2.x))
-			+ ((p1.y - p2.y) * (p1.y - p2.y)) + ((p1.z - p2.z) * (p1.z - p2.z)));
-	result->z = (p1.z - p2.z) / sqrt(((p1.x - p2.x) * (p1.x - p2.x))
-			+ ((p1.y - p2.y) * (p1.y - p2.y)) + ((p1.z - p2.z) * (p1.z - p2.z)));
-}
-
-float vector_length(t_point p1, t_point p2)
-{
-	float result;
-	float x;
-	float y;
-	float z;
-
-	x = p2.x - p1.x;
-	y = p2.y - p1.y;
-	z = p2.z - p1.z;
-	result = sqrt((x * x) + (y * y) + (z * z));
-	return (result);
-}
-
-float	apply_light(t_scene *scene, t_point p)
+/* float	apply_light(t_scene *scene, t_point p)
 {
 	float i;
 	t_vector	N;
@@ -104,14 +80,14 @@ float	apply_light(t_scene *scene, t_point p)
 			i += scene->light.brightness_ratio * dot_product(N, L)/vector_length(scene->light.coordinates, t1);
 	}
 	return (i);
-}
+} */
 
 t_ray	create_ray(t_scene *scene, int pixel_x, int pixel_y)
 {
     t_ray ray;
 	
 	ray.origin = scene->camera.coordinates;
-	init_vector_p(&ray.direction, pixel_to_coord(scene, pixel_x, pixel_y),
+	ray.direction = init_vector_p(pixel_to_coord(scene, pixel_x, pixel_y),
 					scene->camera.coordinates);
 	return (ray);
 }
@@ -133,18 +109,14 @@ uint32_t trace_ray(t_scene *scene, t_ray ray)
     uint32_t color;
 	t_list *temp;
 	t_sphere sphere;
-    //t_point closest;
+    t_point closest;
     //t_result result;
-
-	float t1 = -1;
-	float t2 = -1;
 
 	temp = scene->spheres;
 	while (temp)
 	{
 		sphere = *((t_sphere *)temp->content);
-    	sphere_intersect(sphere, ray, &t1, &t2);
-		if (t1 != -1)
+		if (sphere_intersect(sphere, ray, &closest))
 		{
 			color = rgb_to_uint32(sphere.color.r,
 					sphere.color.g, sphere.color.b, scene->ambient.ratio);

@@ -6,20 +6,38 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:49:28 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/08/28 14:53:38 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/30 10:37:33 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef RAYTRACING_H
+# define RAYTRACING_H
+
 #include "../../miniRT.h"
 
-void	init_point(t_point *p, float x, float y, float z);
-void	init_vector_p(t_vector *v, t_point p1, t_point p2);
-void	init_vector(t_vector *v, float x, float y, float z);
+t_point	init_point(float x, float y, float z);
+t_vector	init_vector(float x, float y, float z);
+t_vector	init_vector_p(t_point p1, t_point p2);
+void	print_vector(t_vector v, char *name);
+void	print_point(t_point p, char *name);
 t_vector	scale_vec(t_vector v, float s);
 float	dot_product(t_vector v1, t_vector v2);
 float	dot_self(t_vector v1);
-void	add_vectors(t_vector *result, t_vector v1, t_vector v2);
-void	subtract_vectors(t_vector *result, t_vector v1, t_vector v2);
-void	subtract_points(t_vector *result, t_point p1, t_point p2);
+t_vector	add_vectors(t_vector v1, t_vector v2);
+t_vector	subtract_vectors(t_vector v1, t_vector v2);
+t_vector	subtract_points(t_point p1, t_point p2);
+float		vector_length(t_vector v);
+t_point	get_nearest_ray_point(t_result result, t_ray ray);
+t_point	get_nearest_point(t_point p1, t_point p2, t_point compare);
+t_point	get_ray_point(float t, t_ray r);
+t_result	solve_quadratic(float a, float b, float c);
 
-void	sphere_intersect(t_sphere s, t_ray r, float *t1, float *t2);
+t_point	*sphere_intersect(t_sphere s, t_ray r, t_point *p);
+t_point	*plane_intersect(t_plane p, t_ray r, t_point *point);
+t_point	*cylinder_intersect(t_cylinder cyl, t_ray r, t_point *p);
+
+t_vector	p_to_origin_vec(t_point p);
+t_point	origin_vec_to_p(t_vector v);
+t_point	add_points(t_point p1, t_point p2);
+
+#endif

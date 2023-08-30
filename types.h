@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 08:49:13 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/08/28 14:55:38 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/30 10:37:39 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,18 @@ typedef struct 	s_point
 	float		z;
 }				t_point;
 
+typedef enum e_solution_type
+{
+	ONE,
+	TWO,
+	NONE,
+}			t_solution_type;
+
 typedef struct s_result
 {
-	t_point	*t;
-	bool	has_result;
+	t_solution_type	solution_type;
+	float			t1;
+	float			t2;
 }			t_result;
 
 typedef struct 	s_vector

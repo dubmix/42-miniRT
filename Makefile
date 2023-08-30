@@ -6,7 +6,7 @@
 #    By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 11:47:51 by pdelanno          #+#    #+#              #
-#    Updated: 2023/08/28 14:56:35 by aehrlich         ###   ########.fr        #
+#    Updated: 2023/08/29 18:44:51 by aehrlich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,12 @@ SRCS = 	src/main.c \
 		src/utils/get_next_line_utils.c \
 		src/utils/ft_split.c \
 		src/raytracing/algebra.c \
-		src/raytracing/intersect.c \
+		src/raytracing/algebra_utils.c \
+		src/raytracing/cylinder.c \
+		src/raytracing/sphere.c \
+		src/raytracing/plane.c \
+		src/raytracing/raytracing_utils.c \
+		src/raytracing/ray.c \
 		src/utils/ft_atoi.c \
 		src/utils/ft_isdigit.c \
 		src/utils/ft_isnumber.c \
