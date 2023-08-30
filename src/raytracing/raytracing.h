@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:49:28 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/08/30 10:37:33 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/30 12:50:52 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ t_vector	p_to_origin_vec(t_point p);
 t_point	origin_vec_to_p(t_vector v);
 t_point	add_points(t_point p1, t_point p2);
 
+t_vector	normalize(t_vector v);
 #endif

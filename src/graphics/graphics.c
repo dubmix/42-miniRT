@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/30 10:40:58 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/08/30 11:18:14 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_render(void *param)
 	float i;
 	t_vector	N;
 	t_list *temp;
-	t_sphere sphere;
+	t_sphere cylinder;
 	t_point t1;
 	t_vector L;
 
@@ -70,8 +70,8 @@ void	ft_render(void *param)
 	i += scene->ambient.ratio;
 	while (temp)
 	{
-		sphere = *((t_sphere *)temp->content);
-		normalize(&N, t1, sphere.center);
+		cylinder = *((t_sphere *)temp->content);
+		normalize(&N, t1, cylinder.center);
 		subtract_points(&L, scene->light.coordinates, t1);
 		//shadow_check;
 		//closest intersection;
@@ -108,21 +108,20 @@ uint32_t trace_ray(t_scene *scene, t_ray ray)
 {
     uint32_t color;
 	t_list *temp;
-	t_sphere sphere;
+	t_cylinder cylinder;
     t_point closest;
-    //t_result result;
 
-	temp = scene->spheres;
+	temp = scene->cylinders;
 	while (temp)
 	{
-		sphere = *((t_sphere *)temp->content);
-		if (sphere_intersect(sphere, ray, &closest))
+		cylinder = *((t_cylinder *)temp->content);
+		if (cylinder_intersect(cylinder, ray, &closest))
 		{
-			color = rgb_to_uint32(sphere.color.r,
-					sphere.color.g, sphere.color.b, scene->ambient.ratio);
+			color = rgb_to_uint32(cylinder.color.r,
+					cylinder.color.g, cylinder.color.b, scene->ambient.ratio);
 			return (color);
 		}
 		temp = temp->next;
 	}
-    return (rgb_to_uint32(0, 0, 0, 0));
+	return (rgb_to_uint32(0, 0, 0, 0));
 }
