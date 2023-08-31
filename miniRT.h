@@ -31,8 +31,8 @@ extern mlx_image_t *img;
 
 void    ft_hook(void *param);
 t_ray	create_ray(t_scene *scene, int pixel_x, int pixel_y);
-uint32_t trace_ray(t_scene *scene, t_ray ray);
-float	apply_light(t_scene *scene, t_point closest);
+uint32_t trace_ray(t_scene *scene, t_ray ray, unsigned int pixel_x, unsigned int pixel_y);
+float	apply_light(t_scene *scene, t_point closest, unsigned int pixel_x, unsigned int pixel_y);
 
 void	ft_render(void *param);
 t_point    pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y);

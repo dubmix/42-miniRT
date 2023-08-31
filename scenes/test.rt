@@ -1,7 +1,7 @@
 ### Ambient lighting ###
 # Ambient lighting ratio in range [0.0, 1.0]                                                 | RGB
 
-A 0.3                                                                                    0,0,0
+A 0.6                                                                                    0,0,0
 
 
 ### Camera ###
@@ -22,7 +22,7 @@ L 0.000000,0.000000,-10.000000                                      1
 ### Sphere ###
 # XYZ coordinates of sphere center                               | Sphere diameter           | RGB
 
-sp 0.0,0.0,-3                                                2                      0,255,0
+sp 3,0.0,-3                                                2                      0,255,0
 
 sp 0.0,0.0,9                                                 25                       0,0,255
 

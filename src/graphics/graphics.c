@@ -44,7 +44,12 @@ void	ft_render(void *param)
 		while (pixel_y < img->height)
 		{
 			ray = create_ray(scene, pixel_x, pixel_y);
-			color = trace_ray(scene, ray);
+			color = trace_ray(scene, ray, pixel_x, pixel_y);
+			if ((250 < pixel_x && pixel_x < 255) && pixel_y == 250)
+			{
+				//printf("closest is: %f %f %f\n", closest.x, closest.y, closest.z);
+				printf("ray is: %f %f %f\n", ray.direction.x, ray.direction.y, ray.direction.z);
+			}
 			mlx_put_pixel(img, pixel_x, pixel_y, color);
 			pixel_y++;
 		}
@@ -52,13 +57,14 @@ void	ft_render(void *param)
 	}
 }
 
-float	apply_light(t_scene *scene, t_point closest)
+float	apply_light(t_scene *scene, t_point closest, unsigned int pixel_x, unsigned int pixel_y)
 {
 	float i;
 	t_vector	N;
 	t_sphere *sphere;
 	t_vector L;
 	t_ray ray;
+	float d;
 	// t_point t1;
 	//t_list *temp;
 
@@ -72,8 +78,23 @@ float	apply_light(t_scene *scene, t_point closest)
 	L = subtract_points(scene->light.coordinates, closest);
 	ray.origin = closest;
 	ray.direction = L;
+	if ((250 < pixel_x && pixel_x < 255) && pixel_y == 250)
+	{
+		//printf("closest is: %f %f %f\n", closest.x, closest.y, closest.z);
+		printf("L is: %f %f %f\n", ray.direction.x, ray.direction.y, ray.direction.z);
+	}
 	if (sphere_intersect_shadow((*sphere), ray, &closest))
-		return (i);
+	{
+		d = vector_length(subtract_points(closest, ray.origin));
+		if ((250 < pixel_x && pixel_x < 255) && pixel_y == 250)
+		{
+			printf("d is: %f\n", d);
+			printf("closest shadow is: %f %f %f\n\n", closest.x, closest.y, closest.z);
+			///printf("ray is: %f %f %f\n", ray.direction.x, ray.direction.y, ray.direction.z);
+		}
+		if (d > 0.001)
+	 		return (i);
+	}
 	if (dot_product(N, L) > 0)
 		i += scene->light.brightness_ratio * (dot_product(N, L)/(vector_length(N) * vector_length(L)));
 	return (i);
@@ -109,7 +130,7 @@ uint32_t rgb_to_uint32(uint32_t r, uint32_t g, uint32_t b, float brightness, t_s
 	return (sc_r << 24 | sc_g << 16 | sc_b << 8 | 255);
 }
 
-uint32_t trace_ray(t_scene *scene, t_ray ray)
+uint32_t trace_ray(t_scene *scene, t_ray ray, unsigned int pixel_x, unsigned int pixel_y)
 {
     uint32_t color;
 	t_list *temp;
@@ -124,9 +145,13 @@ uint32_t trace_ray(t_scene *scene, t_ray ray)
 		sphere = *((t_sphere *)temp->content);
 		if (sphere_intersect(sphere, ray, &closest))
 		{
-			//printf("closest is: %f %f %f\n", closest.x, closest.y, closest.z);
+			if ((250 < pixel_x && pixel_x < 255) && pixel_y == 250)
+			{
+				printf("closest is: %f %f %f\n", closest.x, closest.y, closest.z);
+				///printf("ray is: %f %f %f\n", ray.direction.x, ray.direction.y, ray.direction.z);
+			}
 			color = rgb_to_uint32(sphere.color.r,
-					sphere.color.g, sphere.color.b, apply_light(scene, closest), scene);
+					sphere.color.g, sphere.color.b, apply_light(scene, closest, pixel_x, pixel_y), scene);
 			return (color);
 		}
 		temp = temp->next;
