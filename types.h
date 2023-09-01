@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 08:49:13 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/01 16:23:47 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/01 18:52:08 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,5 @@ typedef struct s_object
 	t_body			body;
 	t_color			color;
 	t_vector		surface_normal;
-	void			*intersection_info;
 }			t_object;
 #endif

@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:41:24 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/01 15:18:14 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/01 18:44:12 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_point	*plane_intersect(t_object *obj, t_ray r, t_point *point)
 	float		b;
 
 	obj->body.plane->normal_vector = normalize(obj->body.plane->normal_vector);
-	obj->surface_normal = obj->body.plane->normal_vector;
+	obj->surface_normal = obj->body.plane->normal_vector; // does the direction matter? Light can be under plane
 	x = subtract_points(r.origin, obj->body.plane->plane_point);
 	a = -(dot_product(x, obj->body.plane->normal_vector)); //should it be lenght 1???
 	b = dot_product(r.direction, obj->body.plane->normal_vector);
