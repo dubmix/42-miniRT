@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/01 11:16:18 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/01 15:51:59 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,39 +57,49 @@ void	ft_render(void *param)
 	}
 }
 
-float	apply_light(t_scene *scene, t_point closest, unsigned int pixel_x, unsigned int pixel_y)
+t_point	*intersection(t_object	*obj, t_ray ray, t_point *temp_hit)
+{
+	if (obj->body_type == SPHERE)
+		if (sphere_intersect(obj, ray, temp_hit))
+			return (temp_hit);
+	if (obj->body_type == PLANE)
+		if (plane_intersect(obj, ray, temp_hit))
+			return (temp_hit);
+	if (obj->body_type == CYLINDER)
+		if (cylinder_intersect(obj, ray, temp_hit))
+			return (temp_hit);
+	return (NULL);
+}
+
+float	apply_light(t_scene *scene, t_point hit_point, t_object *object, int pixel_x, unsigned int pixel_y)
 {
 	float i;
 	t_vector	N;
-	t_sphere *sphere;
-	t_vector L;
+	t_vector	L;
 	t_ray ray;
+	t_point	light_intersection;
 	float d;
-	// t_point t1;
-	//t_list *temp;
 
 	i = 0.0;
 	i += scene->ambient.ratio;
-	sphere = (t_sphere *)scene->spheres->content;
-	N = subtract_points(closest, sphere->center);
-	N = normalize(N);
+	N = object->surface_normal;
+	L = subtract_points(scene->light.coordinates, hit_point);
 	//printf("closest is: %f %f %f\n", closest.x, closest.y, closest.z);
 	//printf("light coordinates: %f %f %f\n", scene->light.coordinates.x, scene->light.coordinates.y, scene->light.coordinates.z);
-	L = subtract_points(scene->light.coordinates, closest);
-	ray.origin = closest;
+	ray.origin = hit_point;
 	ray.direction = L;
 	if ((250 < pixel_x && pixel_x < 255) && pixel_y == 250)
 	{
 		//printf("closest is: %f %f %f\n", closest.x, closest.y, closest.z);
 		printf("L is: %f %f %f\n", ray.direction.x, ray.direction.y, ray.direction.z);
 	}
-	if (sphere_intersect_shadow((*sphere), ray, &closest))
+	if (intersection(object, ray, &light_intersection))
 	{
-		d = vector_length(subtract_points(closest, ray.origin));
+		d = vector_length(subtract_points(light_intersection, ray.origin));
 		if ((250 < pixel_x && pixel_x < 255) && pixel_y == 250)
 		{
 			printf("d is: %f\n", d);
-			printf("closest shadow is: %f %f %f\n\n", closest.x, closest.y, closest.z);
+			printf("closest shadow is: %f %f %f\n\n", light_intersection.x, light_intersection.y, light_intersection.z);
 			///printf("ray is: %f %f %f\n", ray.direction.x, ray.direction.y, ray.direction.z);
 		}
 		if (d > 0.001)
@@ -130,25 +140,11 @@ uint32_t rgb_to_uint32(uint32_t r, uint32_t g, uint32_t b, float brightness, t_s
 	return (sc_r << 24 | sc_g << 16 | sc_b << 8 | 255);
 }
 
-t_point	*intersection(t_object	*obj, t_ray ray, t_point *temp_hit)
-{
-	if (obj->body_type == SPHERE)
-		if (sphere_intersect(*(obj->body.sphere), ray, temp_hit))
-			return (temp_hit);
-	if (obj->body_type == PLANE)
-		if (plane_intersect(*(obj->body.plane), ray, temp_hit))
-			return (temp_hit);
-	if (obj->body_type == CYLINDER)
-		if (cylinder_intersect(*(obj->body.cylinder), ray, temp_hit))
-			return (temp_hit);
-	return (NULL);
-}
-
 uint32_t trace_ray(t_scene *scene, t_ray ray, unsigned int pixel_x, unsigned int pixel_y)
 {
 	uint32_t	color;
 	t_list		*temp;
-	t_object	*object;
+	t_object	object;
 	t_point		temp_hit;
 	t_point		closest_hit;
 	t_object	closest_obj;
@@ -156,16 +152,16 @@ uint32_t trace_ray(t_scene *scene, t_ray ray, unsigned int pixel_x, unsigned int
 	temp = scene->objects;
 	while (temp)
 	{
-		object = (t_object *)temp->content;
-		if (intersection(object, ray, &temp_hit))
+		object = *(t_object *)temp->content;
+		if (intersection(&object, ray, &temp_hit))
 		{
 			if ((250 < pixel_x && pixel_x < 255) && pixel_y == 250)
 			{
 				printf("temp_hit is: %f %f %f\n", temp_hit.x, temp_hit.y, temp_hit.z);
 				///printf("ray is: %f %f %f\n", ray.direction.x, ray.direction.y, ray.direction.z);
 			}
-			color = rgb_to_uint32(object->color.r,
-					object->color.g, object->color.b, apply_light(scene, temp_hit, pixel_x, pixel_y), scene);
+			color = rgb_to_uint32(object.color.r,
+					object.color.g, object.color.b, apply_light(scene, temp_hit, &object, pixel_x, pixel_y), scene);
 			return (color);
 		}
 		temp = temp->next;

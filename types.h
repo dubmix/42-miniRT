@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 08:49:13 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/01 11:09:52 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/01 16:23:47 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,18 +134,12 @@ typedef union body
 	t_plane		*plane;
 }t_body;
 
-typedef union intersec_fptr
-{
-	t_point	*(* sphere_func)(t_sphere s, t_ray r, t_point *p);
-	t_point	*(* cyl_func)(t_cylinder cyl, t_ray r, t_point *p);
-	t_point	*(* plane_func)(t_plane pl, t_ray r, t_point *p);
-}t_intersec_fptr;
-
 typedef struct s_object
 {
 	t_body_type		body_type;
 	t_body			body;
-	t_intersec_fptr	intersec_fptr;
 	t_color			color;
+	t_vector		surface_normal;
+	void			*intersection_info;
 }			t_object;
 #endif

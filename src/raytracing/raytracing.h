@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:49:28 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/01 07:56:29 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/01 16:07:39 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ t_point	get_ray_point(float t, t_ray r);
 t_result	solve_quadratic(float a, float b, float c);
 t_vector	normalize(t_vector v);
 
-t_point	*sphere_intersect(t_sphere s, t_ray r, t_point *p);
-t_point	*plane_intersect(t_plane p, t_ray r, t_point *point);
-t_point	*cylinder_intersect(t_cylinder cyl, t_ray r, t_point *p);
+t_point	*sphere_intersect(t_object *obj, t_ray r, t_point *p);
+t_point	*plane_intersect(t_object *obj, t_ray r, t_point *point);
+t_point	*cylinder_intersect(t_object *obj, t_ray r, t_point *p);
 
 t_vector	p_to_origin_vec(t_point p);
 t_point	origin_vec_to_p(t_vector v);
@@ -44,5 +44,7 @@ t_point	add_points(t_point p1, t_point p2);
 t_point	*sphere_intersect_shadow(t_sphere s, t_ray r, t_point *p);
 
 t_point	*sphere_intersect_shadow(t_sphere s, t_ray r, t_point *p);
+
+bool	equal_points(t_point p1, t_point p2);
 
 #endif

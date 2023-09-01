@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 09:34:40 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/01 11:20:06 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/01 14:56:39 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	process_sp(t_scene *scene, char **split)
 	if (process_rgb_obj(new_object, split[3], "sphere") != 0)
 		return (free(sphere), 1);
 	new_object->body.sphere = sphere;
-	new_object->intersec_fptr.sphere_func = sphere_intersect;
 	new_object->body_type = SPHERE;
 	new_node = ft_lstnew(new_object);
 	ft_lstadd_back(&(scene->objects), new_node);

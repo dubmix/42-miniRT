@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 09:44:32 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/01 11:19:08 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/01 14:57:01 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	process_pl(t_scene *scene, char **split)
 	if (process_rgb_obj(new_object, split[3], "plane") != 0)
 		return (free(plane), 1);
 	new_object->body.plane = plane;
-	new_object->intersec_fptr.plane_func = plane_intersect;
 	new_object->body_type = PLANE;
 	new_node = ft_lstnew(new_object);
 	ft_lstadd_back(&(scene->objects), new_node);

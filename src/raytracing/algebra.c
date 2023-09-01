@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algebra.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:47:57 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/08/30 07:57:19 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/01 16:07:09 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,4 +133,9 @@ t_point	origin_vec_to_p(t_vector v)
 	p.y = v.y;
 	p.z = v.z;
 	return (p);
+}
+
+bool	equal_points(t_point p1, t_point p2)
+{
+	return (p1.x == p2.x && p1.y == p2.y && p1.z == p2.z);
 }

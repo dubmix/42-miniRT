@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 09:35:25 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/01 11:20:35 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/01 14:56:17 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,9 @@ int	process_cy(t_scene *scene, char **split)
 		cylinder->height = ft_stof(split[4]);
 /* 	if (process_cy_rgb(cylinder, split[5]) != 0)
 		return (free(cylinder), 1); */
-	if (process_rgb_obj(new_object, split[3], "cylinder") != 0)
+	if (process_rgb_obj(new_object, split[5], "cylinder") != 0)
 		return (free(cylinder), 1);
 	new_object->body.cylinder = cylinder;
-	new_object->intersec_fptr.cyl_func = cylinder_intersect;
 	new_object->body_type = CYLINDER;
 	new_node = ft_lstnew(new_object);
 	ft_lstadd_back(&(scene->objects), new_node);
@@ -108,6 +107,7 @@ int	process_rgb_obj(t_object *object, char *str, char *identifier)
 	sub_split = ft_split(str, ',');
 	if (ft_count_str(sub_split) != 3 || check_if_nb(sub_split) != 1)
 	{
+		printf("CT: %d\n", ft_count_str(sub_split));
 		free_arr(sub_split);
 		return (ft_parsing_error("unvalid rgb params: ", identifier, 1));
 	}
