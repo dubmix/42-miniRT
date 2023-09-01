@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:55:41 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/28 09:34:30 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/01 09:11:39 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ int	parsing_main(t_scene *scene, char *file_name)
 
 void	init_parsing(t_scene *scene)
 {
-	scene->planes = NULL;
+/* 	scene->planes = NULL;
 	scene->spheres = NULL;
-	scene->cylinders = NULL;
+	scene->cylinders = NULL; */
+	scene->objects = NULL;
 	scene->ambient.set = 0;
 	scene->camera.set = 0;
 	scene->light.set = 0;

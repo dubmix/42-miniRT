@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_ambient.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:16:25 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/28 09:38:59 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/01 11:14:50 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

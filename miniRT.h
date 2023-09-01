@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:58:07 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/28 17:47:45 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/01 11:15:23 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,22 @@ int     process_camera_orientation(t_scene *scene, char *str);
 int     process_light(t_scene *scene, char **split);
 int     process_light_coordinates(t_scene *scene, char *str);
 
+int		process_rgb_obj(t_object *object, char *str, char *identifier);
+
 int     process_pl(t_scene *scene, char **split);
 int     process_pl_coordinates(t_plane *plane, char *str);
 int     process_pl_vector(t_plane *plane, char *str);
-int     process_pl_rgb(t_plane *plane, char *str);
+//int     process_pl_rgb(t_plane *plane, char *str);
 
 int     process_sp(t_scene *scene, char **split);
 int     process_sp_coordinates(t_sphere *sphere, char *str);
-int     process_sp_rgb(t_sphere *sphere, char *str);
+//int     process_sp_rgb(t_sphere *sphere, char *str);
 void    del_sphere(void *content);
 
 int     process_cy(t_scene *scene, char **split);
 int     process_cy_coordinates(t_cylinder *cylinder, char *str);
 int     process_cy_vector(t_cylinder *cylinder, char *str);
-int     process_cy_rgb(t_cylinder *cylinder, char *str);
+//int     process_cy_rgb(t_cylinder *cylinder, char *str);
 void    del_cylinder(void *content);
 
 void    print_list(t_list *list);

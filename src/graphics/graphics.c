@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/01 08:35:58 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/01 11:16:18 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_point    pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y)
 
 void	ft_render(void *param)
 {
-	t_scene *scene;
+	t_scene		*scene;
 	uint32_t	color;
 	unsigned int pixel_x;
 	unsigned int pixel_y;
@@ -130,28 +130,42 @@ uint32_t rgb_to_uint32(uint32_t r, uint32_t g, uint32_t b, float brightness, t_s
 	return (sc_r << 24 | sc_g << 16 | sc_b << 8 | 255);
 }
 
+t_point	*intersection(t_object	*obj, t_ray ray, t_point *temp_hit)
+{
+	if (obj->body_type == SPHERE)
+		if (sphere_intersect(*(obj->body.sphere), ray, temp_hit))
+			return (temp_hit);
+	if (obj->body_type == PLANE)
+		if (plane_intersect(*(obj->body.plane), ray, temp_hit))
+			return (temp_hit);
+	if (obj->body_type == CYLINDER)
+		if (cylinder_intersect(*(obj->body.cylinder), ray, temp_hit))
+			return (temp_hit);
+	return (NULL);
+}
+
 uint32_t trace_ray(t_scene *scene, t_ray ray, unsigned int pixel_x, unsigned int pixel_y)
 {
-    uint32_t color;
-	t_list *temp;
-	t_sphere sphere;
-	t_cylinder cylinder;
-    t_point closest;
-    //t_result result;
+	uint32_t	color;
+	t_list		*temp;
+	t_object	*object;
+	t_point		temp_hit;
+	t_point		closest_hit;
+	t_object	closest_obj;
 
-	temp = scene->spheres;
+	temp = scene->objects;
 	while (temp)
 	{
-		sphere = *((t_sphere *)temp->content);
-		if (sphere_intersect(sphere, ray, &closest))
+		object = (t_object *)temp->content;
+		if (intersection(object, ray, &temp_hit))
 		{
 			if ((250 < pixel_x && pixel_x < 255) && pixel_y == 250)
 			{
-				printf("closest is: %f %f %f\n", closest.x, closest.y, closest.z);
+				printf("temp_hit is: %f %f %f\n", temp_hit.x, temp_hit.y, temp_hit.z);
 				///printf("ray is: %f %f %f\n", ray.direction.x, ray.direction.y, ray.direction.z);
 			}
-			color = rgb_to_uint32(sphere.color.r,
-					sphere.color.g, sphere.color.b, apply_light(scene, closest, pixel_x, pixel_y), scene);
+			color = rgb_to_uint32(object->color.r,
+					object->color.g, object->color.b, apply_light(scene, temp_hit, pixel_x, pixel_y), scene);
 			return (color);
 		}
 		temp = temp->next;

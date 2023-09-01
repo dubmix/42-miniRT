@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_sp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 09:34:40 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/28 09:50:01 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/01 11:20:06 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,29 @@
 
 int	process_sp(t_scene *scene, char **split)
 {
-	t_list		*new_object;
+	t_list		*new_node;
+	t_object	*new_object;
 	t_sphere	*sphere;
 
 	if (ft_count_str(split) != 4)
 		return (ft_parsing_error("unvalid params: ", "sphere", 0));
-	sphere = (t_sphere *)malloc(sizeof(t_sphere));
+	sphere = (t_sphere *)malloc(sizeof(t_sphere)); //protect mallocs
+	new_object = malloc(sizeof(t_object));
 	if (process_sp_coordinates(sphere, split[1]) != 0)
 		return (free(sphere), 1);
 	if (ft_isnumber(split[2]) != 1)
 		return (free(sphere), 1);
 	else
 		sphere->diameter = ft_stof(split[2]);
-	if (process_sp_rgb(sphere, split[3]) != 0)
+/* 	if (process_sp_rgb(sphere, split[3]) != 0)
+		return (free(sphere), 1); */
+	if (process_rgb_obj(new_object, split[3], "sphere") != 0)
 		return (free(sphere), 1);
-	new_object = ft_lstnew(sphere);
-	ft_lstadd_back(&(scene->spheres), new_object);
+	new_object->body.sphere = sphere;
+	new_object->intersec_fptr.sphere_func = sphere_intersect;
+	new_object->body_type = SPHERE;
+	new_node = ft_lstnew(new_object);
+	ft_lstadd_back(&(scene->objects), new_node);
 	return (0);
 }
 
@@ -60,7 +67,7 @@ int	process_sp_coordinates(t_sphere *sphere, char *str)
 	return (0);
 }
 
-int	process_sp_rgb(t_sphere *sphere, char *str)
+/* int	process_sp_rgb(t_sphere *sphere, char *str)
 {
 	char	**sub_split;
 
@@ -85,7 +92,7 @@ int	process_sp_rgb(t_sphere *sphere, char *str)
 	}
 	free_arr(sub_split);
 	return (0);
-}
+} */
 
 void	del_sphere(void *content)
 {

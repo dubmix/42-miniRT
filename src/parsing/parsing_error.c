@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_error.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 08:55:08 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/28 10:04:24 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/01 10:16:49 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,29 @@ void	free_arr(char **arr)
 	free(arr);
 }
 
+void	del_obj(void *arg)
+{
+	t_object	*obj;
+
+	if (!arg)
+		return ;
+	obj = (t_object *)arg;
+	if (obj->body_type == PLANE)
+		free(obj->body.plane);
+	if (obj->body_type == SPHERE)
+		free(obj->body.sphere);
+	if (obj->body_type == CYLINDER)
+		free(obj->body.cylinder);
+	free(obj);
+}
+
 void	free_all(t_scene *scene)
 {
-	if (scene->planes != NULL)
+	ft_lstclear(&scene->objects, del_obj);
+/* 	if (scene->planes != NULL)
 		ft_lstclear(&scene->planes, del_plane);
 	if (scene->spheres != NULL)
 		ft_lstclear(&scene->spheres, del_sphere);
 	if (scene->cylinders != NULL)
-		ft_lstclear(&scene->cylinders, del_cylinder);
+		ft_lstclear(&scene->cylinders, del_cylinder); */
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:08:57 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/22 15:09:55 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/01 09:43:54 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 # define PARSING_H
 
 # include "../../miniRT.h"
+# include "../raytracing/raytracing.h"
 
 #endif

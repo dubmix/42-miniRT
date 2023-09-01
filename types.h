@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 08:49:13 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/08/30 10:37:39 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/01 11:09:52 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,14 @@ typedef struct 	s_plane
 {
 	t_point		plane_point;
 	t_vector	normal_vector;
-	t_color		color;
+	//t_color		color;
 }				t_plane;
 
 typedef struct 	s_sphere
 {
 	t_point		center;
 	float		diameter;
-	t_color		color;
+	//t_color		color;
 }				t_sphere;
 
 typedef struct 	s_cylinder
@@ -105,7 +105,7 @@ typedef struct 	s_cylinder
 	t_vector	axis;
 	float		diameter;
 	float		height;
-	t_color		color;
+	//t_color		color;
 }				t_cylinder;
 
 typedef struct 	s_scene
@@ -113,10 +113,39 @@ typedef struct 	s_scene
 	t_ambient	ambient;
 	t_camera	camera;
 	t_light		light;
-	t_list		*planes;
-	t_list		*spheres;
-	t_list		*cylinders;
+	t_list		*objects;
+	//t_list		*planes;
+	//t_list		*spheres;
+	//t_list		*cylinders;
 	mlx_t		*mlx;
 }				t_scene;
 
+typedef enum e_body_type
+{
+	SPHERE,
+	PLANE,
+	CYLINDER
+}t_body_type;
+
+typedef union body
+{
+	t_sphere	*sphere;
+	t_cylinder	*cylinder;
+	t_plane		*plane;
+}t_body;
+
+typedef union intersec_fptr
+{
+	t_point	*(* sphere_func)(t_sphere s, t_ray r, t_point *p);
+	t_point	*(* cyl_func)(t_cylinder cyl, t_ray r, t_point *p);
+	t_point	*(* plane_func)(t_plane pl, t_ray r, t_point *p);
+}t_intersec_fptr;
+
+typedef struct s_object
+{
+	t_body_type		body_type;
+	t_body			body;
+	t_intersec_fptr	intersec_fptr;
+	t_color			color;
+}			t_object;
 #endif
