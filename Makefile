@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+         #
+#    By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 11:47:51 by pdelanno          #+#    #+#              #
-#    Updated: 2023/08/29 18:44:51 by aehrlich         ###   ########.fr        #
+#    Updated: 2023/09/02 01:23:42 by aehrlich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ OBJS = $(SRCS:.c=.o)
 
 HEADERS = miniRT.h
 
-CFLAGS = #-Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -g
 
 MLXFLAG = -Iinclude -lglfw -lm
 

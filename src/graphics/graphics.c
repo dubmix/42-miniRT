@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/01 17:17:44 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/02 01:24:11 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	ft_render(void *param)
 	unsigned int pixel_x;
 	unsigned int pixel_y;
 	t_ray ray;
-	t_ray n;
 
 	scene = param;
 	pixel_x = 0;
@@ -147,9 +146,11 @@ uint32_t trace_ray(t_scene *scene, t_ray ray, unsigned int pixel_x, unsigned int
 	t_object	object;
 	t_point		temp_hit;
 	t_point		closest_hit;
-	t_object	closest_obj;
+	t_object	*closest_obj;
 
 	temp = scene->objects;
+	closest_obj = NULL;
+	color = rgb_to_uint32(0, 0, 0, 0, scene);
 	while (temp)
 	{
 		object = *(t_object *)temp->content;
@@ -160,23 +161,15 @@ uint32_t trace_ray(t_scene *scene, t_ray ray, unsigned int pixel_x, unsigned int
 				printf("temp_hit is: %f %f %f\n", temp_hit.x, temp_hit.y, temp_hit.z);
 				///printf("ray is: %f %f %f\n", ray.direction.x, ray.direction.y, ray.direction.z);
 			}
-			color = rgb_to_uint32(object.color.r,
-					object.color.g, object.color.b, apply_light(scene, temp_hit, &object, pixel_x, pixel_y), scene);
-			return (color);
+			else if (!closest_obj || equal_points(get_nearest_point(temp_hit, closest_hit, ray.origin), temp_hit))
+			{
+				closest_hit = temp_hit;
+				closest_obj = &object;
+				color = rgb_to_uint32(closest_obj->color.r,
+					closest_obj->color.g, closest_obj->color.b, apply_light(scene, temp_hit, &object, pixel_x, pixel_y), scene);
+			}
 		}
 		temp = temp->next;
 	}
-	// temp = scene->cylinders;
-	// while (temp)
-	// {
-	// 	cylinder = *((t_cylinder *)temp->content);
-	// 	if (cylinder_intersect(cylinder, ray, &closest))
-	// 	{
-	// 		color = rgb_to_uint32(cylinder.color.r,
-	// 				cylinder.color.g, cylinder.color.b, scene->ambient.ratio);
-	// 		return (color);
-	// 	}
-	// 	temp = temp->next;
-	// }
-    return (rgb_to_uint32(0, 0, 0, 0, scene));
+	return (color);
 }

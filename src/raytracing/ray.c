@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:57:29 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/08/30 09:47:12 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/02 01:25:04 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_point	get_nearest_ray_point(t_result result, t_ray ray)
 {
 	t_point		hit_point_1;
 	t_point		hit_point_2;
-	t_vector	temp_vec;
 	float		distance_1;
 	float		distance_2;
 
