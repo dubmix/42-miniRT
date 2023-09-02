@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/02 01:24:11 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/02 08:29:00 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,8 @@ t_ray	create_ray(t_scene *scene, int pixel_x, int pixel_y)
     t_ray ray;
 	
 	ray.origin = scene->camera.coordinates;
-	ray.direction = init_vector_p(pixel_to_coord(scene, pixel_x, pixel_y),
-					scene->camera.coordinates);
+	ray.direction = normalize(init_vector_p(pixel_to_coord(scene, pixel_x, pixel_y),
+					scene->camera.coordinates));
 	return (ray);
 }
 

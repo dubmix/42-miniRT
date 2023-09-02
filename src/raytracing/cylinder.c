@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:33:51 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/02 01:24:36 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/02 08:29:21 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ t_point	*cylinder_intersect(t_object *obj, t_ray r, t_point *p)
 	bool		tube_intersection;
 	
 	obj->body.cylinder->axis = normalize(obj->body.cylinder->axis); //move to init function
-	r.direction = normalize(r.direction); //in init verscheiben!
 	cap_intersection = check_caps(obj, r, &cap_hit_point, &cap_normal);
 	tube_intersection = check_tube(obj, r, &tube_hit_point, &tube_normal);
 	if (cap_intersection && !tube_intersection)
