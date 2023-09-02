@@ -26,7 +26,7 @@ sp -10.0,0.0,20                                                8                
 
 sp 10.0,0.0,20.6                                                 10.6                        0,0,255
 
-sp 1,0.0,50                                                5.6                        255,0,0
+sp 0,0.0,50                                                5.6                        255,0,0
 
 sp 0.0,-51,30                                               100                        255,255,0
 
@@ -36,13 +36,13 @@ sp 0.0,-51,30                                               100                 
 ### Plane ###
 # XYZ coordinates of a pl point   | Normal vector [-1, 1]                                    | RGB
 
-pl 0,3,0                   0,1,0                                                         100,0,255
+pl 0,3,0                   0.5,1,0                                                         100,0,255
 
 
 
 ### Cylinder ###
 # XYZ coordinates of cy center    | Axis of cy vector [-1, 1]    | cy diameter | cy height   | RGB
 
-cy 0.0,1,15                         1,1,1                    2             4          255,0,255
+cy 0.0,1.8,10                         1,1,1                    2             4          255,0,255
 
 #cy 0.0,-10,20                    1,0.0,0                    20          50        10,0,200

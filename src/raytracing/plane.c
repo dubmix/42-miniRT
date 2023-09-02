@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:41:24 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/02 01:33:16 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/02 16:54:11 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_point	*plane_intersect(t_object *obj, t_ray r, t_point *point)
 	obj->body.plane->normal_vector = normalize(obj->body.plane->normal_vector);
 	obj->surface_normal = scale_vec(obj->body.plane->normal_vector, -1); // does the direction matter? Light can be under plane
 	x = subtract_points(r.origin, obj->body.plane->plane_point);
-	a = -(dot_product(x, obj->body.plane->normal_vector)); //should it be lenght 1???
+	a = -(dot_product(x, obj->body.plane->normal_vector));
 	b = dot_product(r.direction, obj->body.plane->normal_vector);
 	if (b == 0 || (a / b) < 0) //must be handled if the camera goes in the other direction, then t can be negative!!!
 		return (NULL);

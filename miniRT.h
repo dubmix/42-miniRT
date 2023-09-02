@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:58:07 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/01 13:47:19 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/02 17:11:13 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ extern mlx_image_t *img;
 
 void    ft_hook(void *param);
 t_ray	create_ray(t_scene *scene, int pixel_x, int pixel_y);
-uint32_t trace_ray(t_scene *scene, t_ray ray, unsigned int pixel_x, unsigned int pixel_y);
+uint32_t trace_ray(t_scene *scene, t_ray ray);
 //float	apply_light(t_scene *scene, t_point closest, unsigned int pixel_x, unsigned int pixel_y);
-float	apply_light(t_scene *scene, t_point hit_point, t_object *object, int pixel_x, unsigned int pixel_y);
+float	apply_light(t_scene *scene, t_point hit_point, t_object *object);
 
 void	ft_render(void *param);
 t_point    pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y);

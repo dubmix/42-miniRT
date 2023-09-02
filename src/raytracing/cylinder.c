@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:33:51 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/02 08:29:21 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/02 17:06:29 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ bool	check_cap(t_ray r, t_point cap_center, t_cylinder cyl, t_point *hit_point)
 	t_point		intersection;
 	t_vector	intersec_center;
 
-	cap_plane.normal_vector = cyl.axis;
 	cap_plane.plane_point = cap_center;
 	plane_obj.body.plane = &cap_plane;
+	plane_obj.body.plane->normal_vector = normalize(cyl.axis);
 	if (plane_intersect(&plane_obj, r, &intersection))
 	{
-		intersec_center =  init_vector_p(cap_center, intersection);
+		intersec_center =  init_vector_p(intersection, cap_center);
 		if (vector_length(intersec_center) <= cyl.diameter / 2)
 		{
 			*hit_point = intersection;
@@ -90,21 +90,21 @@ bool	check_caps(t_object *obj, t_ray r, t_point *cap_hit_point, t_vector *cap_no
 	cap_hit_results[1]= check_cap(r, end_cap_center, *obj->body.cylinder, &end_cap_hit);
 	if (cap_hit_results[0] && !cap_hit_results[1])
 	{
-		*cap_normal = scale_vec(obj->body.cylinder->axis, -1);
+		*cap_normal = scale_vec(normalize(obj->body.cylinder->axis), -1);
 		*cap_hit_point = start_cap_hit;
 	}
 	else if (!cap_hit_results[0] && cap_hit_results[1])
 	{
-		*cap_normal = obj->body.cylinder->axis;
+		*cap_normal = normalize(obj->body.cylinder->axis);
 		*cap_hit_point = end_cap_hit;
 	}
 	else if (cap_hit_results[0] && cap_hit_results[1])
 	{
 		*cap_hit_point = get_nearest_point(start_cap_hit, end_cap_hit, r.origin);
 		if (equal_points(*cap_hit_point, start_cap_hit))
-			*cap_normal = scale_vec(obj->body.cylinder->axis, -1);
+			*cap_normal = scale_vec(normalize(obj->body.cylinder->axis), -1);
 		else
-			*cap_normal = obj->body.cylinder->axis;
+			*cap_normal = normalize(obj->body.cylinder->axis);
 	}
 	else
 		return (false);

@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/02 08:29:00 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/02 17:13:39 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,11 @@ void	ft_render(void *param)
 	pixel_x = 0;
 	while (pixel_x < img->width)
 	{
-        pixel_y = 0;
+		pixel_y = 0;
 		while (pixel_y < img->height)
 		{
 			ray = create_ray(scene, pixel_x, pixel_y);
-			color = trace_ray(scene, ray, pixel_x, pixel_y);
-			if ((250 < pixel_x && pixel_x < 255) && pixel_y == 250)
-			{
-				//printf("closest is: %f %f %f\n", closest.x, closest.y, closest.z);
-				printf("ray is: %f %f %f\n", ray.direction.x, ray.direction.y, ray.direction.z);
-			}
+			color = trace_ray(scene, ray);
 			mlx_put_pixel(img, pixel_x, pixel_y, color);
 			pixel_y++;
 		}
@@ -70,7 +65,7 @@ t_point	*intersection(t_object	*obj, t_ray ray, t_point *temp_hit)
 	return (NULL);
 }
 
-float	apply_light(t_scene *scene, t_point hit_point, t_object *object, int pixel_x, unsigned int pixel_y)
+float	apply_light(t_scene *scene, t_point hit_point, t_object *object)
 {
 	float i;
 	t_vector	N;
@@ -83,24 +78,11 @@ float	apply_light(t_scene *scene, t_point hit_point, t_object *object, int pixel
 	i += scene->ambient.ratio;
 	N = object->surface_normal;
 	L = subtract_points(scene->light.coordinates, hit_point);
-	//printf("closest is: %f %f %f\n", closest.x, closest.y, closest.z);
-	//printf("light coordinates: %f %f %f\n", scene->light.coordinates.x, scene->light.coordinates.y, scene->light.coordinates.z);
 	ray.origin = hit_point;
 	ray.direction = L;
-	if ((250 < pixel_x && pixel_x < 255) && pixel_y == 250)
-	{
-		//printf("closest is: %f %f %f\n", closest.x, closest.y, closest.z);
-		printf("L is: %f %f %f\n", ray.direction.x, ray.direction.y, ray.direction.z);
-	}
 	if (intersection(object, ray, &light_intersection))
 	{
 		d = vector_length(subtract_points(light_intersection, ray.origin));
-		if ((250 < pixel_x && pixel_x < 255) && pixel_y == 250)
-		{
-			printf("d is: %f\n", d);
-			printf("closest shadow is: %f %f %f\n\n", light_intersection.x, light_intersection.y, light_intersection.z);
-			///printf("ray is: %f %f %f\n", ray.direction.x, ray.direction.y, ray.direction.z);
-		}
 		if (d > 0.001)
 	 		return (i);
 	}
@@ -139,7 +121,7 @@ uint32_t rgb_to_uint32(uint32_t r, uint32_t g, uint32_t b, float brightness, t_s
 	return (sc_r << 24 | sc_g << 16 | sc_b << 8 | 255);
 }
 
-uint32_t trace_ray(t_scene *scene, t_ray ray, unsigned int pixel_x, unsigned int pixel_y)
+uint32_t trace_ray(t_scene *scene, t_ray ray)
 {
 	uint32_t	color;
 	t_list		*temp;
@@ -156,17 +138,12 @@ uint32_t trace_ray(t_scene *scene, t_ray ray, unsigned int pixel_x, unsigned int
 		object = *(t_object *)temp->content;
 		if (intersection(&object, ray, &temp_hit))
 		{
-			if ((250 < pixel_x && pixel_x < 255) && pixel_y == 250)
-			{
-				printf("temp_hit is: %f %f %f\n", temp_hit.x, temp_hit.y, temp_hit.z);
-				///printf("ray is: %f %f %f\n", ray.direction.x, ray.direction.y, ray.direction.z);
-			}
-			else if (!closest_obj || equal_points(get_nearest_point(temp_hit, closest_hit, ray.origin), temp_hit))
+			if (!closest_obj || equal_points(get_nearest_point(temp_hit, closest_hit, ray.origin), temp_hit))
 			{
 				closest_hit = temp_hit;
 				closest_obj = &object;
 				color = rgb_to_uint32(closest_obj->color.r,
-					closest_obj->color.g, closest_obj->color.b, apply_light(scene, temp_hit, &object, pixel_x, pixel_y), scene);
+					closest_obj->color.g, closest_obj->color.b, apply_light(scene, temp_hit, &object), scene);
 			}
 		}
 		temp = temp->next;
