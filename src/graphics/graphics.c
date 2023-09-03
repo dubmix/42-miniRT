@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/02 17:13:39 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/03 15:38:35 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 
 t_point    pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y)
 {
-    t_point coord;
-    float   width = 30.0;
-    float   height = 30.0;
+	t_point coord;
+	float   width = 30.0;
+	float   height = 30.0;
 
-    coord.x = scene->camera.coordinates.x - (width / 2)
-        + (width * ((float)pixel_x / (float)img->width));
-    coord.y = scene->camera.coordinates.y + (height / 2)
-        - (height * ((float)pixel_y / (float)img->height));
-    coord.z = width / (2 * tan((double)scene->camera.field_of_view / 2));
-    return (coord);
+	coord.x = scene->camera.coordinates.x - (width / 2)
+		+ (width * ((float)pixel_x / (float)img->width));
+	coord.y = scene->camera.coordinates.y + (height / 2)
+		- (height * ((float)pixel_y / (float)img->height));
+	coord.z = width / (2 * tan((double)scene->camera.field_of_view / 2));
+	return (coord);
 }
 
 void	ft_render(void *param)
@@ -65,26 +65,28 @@ t_point	*intersection(t_object	*obj, t_ray ray, t_point *temp_hit)
 	return (NULL);
 }
 
-float	apply_light(t_scene *scene, t_point hit_point, t_object *object)
+float   apply_light(t_scene *scene, t_point hit_point, t_object *object)
 {
 	float i;
-	t_vector	N;
-	t_vector	L;
+	t_vector    N;
+	t_vector    L;
 	t_ray ray;
-	t_point	light_intersection;
-	float d;
-
-	i = 0.0;
-	i += scene->ambient.ratio;
-	N = object->surface_normal;
+	t_point light_intersection;
+	t_list  *temp_node;
+	t_object *temp_obj;
+	
+	i = scene->ambient.ratio;
+	temp_node = scene->objects;
+	N = normalize(object->surface_normal);
 	L = subtract_points(scene->light.coordinates, hit_point);
 	ray.origin = hit_point;
 	ray.direction = L;
-	if (intersection(object, ray, &light_intersection))
+	while (temp_node)
 	{
-		d = vector_length(subtract_points(light_intersection, ray.origin));
-		if (d > 0.001)
-	 		return (i);
+		temp_obj = (t_object *)temp_node->content;
+		if (temp_obj != object && intersection(temp_obj, ray, &light_intersection))
+			return (i);
+		temp_node = temp_node->next;
 	}
 	if (dot_product(N, L) > 0)
 		i += scene->light.brightness_ratio * (dot_product(N, L)/(vector_length(N) * vector_length(L)));
@@ -93,7 +95,7 @@ float	apply_light(t_scene *scene, t_point hit_point, t_object *object)
 
 t_ray	create_ray(t_scene *scene, int pixel_x, int pixel_y)
 {
-    t_ray ray;
+	t_ray ray;
 	
 	ray.origin = scene->camera.coordinates;
 	ray.direction = normalize(init_vector_p(pixel_to_coord(scene, pixel_x, pixel_y),

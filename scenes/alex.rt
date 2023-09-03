@@ -7,7 +7,7 @@ A 0.6                                                                           
 ### Camera ###
 # XYZ coordinates of viewpoint    | Orientation vector [-1, 1]   | Field of view ° [0-180]
 
-C 0,0,-10                             0.0,0,1                          70
+C 0,0,0                             0.0,0,1                          70
 
 
 ### Light ###
@@ -22,7 +22,7 @@ L 0.000000,0.000000,-10.000000                                      1
 ### Sphere ###
 # XYZ coordinates of sphere center                               | Sphere diameter           | RGB
 
-#sp 0,0.0,-3                                                2                      0,255,0
+#sp 0,0.0,3                                                1                      0,255,0
 
 #sp 0.0,0.0,9                                                 25                       0,0,255
 
@@ -32,13 +32,13 @@ L 0.000000,0.000000,-10.000000                                      1
 ### Plane ###
 # XYZ coordinates of a pl point   | Normal vector [-1, 1]                                    | RGB
 
-pl 0,0,10                   0.0,0,1                                                         0,0,255
+#pl 0,-10,3                   0.0,1,0                                                         0,0,255
 
 
 
 ### Cylinder ###
 # XYZ coordinates of cy center    | Axis of cy vector [-1, 1]    | cy diameter | cy height   | RGB
 
-#cy 0.0,0,20                         1,0.0,1                    2             4          21,0,255
+cy 0.0,0,20                         1,0.0,0                    2             4          21,0,255
 
-cy 0,0.0,5                    0.0,1,0                    2          4         10,0,200
+#cy 50.0,0.0,20.6                    0.0,0.0,1                    14.0          21.42         10,0,200

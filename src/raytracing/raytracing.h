@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:49:28 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/01 16:07:39 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/03 14:23:25 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,6 @@ t_point	*cylinder_intersect(t_object *obj, t_ray r, t_point *p);
 t_vector	p_to_origin_vec(t_point p);
 t_point	origin_vec_to_p(t_vector v);
 t_point	add_points(t_point p1, t_point p2);
-
-t_point	*sphere_intersect_shadow(t_sphere s, t_ray r, t_point *p);
-
-t_point	*sphere_intersect_shadow(t_sphere s, t_ray r, t_point *p);
 
 bool	equal_points(t_point p1, t_point p2);
 
