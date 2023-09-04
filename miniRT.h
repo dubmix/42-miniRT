@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:58:07 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/02 17:11:13 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:39:25 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <fcntl.h>
 # include "types.h"
 
-# define WIDTH 512
+# define WIDTH 700
 # define HEIGHT 512
 
 extern mlx_image_t *img;

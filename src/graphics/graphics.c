@@ -6,24 +6,43 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/04 09:29:41 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:19:59 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphics.h"
 #include "../raytracing/raytracing.h"
 
-t_point    pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y)
+/* t_point    pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y)
 {
 	t_point coord;
-	float   width = 30.0;
-	float   height = 30.0;
+	float   width = 2.0;
+	float   height = 2 * (float)img->height/(float)img->width;
 
 	coord.x = scene->camera.coordinates.x - (width / 2)
 		+ (width * ((float)pixel_x / (float)img->width));
 	coord.y = scene->camera.coordinates.y + (height / 2)
 		- (height * ((float)pixel_y / (float)img->height));
-	coord.z = width / (2 * tan((double)scene->camera.field_of_view / 2));
+	coord.z = 1.0;
+	return (coord);
+} */
+
+t_point    pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y)
+{
+	t_point coord;
+	float   width = 2.0;
+	float   height = 2.0; //adapt later with ratio
+	
+	float	pixel_NDC_x = ((float)(pixel_x) + 0.5) / (float)scene->mlx->width;
+	float	pixel_NDC_y = ((float)(pixel_y) + 0.5) / (float)scene->mlx->height;
+
+	float	image_aspect_ratio = (float)scene->mlx->width / (float )scene->mlx->height;
+	float	pixel_screen_x = (2 * pixel_NDC_x - 1) * image_aspect_ratio * tanf(scene->camera.field_of_view / 2);
+	float	pixel_screen_y = 1 - 2 * pixel_NDC_y;
+
+	coord.x = pixel_screen_x;
+	coord.
+	
 	return (coord);
 }
 
