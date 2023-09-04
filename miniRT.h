@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:58:07 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/04 14:39:25 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:22:26 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "types.h"
 
 # define WIDTH 700
-# define HEIGHT 512
+# define HEIGHT 500
 
 extern mlx_image_t *img;
 //static mlx_image_t *img;
