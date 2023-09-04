@@ -29,9 +29,14 @@
 extern mlx_image_t *img;
 //static mlx_image_t *img;
 
+t_color sphere_texture(t_scene *scene, t_point closest_hit, t_object *object);
+int	process_tx(t_scene *scene, char **split);
+int	mlx_texture_to_color(mlx_texture_t *mlx_texture, t_texture *texture);
+int	process_vec(t_vector *vector, char *str, char *identifier);
+
 void    ft_hook(void *param);
 t_ray	create_ray(t_scene *scene, int pixel_x, int pixel_y);
-uint32_t trace_ray(t_scene *scene, t_ray ray);
+uint32_t trace_ray(t_scene *scene, t_ray ray, int i);
 //float	apply_light(t_scene *scene, t_point closest, unsigned int pixel_x, unsigned int pixel_y);
 float	apply_light(t_scene *scene, t_point hit_point, t_object *object);
 

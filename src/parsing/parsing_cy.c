@@ -24,8 +24,10 @@ int	process_cy(t_scene *scene, char **split)
 	new_object = malloc(sizeof(t_object));
 	if (process_cy_coordinates(cylinder, split[1]) != 0)
 		return (free(cylinder), 1);
-	if (process_cy_vector(cylinder, split[2]) != 0)
+	if (process_vec(&cylinder->axis, split[2], "cylinder") != 0)
 		return (free(cylinder), 1);
+	// if (process_cy_vector(cylinder, split[2]) != 0)
+	// 	return (free(cylinder), 1);
 	if (ft_isnumber(split[3]) != 1 || ft_stof(split[3]) <= 0)
 		return (free(cylinder), 1);
 	else
@@ -72,7 +74,7 @@ int	process_cy_coordinates(t_cylinder *cylinder, char *str)
 	return (0);
 }
 
-int	process_cy_vector(t_cylinder *cylinder, char *str)
+int	process_vec(t_vector *vector, char *str, char *identifier)
 {
 	char	**sub_split;
 
@@ -80,25 +82,53 @@ int	process_cy_vector(t_cylinder *cylinder, char *str)
 	if (ft_count_str(sub_split) != 3 || check_if_nb(sub_split) != 0)
 	{
 		free_arr(sub_split);
-		return (ft_parsing_error("unvalid vector: ", "cylinder", 1));
+		return (ft_parsing_error("unvalid vector: ", identifier, 1));
 	}
 	if ((ft_stof(sub_split[0]) >= -1 && ft_stof(sub_split[0]) <= 1
 		&& ft_stof(sub_split[1]) >= -1 && ft_stof(sub_split[1]) <= 1
 		&& ft_stof(sub_split[2]) >= -1 && ft_stof(sub_split[2]) <= 1)
 		&& check_if_vec(sub_split) == 0)
 	{
-		cylinder->axis.x = ft_stof(sub_split[0]);
-		cylinder->axis.y = ft_stof(sub_split[1]);
-		cylinder->axis.z = ft_stof(sub_split[2]);
+		vector->x = ft_stof(sub_split[0]);
+		vector->y = ft_stof(sub_split[1]);
+		vector->z = ft_stof(sub_split[2]);
 	}
 	else
 	{
 		free_arr(sub_split);
-		return (ft_parsing_error("vector out of range: ", "cylinder", 1));
+		return (ft_parsing_error("vector out of range: ", identifier, 1));
 	}
 	free_arr(sub_split);
 	return (0);
 }
+
+// int	process_cy_vector(t_cylinder *cylinder, char *str)
+// {
+// 	char	**sub_split;
+
+// 	sub_split = ft_split(str, ',');
+// 	if (ft_count_str(sub_split) != 3 || check_if_nb(sub_split) != 0)
+// 	{
+// 		free_arr(sub_split);
+// 		return (ft_parsing_error("unvalid vector: ", "cylinder", 1));
+// 	}
+// 	if ((ft_stof(sub_split[0]) >= -1 && ft_stof(sub_split[0]) <= 1
+// 		&& ft_stof(sub_split[1]) >= -1 && ft_stof(sub_split[1]) <= 1
+// 		&& ft_stof(sub_split[2]) >= -1 && ft_stof(sub_split[2]) <= 1)
+// 		&& check_if_vec(sub_split) == 0)
+// 	{
+// 		vector.x = ft_stof(sub_split[0]);
+// 		vector.y = ft_stof(sub_split[1]);
+// 		vector.z = ft_stof(sub_split[2]);
+// 	}
+// 	else
+// 	{
+// 		free_arr(sub_split);
+// 		return (ft_parsing_error("vector out of range: ", "cylinder", 1));
+// 	}
+// 	free_arr(sub_split);
+// 	return (0);
+// }
 
 int	process_rgb_obj(t_object *object, char *str, char *identifier)
 {

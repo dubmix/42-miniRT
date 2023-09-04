@@ -34,20 +34,23 @@ void	ft_render(void *param)
 	unsigned int pixel_x;
 	unsigned int pixel_y;
 	t_ray ray;
+	int i;
 
+	i = 0;
 	scene = param;
-	pixel_x = 0;
-	while (pixel_x < img->width)
+	pixel_y = 0;
+	while (pixel_y < img->width)
 	{
-		pixel_y = 0;
-		while (pixel_y < img->height)
+		pixel_x = 0;
+		while (pixel_x < img->height)
 		{
+			i++;
 			ray = create_ray(scene, pixel_x, pixel_y);
-			color = trace_ray(scene, ray);
+			color = trace_ray(scene, ray, i);
 			mlx_put_pixel(img, pixel_x, pixel_y, color);
-			pixel_y++;
+			pixel_x++;
 		}
-		pixel_x++;
+		pixel_y++;
 	}
 }
 
@@ -124,7 +127,7 @@ uint32_t rgb_to_uint32(uint32_t r, uint32_t g, uint32_t b, float brightness, t_s
 	return (sc_r << 24 | sc_g << 16 | sc_b << 8 | 255);
 }
 
-uint32_t trace_ray(t_scene *scene, t_ray ray)
+uint32_t trace_ray(t_scene *scene, t_ray ray, int i)
 {
 	uint32_t	color;
 	t_list		*temp;
@@ -132,10 +135,14 @@ uint32_t trace_ray(t_scene *scene, t_ray ray)
 	t_point		temp_hit;
 	t_point		closest_hit;
 	t_object	*closest_obj;
+	t_color test;
 
 	temp = scene->objects;
 	closest_obj = NULL;
+	i = 0;
 	color = rgb_to_uint32(0, 0, 0, 0, scene);
+	//color = rgb_to_uint32(scene->texture.color[i].r, scene->texture.color[i].g, scene->texture.color[i].b, 1, scene);
+	//return (color);
 	while (temp)
 	{
 		object = (t_object *)temp->content;
@@ -145,11 +152,77 @@ uint32_t trace_ray(t_scene *scene, t_ray ray)
 			{
 				closest_hit = temp_hit;
 				closest_obj = object;
-				color = rgb_to_uint32(closest_obj->color.r,
-					closest_obj->color.g, closest_obj->color.b, apply_light(scene, temp_hit, object), scene);
+				if (object->body_type == SPHERE)
+				{
+					test = sphere_texture(scene, closest_hit, object);
+					color = rgb_to_uint32(test.r, test.g, test.b, apply_light(scene, temp_hit, object), scene);
+				}
+				else
+					color = rgb_to_uint32(closest_obj->color.r,
+						closest_obj->color.g, closest_obj->color.b, apply_light(scene, temp_hit, object), scene);
 			}
 		}
 		temp = temp->next;
 	}
 	return (color);
 }
+
+float clamp(float value, float min, float max) {
+    if (value < min) {
+        return min;
+    } else if (value > max) {
+        return max;
+    } else {
+        return value;
+    }
+}
+
+t_color sphere_texture(t_scene *scene, t_point closest_hit, t_object *object)
+{
+	t_vector p;
+	float u;
+	float v;
+	unsigned int pixel;
+	t_sphere *sphere;
+
+	sphere = (t_sphere *)object->body.sphere;
+	p = normalize(subtract_points(closest_hit, sphere->center));
+	u = 0.5 - (atan2(-p.z, p.x) / (2.0 * M_PI));
+	if (u == 0.5)
+		printf("u is: %f\n", u);
+	v = 0.5 - (asin(p.y) / M_PI);
+	// 	p = normalize(subtract_points(closest_hit, sphere->center));
+	if (v == 0)
+		printf("v is: %f\n\n", v);
+	pixel = (u * 2048) * 2048 + (v * 1024); 
+	int x = (int)(u * 2048);
+	int y = (int)(v * 1024);
+	// x = clamp(x, 0, 2047);
+	// y = clamp(x, 0, 1023);
+	pixel = y * 2048 + x;
+	//printf("pixel is: %u\n", pixel);
+	// if (pixel > 100000)
+	// 	pixel = 100000;
+	return (scene->texture.color[pixel]);
+}
+
+// t_color sphere_texture(t_scene *scene, t_point closest_hit, t_object *object)
+// {
+// 	t_vector p;
+// 	float u;
+// 	float v;
+// 	unsigned int pixel;
+// 	t_sphere *sphere;
+
+// 	sphere = (t_sphere *)object->body.sphere;
+// 	p = normalize(subtract_points(closest_hit, sphere->center));
+// 	u = (atan2(-p.z, p.x) + M_PI) / (2.0 * M_PI);
+// 	printf("u is: %f\n", u);
+// 	v = acos(p.y) / M_PI;
+// 	printf("v is: %f\n\n", v);
+// 	pixel = (unsigned int)(v * 1024) * (2048 + u * 2048);
+// 	//printf("pixel is: %u\n", pixel);
+// 	if (pixel > 100000)
+// 		pixel = 100000;
+// 	return (scene->texture.color[pixel]);
+// }

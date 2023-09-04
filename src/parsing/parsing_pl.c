@@ -24,7 +24,7 @@ int	process_pl(t_scene *scene, char **split)
 	new_object = malloc(sizeof(t_object));
 	if (process_pl_coordinates(plane, split[1]) != 0)
 		return (free(plane), 1);
-	if (process_pl_vector(plane, split[2]) != 0)
+	if (process_vec(&plane->normal_vector, split[2], "plane") != 0)
 		return (free(plane), 1);
 	/* if (process_pl_rgb(plane, split[3]) != 0)
 		return (free(plane), 1); */

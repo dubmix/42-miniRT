@@ -21,7 +21,7 @@ int	process_light(t_scene *scene, char **split)
 	if (ft_count_str(split) != 3)
 		return (ft_parsing_error("unvalid params: ", "light", 1));
 	if (process_light_coordinates(scene, split[1]) != 0)
-		return (0);
+		return (1);
 	if (ft_stof(split[2]) >= 0.0 && ft_stof(split[2]) <= 1.0)
 		scene->light.brightness_ratio = ft_stof(split[2]);
 	else

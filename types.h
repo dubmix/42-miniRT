@@ -108,16 +108,25 @@ typedef struct 	s_cylinder
 	//t_color		color;
 }				t_cylinder;
 
+typedef struct 	s_texture
+{
+	t_color	*color;
+	char 	*name;		
+}				t_texture;
+
 typedef struct 	s_scene
 {
 	t_ambient	ambient;
 	t_camera	camera;
 	t_light		light;
 	t_list		*objects;
+
 	//t_list		*planes;
 	//t_list		*spheres;
 	//t_list		*cylinders;
 	mlx_t		*mlx;
+	mlx_texture_t *tx;
+	t_texture	texture;
 }				t_scene;
 
 typedef enum e_body_type
