@@ -6,7 +6,7 @@
 #    By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 11:47:51 by pdelanno          #+#    #+#              #
-#    Updated: 2023/09/03 15:21:57 by aehrlich         ###   ########.fr        #
+#    Updated: 2023/09/04 09:29:14 by aehrlich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ OBJS = $(SRCS:.c=.o)
 
 HEADERS = miniRT.h
 
-CFLAGS = #-Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -g
 
 MLXFLAG = -Iinclude -lglfw -lm
 

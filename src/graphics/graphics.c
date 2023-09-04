@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/03 15:38:35 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/04 09:29:41 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,12 @@ float   apply_light(t_scene *scene, t_point hit_point, t_object *object)
 	N = normalize(object->surface_normal);
 	L = subtract_points(scene->light.coordinates, hit_point);
 	ray.origin = hit_point;
-	ray.direction = L;
+	ray.direction = normalize(L);
 	while (temp_node)
 	{
 		temp_obj = (t_object *)temp_node->content;
-		if (temp_obj != object && intersection(temp_obj, ray, &light_intersection))
+		if (temp_obj != object && intersection(temp_obj, ray, &light_intersection) &&
+			equal_points(get_nearest_point(light_intersection, scene->light.coordinates, hit_point), light_intersection))
 			return (i);
 		temp_node = temp_node->next;
 	}
@@ -127,7 +128,7 @@ uint32_t trace_ray(t_scene *scene, t_ray ray)
 {
 	uint32_t	color;
 	t_list		*temp;
-	t_object	object;
+	t_object	*object;
 	t_point		temp_hit;
 	t_point		closest_hit;
 	t_object	*closest_obj;
@@ -137,15 +138,15 @@ uint32_t trace_ray(t_scene *scene, t_ray ray)
 	color = rgb_to_uint32(0, 0, 0, 0, scene);
 	while (temp)
 	{
-		object = *(t_object *)temp->content;
-		if (intersection(&object, ray, &temp_hit))
+		object = (t_object *)temp->content;
+		if (intersection(object, ray, &temp_hit))
 		{
 			if (!closest_obj || equal_points(get_nearest_point(temp_hit, closest_hit, ray.origin), temp_hit))
 			{
 				closest_hit = temp_hit;
-				closest_obj = &object;
+				closest_obj = object;
 				color = rgb_to_uint32(closest_obj->color.r,
-					closest_obj->color.g, closest_obj->color.b, apply_light(scene, temp_hit, &object), scene);
+					closest_obj->color.g, closest_obj->color.b, apply_light(scene, temp_hit, object), scene);
 			}
 		}
 		temp = temp->next;
