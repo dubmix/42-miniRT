@@ -41,6 +41,37 @@ void ft_hook(void *param)
 		scene->light.coordinates.x += 5.0;
 		ft_render(scene);
 	}
+	//######
+	if (mlx_is_key_down(scene->mlx, MLX_KEY_E))
+	{
+		scene->camera.coordinates.x += 1.0;
+		ft_render(scene);
+	}
+	if (mlx_is_key_down(scene->mlx, MLX_KEY_D))
+	{
+		scene->camera.coordinates.x -= 1.0;
+		ft_render(scene);
+	}
+	if (mlx_is_key_down(scene->mlx, MLX_KEY_R))
+	{
+		scene->camera.coordinates.y += 1.0;
+		ft_render(scene);
+	}
+	if (mlx_is_key_down(scene->mlx, MLX_KEY_F))
+	{
+		scene->camera.coordinates.y -= 1.0;
+		ft_render(scene);
+	}
+	if (mlx_is_key_down(scene->mlx, MLX_KEY_T))
+	{
+		scene->camera.coordinates.z += 1.0;
+		ft_render(scene);
+	}
+	if (mlx_is_key_down(scene->mlx, MLX_KEY_G))
+	{
+		scene->camera.coordinates.z -= 1.0;
+		ft_render(scene);
+	}
 }
 
 void    print_list(t_list *list)
