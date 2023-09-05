@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:58:07 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/04 16:22:26 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/02 17:11:13 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,61 +23,21 @@
 # include <fcntl.h>
 # include "types.h"
 
-# define WIDTH 700
-# define HEIGHT 500
+# define WIDTH 512
+# define HEIGHT 512
 
 extern mlx_image_t *img;
-//static mlx_image_t *img;
+
+uint32_t rgb_to_uint32(uint32_t r, uint32_t g, uint32_t b, float brightness, t_scene *scene);
+t_point	*intersection(t_object	*obj, t_ray ray, t_point *temp_hit);
+
+t_color sphere_texture(t_scene *scene, t_point closest_hit, t_object *object);
 
 void    ft_hook(void *param);
-t_ray	create_ray(t_scene *scene, int pixel_x, int pixel_y);
-uint32_t trace_ray(t_scene *scene, t_ray ray);
-//float	apply_light(t_scene *scene, t_point closest, unsigned int pixel_x, unsigned int pixel_y);
-float	apply_light(t_scene *scene, t_point hit_point, t_object *object);
-
 void	ft_render(void *param);
-t_point    pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y);
 
-void	init_parsing(t_scene *scene);
-int     parsing_main(t_scene *scene, char *file_name);
 int     ft_parsing_error(char *str, char *object, int return_value);
-
-int     read_from_file(t_scene *scene, int fd);
-int     parsing_line(t_scene *scene, char *line);
-int     find_id(t_scene *scene, char **split);
-
-int     process_ambient(t_scene *scene, char **split);
-int     process_rgb(char *str, char *def, t_color *rgb);
-
-int     process_camera(t_scene *scene, char **split);
-int     process_camera_coordinates(t_scene *scene, char *str);
-int     process_camera_orientation(t_scene *scene, char *str);
-
-int     process_light(t_scene *scene, char **split);
-int     process_light_coordinates(t_scene *scene, char *str);
-
-int		process_rgb_obj(t_object *object, char *str, char *identifier);
-
-int     process_pl(t_scene *scene, char **split);
-int     process_pl_coordinates(t_plane *plane, char *str);
-int     process_pl_vector(t_plane *plane, char *str);
-//int     process_pl_rgb(t_plane *plane, char *str);
-
-int     process_sp(t_scene *scene, char **split);
-int     process_sp_coordinates(t_sphere *sphere, char *str);
-//int     process_sp_rgb(t_sphere *sphere, char *str);
-void    del_sphere(void *content);
-
-int     process_cy(t_scene *scene, char **split);
-int     process_cy_coordinates(t_cylinder *cylinder, char *str);
-int     process_cy_vector(t_cylinder *cylinder, char *str);
-//int     process_cy_rgb(t_cylinder *cylinder, char *str);
-void    del_cylinder(void *content);
-
-void    print_list(t_list *list);
-void    del_plane(void *content);
-int     check_if_nb(char **sub_split);
-int	    check_if_vec(char **sub_split);
+int     parsing_main(t_scene *scene, char *file_name);
 
 int     ft_strncmp_rev(char *str, char *str_to_find, int n);
 int	    ft_strlen(char *str);
@@ -115,7 +75,5 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-
-void test(t_scene *scene);
 
 #endif

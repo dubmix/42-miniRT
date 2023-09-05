@@ -30,13 +30,11 @@ int	parsing_main(t_scene *scene, char *file_name)
 
 void	init_parsing(t_scene *scene)
 {
-/* 	scene->planes = NULL;
-	scene->spheres = NULL;
-	scene->cylinders = NULL; */
 	scene->objects = NULL;
 	scene->ambient.set = 0;
 	scene->camera.set = 0;
 	scene->light.set = 0;
+	scene->texture.set = 0;
 }
 
 int	read_from_file(t_scene *scene, int fd)
@@ -55,7 +53,7 @@ int	read_from_file(t_scene *scene, int fd)
 			get_next_line(fd, 1);
 			free_all(scene);
 			free(line);
-			break ;
+			return (1);
 		}
 		free(line);
 		i++;
@@ -100,6 +98,8 @@ int	find_id(t_scene *scene, char **split)
 		return (process_pl(scene, split));
 	else if (ft_strncmp(split[0], "cy", 2) == 0)
 		return (process_cy(scene, split));
+	else if (ft_strncmp(split[0], "tx", 2) == 0)
+		return (process_tx(scene, split));
 	else
 		return (ft_parsing_error("unvalid id", "", 0));
 }

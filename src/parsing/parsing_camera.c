@@ -22,7 +22,7 @@ int	process_camera(t_scene *scene, char **split)
 		return (ft_parsing_error("unvalid params: ", "camera", 1));
 	if (process_camera_coordinates(scene, split[1]) != 0)
 		return (1);
-	if (process_camera_orientation(scene, split[2]) != 0)
+	if (process_vec(&scene->camera.orientation, split[2], "camera") != 0)
 		return (1);
 	if (ft_atoi(split[3]) >= 0 && ft_atoi(split[3]) <= 180)
 	{

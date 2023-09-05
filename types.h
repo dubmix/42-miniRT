@@ -106,6 +106,14 @@ typedef struct 	s_cylinder
 	float		height;
 }				t_cylinder;
 
+typedef struct 	s_texture
+{
+	t_color	*color;
+	int		set;
+	int		width;
+	int		height;		
+}				t_texture;
+
 typedef struct 	s_scene
 {
 	t_ambient	ambient;
@@ -113,6 +121,8 @@ typedef struct 	s_scene
 	t_light		light;
 	t_list		*objects;
 	mlx_t		*mlx;
+	mlx_texture_t *tx;
+	t_texture	texture;
 }				t_scene;
 
 typedef enum e_body_type
