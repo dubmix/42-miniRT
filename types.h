@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 08:49:13 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/01 18:52:08 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/05 10:15:06 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct 	s_camera
 	t_vector	orientation;
 	int			field_of_view;
 	int			set;
+	float		transformation_matrix[3][3];
 }				t_camera;
 
 typedef struct 	s_light
@@ -89,14 +90,12 @@ typedef struct 	s_plane
 {
 	t_point		plane_point;
 	t_vector	normal_vector;
-	//t_color		color;
 }				t_plane;
 
 typedef struct 	s_sphere
 {
 	t_point		center;
 	float		diameter;
-	//t_color		color;
 }				t_sphere;
 
 typedef struct 	s_cylinder
@@ -105,7 +104,6 @@ typedef struct 	s_cylinder
 	t_vector	axis;
 	float		diameter;
 	float		height;
-	//t_color		color;
 }				t_cylinder;
 
 typedef struct 	s_scene
@@ -114,9 +112,6 @@ typedef struct 	s_scene
 	t_camera	camera;
 	t_light		light;
 	t_list		*objects;
-	//t_list		*planes;
-	//t_list		*spheres;
-	//t_list		*cylinders;
 	mlx_t		*mlx;
 }				t_scene;
 

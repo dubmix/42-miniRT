@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algebra.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:47:57 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/01 16:07:09 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/05 10:02:22 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,16 @@ t_point	add_points(t_point p1, t_point p2)
 float	dot_product(t_vector v1, t_vector v2)
 {
 	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
+}
+
+t_vector	cross_product(t_vector v1, t_vector v2)
+{
+	t_vector	res;
+
+	res.x = v1.y * v2.z - v1.z * v2.y;
+	res.y = v1.z * v2.x - v1.x * v2.z;
+	res.z = v1.x * v2.y - v1.y * v2.x;
+	return (res);
 }
 
 float	dot_self(t_vector v1)

@@ -6,28 +6,14 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/04 16:03:15 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/05 11:33:44 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphics.h"
 #include "../raytracing/raytracing.h"
 
-/* t_point    pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y)
-{
-	t_point coord;
-	float   width = 2.0;
-	float   height = 2 * (float)img->height/(float)img->width;
-
-	coord.x = scene->camera.coordinates.x - (width / 2)
-		+ (width * ((float)pixel_x / (float)img->width));
-	coord.y = scene->camera.coordinates.y + (height / 2)
-		- (height * ((float)pixel_y / (float)img->height));
-	coord.z = 1.0;
-	return (coord);
-} */
-
-t_point    pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y)
+t_point	pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y)
 {
 	t_point coord;
 	float imageAspectRatio = (float)scene->mlx->width / (float)scene->mlx->height; // assuming width > height, test the other case
@@ -38,6 +24,51 @@ t_point    pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y)
 	coord.z = 1;
 	
 	return (coord);
+}
+
+void	set_transformation(t_camera *camera)
+{
+	t_vector	temp;
+	t_vector	right;
+	t_vector	up;
+
+	temp = init_vector(0, 1, 0);
+	right = normalize(cross_product(temp, camera->orientation));
+	up = normalize(cross_product(camera->orientation, right));
+
+	camera->transformation_matrix[0][0] = right.x;
+	camera->transformation_matrix[0][1] = right.y;
+	camera->transformation_matrix[0][2] = right.z;
+	camera->transformation_matrix[1][0] = up.x;
+	camera->transformation_matrix[1][1] = up.y;
+	camera->transformation_matrix[1][2] = up.z;
+	camera->transformation_matrix[2][0] = camera->orientation.x;
+	camera->transformation_matrix[2][1] = camera->orientation.y;
+	camera->transformation_matrix[2][2] = camera->orientation.z;
+}
+
+t_point	transform_point(t_camera c, t_point p)
+{
+	t_point res;
+
+	res.x = p.x * c.transformation_matrix[0][0] + p.y * c.transformation_matrix[1][0] + p.z * c.transformation_matrix[2][0] + c.coordinates.x;
+	res.y = p.x * c.transformation_matrix[0][1] + p.y * c.transformation_matrix[1][1] + p.z * c.transformation_matrix[2][1] + c.coordinates.y;
+	res.z = p.x * c.transformation_matrix[0][2] + p.y * c.transformation_matrix[1][2] + p.z * c.transformation_matrix[2][2] + c.coordinates.z;
+	return (res);
+}
+
+t_ray	create_ray(t_scene *scene, int pixel_x, int pixel_y)
+{
+	t_ray	ray;
+	t_point	local_pixel_point;
+	t_point	transformed_pixel_point;
+
+	set_transformation(&scene->camera);
+	local_pixel_point = pixel_to_coord(scene, pixel_x, pixel_y);
+	transformed_pixel_point = transform_point(scene->camera, local_pixel_point);
+	ray.origin = scene->camera.coordinates;
+	ray.direction = normalize(init_vector_p(transformed_pixel_point, scene->camera.coordinates));
+	return (ray);
 }
 
 void	ft_render(void *param)
@@ -105,16 +136,6 @@ float   apply_light(t_scene *scene, t_point hit_point, t_object *object)
 	if (dot_product(N, L) > 0)
 		i += scene->light.brightness_ratio * (dot_product(N, L)/(vector_length(N) * vector_length(L)));
 	return (i);
-}
-
-t_ray	create_ray(t_scene *scene, int pixel_x, int pixel_y)
-{
-	t_ray ray;
-	
-	ray.origin = scene->camera.coordinates;
-	ray.direction = normalize(init_vector_p(pixel_to_coord(scene, pixel_x, pixel_y),
-					scene->camera.coordinates));
-	return (ray);
 }
 
 uint32_t rgb_to_uint32(uint32_t r, uint32_t g, uint32_t b, float brightness, t_scene *scene)
