@@ -23,6 +23,7 @@ void	ft_render(void *param)
 
 	scene = param;
 	pixel_x = 0;
+	scene->camera.orientation = normalize(scene->camera.orientation);
 	while (pixel_x < img->width)
 	{
 		pixel_y = 0;
@@ -41,8 +42,8 @@ t_point	pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y)
 {
 	t_point coord;
 	float imageAspectRatio = (float)scene->mlx->width / (float)scene->mlx->height; // assuming width > height, test the other case
-	float Px = (2 * ((pixel_x + 0.5) / (float)scene->mlx->width ) - 1) * tan(scene->camera.field_of_view / 2 * M_PI / 180) * imageAspectRatio;
-	float Py = (1 - 2 * ((pixel_y + 0.5) / (float)scene->mlx->height)) * tan(scene->camera.field_of_view / 2 * M_PI / 180);
+	float Px = (2 * ((pixel_x + 0.5) / (float)scene->mlx->width ) - 1) * tan(scene->camera.field_of_view / 2 * 3.14 / 180) * imageAspectRatio;
+	float Py = (1 - 2 * ((pixel_y + 0.5) / (float)scene->mlx->height)) * tan(scene->camera.field_of_view / 2 * 3.14 / 180);
 	coord.x = Px;
 	coord.y = Py;
 	coord.z = 1;
