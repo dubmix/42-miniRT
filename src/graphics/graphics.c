@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/05 12:41:14 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:24:29 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 void	ft_render(void *param)
 {
-	t_scene		*scene;
-	uint32_t	color;
-	unsigned int pixel_x;
-	unsigned int pixel_y;
-	t_ray ray;
+	t_scene			*scene;
+	uint32_t		color;
+	t_ray			ray;
+	unsigned int	pixel_x;
+	unsigned int	pixel_y;
 
 	scene = param;
 	pixel_x = 0;
@@ -40,14 +40,19 @@ void	ft_render(void *param)
 
 t_point	pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y)
 {
-	t_point coord;
-	float imageAspectRatio = (float)scene->mlx->width / (float)scene->mlx->height; // assuming width > height, test the other case
-	float Px = (2 * ((pixel_x + 0.5) / (float)scene->mlx->width ) - 1) * tan(scene->camera.field_of_view / 2 * 3.14 / 180) * imageAspectRatio;
-	float Py = (1 - 2 * ((pixel_y + 0.5) / (float)scene->mlx->height)) * tan(scene->camera.field_of_view / 2 * 3.14 / 180);
-	coord.x = Px;
-	coord.y = Py;
+	t_point	coord;
+	float	fov_ratio;
+	float	image_ratio;
+	float	width;
+	float	height;
+
+	width = (float)scene->mlx->width;
+	height = (float)scene->mlx->height;
+	fov_ratio = tan(scene->camera.field_of_view / 2 * M_PI / 180);
+	image_ratio = width / height;
+	coord.x = (2 * ((pixel_x + 0.5) / width) - 1) * fov_ratio * image_ratio;
+	coord.y = (1 - 2 * ((pixel_y + 0.5) / height)) * fov_ratio;
 	coord.z = 1;
-	
 	return (coord);
 }
 
@@ -58,43 +63,46 @@ void	set_transformation(t_camera *camera)
 	t_vector	up;
 
 	temp = init_vector(0, 1, 0);
-	if (equal_vec(temp, camera->orientation) || equal_vec(scale_vec(temp, -1), camera->orientation))
+	if (equal_vec(temp, camera->orientation) ||
+		equal_vec(scale_vec(temp, -1), camera->orientation))
 		temp = init_vector(0, 0, 1);
 	right = normalize(cross_product(temp, camera->orientation));
 	up = normalize(cross_product(camera->orientation, right));
-
-	camera->transformation_matrix[0][0] = right.x;
-	camera->transformation_matrix[0][1] = right.y;
-	camera->transformation_matrix[0][2] = right.z;
-	camera->transformation_matrix[1][0] = up.x;
-	camera->transformation_matrix[1][1] = up.y;
-	camera->transformation_matrix[1][2] = up.z;
-	camera->transformation_matrix[2][0] = camera->orientation.x;
-	camera->transformation_matrix[2][1] = camera->orientation.y;
-	camera->transformation_matrix[2][2] = camera->orientation.z;
+	camera->m[0][0] = right.x;
+	camera->m[0][1] = right.y;
+	camera->m[0][2] = right.z;
+	camera->m[1][0] = up.x;
+	camera->m[1][1] = up.y;
+	camera->m[1][2] = up.z;
+	camera->m[2][0] = camera->orientation.x;
+	camera->m[2][1] = camera->orientation.y;
+	camera->m[2][2] = camera->orientation.z;
 }
 
 t_point	transform_point(t_camera c, t_point p)
 {
-	t_point res;
+	t_point	r;
+	t_point	translate;
 
-	res.x = p.x * c.transformation_matrix[0][0] + p.y * c.transformation_matrix[1][0] + p.z * c.transformation_matrix[2][0] + c.coordinates.x;
-	res.y = p.x * c.transformation_matrix[0][1] + p.y * c.transformation_matrix[1][1] + p.z * c.transformation_matrix[2][1] + c.coordinates.y;
-	res.z = p.x * c.transformation_matrix[0][2] + p.y * c.transformation_matrix[1][2] + p.z * c.transformation_matrix[2][2] + c.coordinates.z;
-	return (res);
+	translate = c.coordinates;
+	r.x = p.x * c.m[0][0] + p.y * c.m[1][0] + p.z * c.m[2][0] + translate.x;
+	r.y = p.x * c.m[0][1] + p.y * c.m[1][1] + p.z * c.m[2][1] + translate.y;
+	r.z = p.x * c.m[0][2] + p.y * c.m[1][2] + p.z * c.m[2][2] + translate.z;
+	return (r);
 }
 
 t_ray	create_ray(t_scene *scene, int pixel_x, int pixel_y)
 {
 	t_ray	ray;
-	t_point	local_pixel_point;
-	t_point	transformed_pixel_point;
+	t_point	local_point;
+	t_point	transformed;
 
 	set_transformation(&scene->camera);
-	local_pixel_point = pixel_to_coord(scene, pixel_x, pixel_y);
-	transformed_pixel_point = transform_point(scene->camera, local_pixel_point);
+	local_point = pixel_to_coord(scene, pixel_x, pixel_y);
+	transformed = transform_point(scene->camera, local_point);
 	ray.origin = scene->camera.coordinates;
-	ray.direction = normalize(init_vector_p(transformed_pixel_point, scene->camera.coordinates));
+	ray.direction = init_vector_p(transformed, scene->camera.coordinates);
+	ray.direction = normalize(ray.direction);
 	return (ray);
 }
 

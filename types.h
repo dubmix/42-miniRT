@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 08:49:13 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/05 10:15:06 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:17:10 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct 	s_camera
 	t_vector	orientation;
 	int			field_of_view;
 	int			set;
-	float		transformation_matrix[3][3];
+	float		m[3][3];
 }				t_camera;
 
 typedef struct 	s_light

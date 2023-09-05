@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:57:29 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/03 14:19:01 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:31:50 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,10 @@ t_point	get_ray_point(float t, t_ray r)
 t_point	get_nearest_ray_point(t_result result, t_ray ray)
 {
 	if (result.solution_type == ONE)
-		return get_ray_point(result.t1, ray);
-	else
-	{
-		return get_nearest_point(
+		return (get_ray_point(result.t1, ray));
+	return (get_nearest_point(
 			get_ray_point(result.t1, ray),
-			get_ray_point(result.t2, ray), ray.origin
-		);
-	}
+			get_ray_point(result.t2, ray), ray.origin));
 }
 
 /* 
@@ -40,8 +36,11 @@ t_point	get_nearest_ray_point(t_result result, t_ray ray)
  */
 t_point	get_nearest_point(t_point p1, t_point p2, t_point compare)
 {
-	float	distance1 = vector_length(subtract_points(p1, compare));
-	float	distance2 = vector_length(subtract_points(p2, compare));
+	float	distance1;
+	float	distance2;
+
+	distance1 = vector_length(subtract_points(p1, compare));
+	distance2 = vector_length(subtract_points(p2, compare));
 	if (distance1 < distance2)
 		return (p1);
 	return (p2);

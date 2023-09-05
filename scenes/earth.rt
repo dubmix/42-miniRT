@@ -7,7 +7,7 @@ A 0.8                                                                           
 ### Camera ###
 # XYZ coordinates of viewpoint    | Orientation vector [-1, 1]   | Field of view ° [0-180]
 
-C 0,0,-10                           0,0,1                         90
+C 0,0,-1                           0,0,1                         90
 
 
 ### Light ###
@@ -15,14 +15,14 @@ C 0,0,-10                           0,0,1                         90
 
 #L 16.000000,0.000000,48.000000                                      1
 
-L 0.000000,0.000000,3.000000                                      1
+L 0.000000,0.000000,0.000000                                      1
 
 
 
 ### Sphere ###
 # XYZ coordinates of sphere center                               | Sphere diameter           | RGB
 
-sp 0.0,0.0,0                                                5                      0,255,0
+sp 0.0,0.0,3                                                5                      0,255,0
 
 
 

@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:38:34 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/04 08:11:26 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:28:40 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ t_result	solve_quadratic(float a, float b, float c)
 
 	d = b * b - (4 * a * c);
 	if (a == 0 || d < 0)
-	{
 		res.solution_type = NONE;
-		return (res);
-	}
 	else if (d == 0)
 	{
 		res.solution_type = ONE;
