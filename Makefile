@@ -23,8 +23,14 @@ SRCS = 	src/main.c \
 		src/parsing/parsing_pl.c \
 		src/parsing/parsing_sp.c \
 		src/parsing/parsing_cy.c \
+		src/parsing/parsing_vec.c \
+		src/parsing/parsing_color.c \
+		src/parsing/parsing_texture.c \
 		src/parsing/parsing_error.c \
 		src/graphics/graphics.c \
+		src/graphics/graphics_colors.c \
+		src/graphics/graphics_light.c \
+		src/graphics/graphics_utils.c \
 		src/utils/get_next_line.c \
 		src/utils/get_next_line_utils.c \
 		src/utils/ft_split.c \

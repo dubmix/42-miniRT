@@ -30,13 +30,11 @@ int	parsing_main(t_scene *scene, char *file_name)
 
 void	init_parsing(t_scene *scene)
 {
-/* 	scene->planes = NULL;
-	scene->spheres = NULL;
-	scene->cylinders = NULL; */
 	scene->objects = NULL;
 	scene->ambient.set = 0;
 	scene->camera.set = 0;
 	scene->light.set = 0;
+	scene->texture.set = 0;
 }
 
 int	read_from_file(t_scene *scene, int fd)
@@ -104,44 +102,4 @@ int	find_id(t_scene *scene, char **split)
 		return (process_tx(scene, split));
 	else
 		return (ft_parsing_error("unvalid id", "", 0));
-}
-
-int	process_tx(t_scene *scene, char **split)
-{
-	mlx_texture_t *mlx_texture;
-
-	if (ft_count_str(split) != 3)
-		return (ft_parsing_error("unvalid params: ", "texture", 1));
-	printf("str is: %s\n", split[2]);
-	// if (ft_strncmp_rev(split[2], ".png", 4) != 0)
-	// 	return (ft_parsing_error("unvalid path: ", "texture", 1));
-	//scene->texture.name = split[1];
-	mlx_texture = mlx_load_png("scenes/textures/earthmap.png");
-	if (mlx_texture == NULL)
-		return (ft_parsing_error("unvalid file: ", "texture", 1));
-	if (mlx_texture_to_color(mlx_texture, &scene->texture))
-		return (ft_parsing_error("malloc failed: ", "texture", 1));
-	return (0);
-}
-
-int	mlx_texture_to_color(mlx_texture_t *mlx_texture, t_texture *texture)
-{
-	unsigned int i;
-	int	pixel;
-
-	texture->color = malloc(sizeof(t_color) * mlx_texture->width * mlx_texture->height);
-	if (texture->color == NULL)
-		return (1);
-	i = 0;
-	while (i < mlx_texture->width * mlx_texture->height)
-	{
-		pixel = i * mlx_texture->bytes_per_pixel;
-		//printf("i is: %d\n", i);
-		//printf("pixel: %u\n", mlx_texture->pixels[pixel]);
-		texture->color[i].r = mlx_texture->pixels[pixel]; // 255.0;
-		texture->color[i].g = mlx_texture->pixels[pixel + 1]; // 255.0;
-		texture->color[i].b = mlx_texture->pixels[pixel + 2]; // 255.0;
-		i++;
-	}
-	return (0);
 }

@@ -53,10 +53,4 @@ void	del_obj(void *arg)
 void	free_all(t_scene *scene)
 {
 	ft_lstclear(&scene->objects, del_obj);
-/* 	if (scene->planes != NULL)
-		ft_lstclear(&scene->planes, del_plane);
-	if (scene->spheres != NULL)
-		ft_lstclear(&scene->spheres, del_sphere);
-	if (scene->cylinders != NULL)
-		ft_lstclear(&scene->cylinders, del_cylinder); */
 }

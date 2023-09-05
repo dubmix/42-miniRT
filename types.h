@@ -111,7 +111,9 @@ typedef struct 	s_cylinder
 typedef struct 	s_texture
 {
 	t_color	*color;
-	char 	*name;		
+	int		set;
+	int		width;
+	int		height;		
 }				t_texture;
 
 typedef struct 	s_scene
@@ -120,10 +122,6 @@ typedef struct 	s_scene
 	t_camera	camera;
 	t_light		light;
 	t_list		*objects;
-
-	//t_list		*planes;
-	//t_list		*spheres;
-	//t_list		*cylinders;
 	mlx_t		*mlx;
 	mlx_texture_t *tx;
 	t_texture	texture;
@@ -134,14 +132,14 @@ typedef enum e_body_type
 	SPHERE,
 	PLANE,
 	CYLINDER
-}t_body_type;
+}			t_body_type;
 
-typedef union body
+typedef union u_body
 {
 	t_sphere	*sphere;
 	t_cylinder	*cylinder;
 	t_plane		*plane;
-}t_body;
+}				t_body;
 
 typedef struct s_object
 {
@@ -150,4 +148,5 @@ typedef struct s_object
 	t_color			color;
 	t_vector		surface_normal;
 }			t_object;
+
 #endif

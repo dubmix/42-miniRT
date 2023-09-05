@@ -1,7 +1,7 @@
 ### Ambient lighting ###
 # Ambient lighting ratio in range [0.0, 1.0]                                                 | RGB
 
-A 0.2                                                                                    0,0,0
+A 0.3                                                                                      0,0,0
 
 
 ### Camera ###
