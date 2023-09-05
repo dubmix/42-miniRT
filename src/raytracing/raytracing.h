@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:49:28 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/05 10:02:49 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/05 12:38:43 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,5 @@ t_point	add_points(t_point p1, t_point p2);
 
 bool	equal_points(t_point p1, t_point p2);
 t_vector	cross_product(t_vector v1, t_vector v2);
+bool	equal_vec(t_vector v1, t_vector v2);
 #endif

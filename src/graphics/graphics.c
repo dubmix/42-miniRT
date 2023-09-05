@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/05 11:33:44 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/05 12:41:14 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	set_transformation(t_camera *camera)
 	t_vector	up;
 
 	temp = init_vector(0, 1, 0);
+	if (equal_vec(temp, camera->orientation) || equal_vec(scale_vec(temp, -1), camera->orientation))
+		temp = init_vector(0, 0, 1);
 	right = normalize(cross_product(temp, camera->orientation));
 	up = normalize(cross_product(camera->orientation, right));
 

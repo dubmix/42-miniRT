@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:47:57 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/05 10:02:22 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/05 12:38:35 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,4 +148,9 @@ t_point	origin_vec_to_p(t_vector v)
 bool	equal_points(t_point p1, t_point p2)
 {
 	return (p1.x == p2.x && p1.y == p2.y && p1.z == p2.z);
+}
+
+bool	equal_vec(t_vector v1, t_vector v2)
+{
+	return (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z);
 }
