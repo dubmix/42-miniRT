@@ -6,11 +6,11 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 08:19:20 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/06 11:32:06 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:43:01 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracing.h"
+#include "intersection.h"
 
 static bool	check_cap(t_ray r,
 t_point cap_center,

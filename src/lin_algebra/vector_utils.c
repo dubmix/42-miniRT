@@ -6,11 +6,11 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:47:57 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/05 16:44:59 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:39:08 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracing.h"
+#include "lin_algebra.h"
 
 t_vector	scale_vec(t_vector v, float s)
 {

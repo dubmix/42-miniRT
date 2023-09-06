@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/06 12:22:30 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:37:31 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,21 @@ t_ray	create_ray(t_scene *scene, int pixel_x, int pixel_y)
 	return (ray);
 }
 
+t_point	*intersection(t_object	*obj, t_ray ray, t_point *temp_hit)
+{
+	if (obj->body_type == SPHERE)
+		if (sphere_intersect(obj, ray, temp_hit))
+			return (temp_hit);
+	if (obj->body_type == PLANE)
+		if (plane_intersect(obj, ray, temp_hit))
+			return (temp_hit);
+	if (obj->body_type == CYLINDER)
+		if (cylinder_intersect(obj, ray, temp_hit))
+			return (temp_hit);
+	return (NULL);
+}
+
+
 uint32_t trace_ray(t_scene *scene, t_ray ray)
 {
 	uint32_t	color;
@@ -138,18 +153,4 @@ uint32_t trace_ray(t_scene *scene, t_ray ray)
 		temp = temp->next;
 	}
 	return (color);
-}
-
-t_point	*intersection(t_object	*obj, t_ray ray, t_point *temp_hit)
-{
-	if (obj->body_type == SPHERE)
-		if (sphere_intersect(obj, ray, temp_hit))
-			return (temp_hit);
-	if (obj->body_type == PLANE)
-		if (plane_intersect(obj, ray, temp_hit))
-			return (temp_hit);
-	if (obj->body_type == CYLINDER)
-		if (cylinder_intersect(obj, ray, temp_hit))
-			return (temp_hit);
-	return (NULL);
 }

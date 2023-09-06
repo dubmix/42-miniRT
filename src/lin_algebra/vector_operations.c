@@ -6,11 +6,11 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 16:39:49 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/06 08:56:59 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:39:12 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracing.h"
+#include "lin_algebra.h"
 
 t_vector	add_vectors(t_vector v1, t_vector v2)
 {

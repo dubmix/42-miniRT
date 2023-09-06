@@ -6,11 +6,11 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:42:00 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/05 16:26:23 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:43:20 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracing.h"
+#include "intersection.h"
 
 t_point	*sphere_intersect(t_object *obj, t_ray r, t_point *p)
 {

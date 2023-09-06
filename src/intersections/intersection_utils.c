@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raytracing_utils.c                                 :+:      :+:    :+:   */
+/*   intersection_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:38:34 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/06 07:39:24 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:43:13 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracing.h"
+#include "intersection.h"
 
 t_result	solve_quadratic(float a, float b, float c)
 {

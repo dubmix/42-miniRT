@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics_utils.c                                   :+:      :+:    :+:   */
+/*   raytracing_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 09:53:32 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/05 09:53:51 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:38:01 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "graphics.h"
-#include "../raytracing/raytracing.h"
+#include "raytracing.h"
 
 int	make_even(int nb)
 {

@@ -6,13 +6,11 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:00:16 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/06 12:17:32 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:48:48 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
-
-mlx_image_t *img;
 
 int main(int argc, char *argv[])
 {
@@ -22,8 +20,8 @@ int main(int argc, char *argv[])
 		return (ft_parsing_error("./miniRT needs one file", "", 0));
 	parsing_main(&scene, argv[1]);
 	scene.mlx = mlx_init(WIDTH, HEIGHT, "miniRT", 1);
-	img = mlx_new_image(scene.mlx, WIDTH, HEIGHT);
-	mlx_image_to_window(scene.mlx, img, 0, 0);
+	scene.img = mlx_new_image(scene.mlx, WIDTH, HEIGHT);
+	mlx_image_to_window(scene.mlx, scene.img, 0, 0);
 	mlx_loop_hook(scene.mlx, ft_hook, &scene);
 	ft_render(&scene);
 	mlx_loop(scene.mlx);

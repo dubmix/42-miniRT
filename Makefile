@@ -6,7 +6,7 @@
 #    By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 11:47:51 by pdelanno          #+#    #+#              #
-#    Updated: 2023/09/06 11:57:15 by aehrlich         ###   ########.fr        #
+#    Updated: 2023/09/06 12:42:29 by aehrlich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,13 +38,13 @@ SRCS = 	src/main.c \
 		src/lin_algebra/vector_utils.c \
 		src/lin_algebra/vector_operations.c \
 		src/lin_algebra/point.c \
-		src/lin_algebra/intersection_utils.c \
 		src/lin_algebra/ray.c \
 		src/intersections/cylinder.c \
 		src/intersections/cylinder_caps.c \
 		src/intersections/cylinder_tube.c \
 		src/intersections/sphere.c \
 		src/intersections/plane.c \
+		src/intersections/intersection_utils.c \
 		src/utils/ft_atoi.c \
 		src/utils/ft_isdigit.c \
 		src/utils/ft_isnumber.c \

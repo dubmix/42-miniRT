@@ -6,11 +6,11 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:33:51 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/06 10:46:24 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:43:10 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracing.h"
+#include "intersection.h"
 
 static t_point	*set_cylinder(
 	t_object *obj,

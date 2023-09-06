@@ -6,11 +6,11 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 16:36:27 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/05 16:45:18 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:38:53 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracing.h"
+#include "lin_algebra.h"
 
 t_vector	init_vector(float x, float y, float z)
 {

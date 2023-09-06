@@ -6,11 +6,11 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 08:20:24 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/06 11:30:02 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:43:07 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracing.h"
+#include "intersection.h"
 
 static t_result	solve_infinite_tube(t_cylinder cyl, t_ray r, t_vector x)
 {

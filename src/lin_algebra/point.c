@@ -6,11 +6,11 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 16:38:44 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/06 11:30:02 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:40:58 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracing.h"
+#include "lin_algebra.h"
 
 t_point	init_point(float x, float y, float z)
 {

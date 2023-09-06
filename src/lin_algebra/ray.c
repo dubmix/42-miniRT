@@ -6,11 +6,11 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:57:29 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/06 07:40:08 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:39:15 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracing.h"
+#include "lin_algebra.h"
 
 t_point	get_ray_point(float t, t_ray r)
 {

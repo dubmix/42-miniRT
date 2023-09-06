@@ -6,11 +6,11 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:41:24 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/05 14:59:27 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:43:17 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracing.h"
+#include "intersection.h"
 
 /* 
 	This function calculates - if there is one - the intersection between
