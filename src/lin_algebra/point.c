@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 16:38:44 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/05 16:44:47 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 11:30:02 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_point	add_points(t_point p1, t_point p2)
 	return (result);
 }
 
-t_point	origin_vec_to_p(t_vector v)
+t_point	vec_to_p(t_vector v)
 {
 	t_point	p;
 

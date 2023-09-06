@@ -1,44 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics.c                                         :+:      :+:    :+:   */
+/*   raytracing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/05 16:24:29 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:22:30 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "graphics.h"
-#include "../raytracing/raytracing.h"
+#include "raytracing.h"
 
-void	ft_render(void *param)
+void	ft_render(t_scene *scene)
 {
-	t_scene			*scene;
 	uint32_t		color;
 	t_ray			ray;
 	unsigned int	pixel_x;
 	unsigned int	pixel_y;
 
-	scene = param;
 	pixel_x = 0;
 	scene->camera.orientation = normalize(scene->camera.orientation);
-	while (pixel_x < img->width)
+	while (pixel_x < scene->img->width)
 	{
 		pixel_y = 0;
-		while (pixel_y < img->height)
+		while (pixel_y < scene->img->height)
 		{
 			ray = create_ray(scene, pixel_x, pixel_y);
 			color = trace_ray(scene, ray);
-			mlx_put_pixel(img, pixel_x, pixel_y, color);
+			mlx_put_pixel(scene->img, pixel_x, pixel_y, color);
 			pixel_y++;
 		}
 		pixel_x++;
 	}
 }
 
-t_point	pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y)
+static t_point	pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y)
 {
 	t_point	coord;
 	float	fov_ratio;
@@ -56,7 +53,7 @@ t_point	pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y)
 	return (coord);
 }
 
-void	set_transformation(t_camera *camera)
+static void	set_transformation(t_camera *camera)
 {
 	t_vector	temp;
 	t_vector	right;
@@ -79,7 +76,7 @@ void	set_transformation(t_camera *camera)
 	camera->m[2][2] = camera->orientation.z;
 }
 
-t_point	transform_point(t_camera c, t_point p)
+static t_point	transform_point(t_camera c, t_point p)
 {
 	t_point	r;
 	t_point	translate;

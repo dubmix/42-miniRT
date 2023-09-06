@@ -6,7 +6,7 @@
 #    By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 11:47:51 by pdelanno          #+#    #+#              #
-#    Updated: 2023/09/05 16:42:43 by aehrlich         ###   ########.fr        #
+#    Updated: 2023/09/06 11:57:15 by aehrlich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,23 +27,24 @@ SRCS = 	src/main.c \
 		src/parsing/parsing_color.c \
 		src/parsing/parsing_texture.c \
 		src/parsing/parsing_error.c \
-		src/graphics/graphics.c \
-		src/graphics/graphics_colors.c \
-		src/graphics/graphics_light.c \
-		src/graphics/graphics_utils.c \
+		src/raytracing/raytracing.c \
+		src/raytracing/colors.c \
+		src/raytracing/light.c \
+		src/raytracing/raytracing_utils.c \
 		src/utils/get_next_line.c \
 		src/utils/get_next_line_utils.c \
 		src/utils/ft_split.c \
-		src/raytracing/vector.c \
-		src/raytracing/vector_utils.c \
-		src/raytracing/vector_operations.c \
-		src/raytracing/point.c \
-		src/raytracing/print_utils.c \
-		src/raytracing/cylinder.c \
-		src/raytracing/sphere.c \
-		src/raytracing/plane.c \
-		src/raytracing/raytracing_utils.c \
-		src/raytracing/ray.c \
+		src/lin_algebra/vector.c \
+		src/lin_algebra/vector_utils.c \
+		src/lin_algebra/vector_operations.c \
+		src/lin_algebra/point.c \
+		src/lin_algebra/intersection_utils.c \
+		src/lin_algebra/ray.c \
+		src/intersections/cylinder.c \
+		src/intersections/cylinder_caps.c \
+		src/intersections/cylinder_tube.c \
+		src/intersections/sphere.c \
+		src/intersections/plane.c \
 		src/utils/ft_atoi.c \
 		src/utils/ft_isdigit.c \
 		src/utils/ft_isnumber.c \

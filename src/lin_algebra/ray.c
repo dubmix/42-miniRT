@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:57:29 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/05 16:31:50 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 07:40:08 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ t_point	get_ray_point(float t, t_ray r)
 t_point	get_nearest_ray_point(t_result result, t_ray ray)
 {
 	if (result.solution_type == ONE)
-		return (get_ray_point(result.t1, ray));
+		return (get_ray_point(result.t[0], ray));
 	return (get_nearest_point(
-			get_ray_point(result.t1, ray),
-			get_ray_point(result.t2, ray), ray.origin));
+			get_ray_point(result.t[0], ray),
+			get_ray_point(result.t[1], ray), ray.origin));
 }
 
 /* 

@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics_light.c                                   :+:      :+:    :+:   */
+/*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 09:54:22 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/05 09:54:26 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:23:20 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphics.h"
 #include "../raytracing/raytracing.h"
 
-float   apply_light(t_scene *scene, t_point hit_point, t_object *object)
+float	apply_light(t_scene *scene, t_point hit_point, t_object *object)
 {
 	float i;
 	t_vector    N;

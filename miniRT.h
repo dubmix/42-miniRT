@@ -3,30 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:58:07 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/02 17:11:13 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:19:23 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
-
 # define MINIRT_H
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <stdbool.h>
-# include "mlx/include/MLX42/MLX42.h"
-# include <unistd.h>
-# include <math.h>
-# include <fcntl.h>
 # include "types.h"
+
+# include <fcntl.h>
+
 
 # define WIDTH 512
 # define HEIGHT 512
-
-extern mlx_image_t *img;
 
 uint32_t rgb_to_uint32(uint32_t r, uint32_t g, uint32_t b, float brightness, t_scene *scene);
 t_point	*intersection(t_object	*obj, t_ray ray, t_point *temp_hit);

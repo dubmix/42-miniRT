@@ -6,14 +6,19 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 08:49:13 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/05 16:17:10 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:22:03 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 
-#include "miniRT.h"
+# include "mlx/include/MLX42/MLX42.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <stdbool.h>
+# include <unistd.h>
+# include <math.h>
 
 typedef struct	s_list
 {
@@ -39,8 +44,7 @@ typedef enum e_solution_type
 typedef struct s_result
 {
 	t_solution_type	solution_type;
-	float			t1;
-	float			t2;
+	float			t[2];
 }			t_result;
 
 typedef struct 	s_vector
@@ -120,7 +124,9 @@ typedef struct 	s_scene
 	t_camera	camera;
 	t_light		light;
 	t_list		*objects;
+	mlx_image_t *img;
 	mlx_t		*mlx;
+	
 	mlx_texture_t *tx;
 	t_texture	texture;
 }				t_scene;

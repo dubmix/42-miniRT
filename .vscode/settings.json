@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "functional": "c"
+        "functional": "c",
+        "minirt.h": "c",
+        "stdbool.h": "c"
     }
 }
