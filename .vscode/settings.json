@@ -2,6 +2,8 @@
     "files.associations": {
         "functional": "c",
         "minirt.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "parsing.h": "c",
+        "utils.h": "c"
     }
 }

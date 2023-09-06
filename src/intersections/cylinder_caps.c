@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 08:19:20 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/06 12:43:01 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 13:03:46 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,17 +76,17 @@ bool	check_caps(
 	t_point		end_cap_center;
 	t_point		s_cap_hit;
 	t_point		e_cap_hit;
-	bool		cap_hit_results[2];
+	bool		hit_results[2];
 
 	init_cap_centers(obj, &s_cap_center_vec, &end_cap_center);
-	TOP_CAP_HIT = check_cap(r, vec_to_p(s_cap_center_vec), obj, &s_cap_hit);
-	BOTTOM_CAP_HIT = check_cap(r, end_cap_center, obj, &e_cap_hit);
-	if (TOP_CAP_HIT && !BOTTOM_CAP_HIT)
+	hit_results[0] = check_cap(r, vec_to_p(s_cap_center_vec), obj, &s_cap_hit);
+	hit_results[1] = check_cap(r, end_cap_center, obj, &e_cap_hit);
+	if (hit_results[0] && !hit_results[1])
 		return (set_cap(normal, p_hit,
 				scale_vec(obj->body.cylinder->axis, -1), s_cap_hit));
-	else if (!TOP_CAP_HIT && BOTTOM_CAP_HIT)
+	else if (!hit_results[0] && hit_results[1])
 		return (set_cap(normal, p_hit, obj->body.cylinder->axis, e_cap_hit));
-	else if (TOP_CAP_HIT && BOTTOM_CAP_HIT)
+	else if (hit_results[0] && hit_results[1])
 	{
 		*p_hit = get_nearest_point(s_cap_hit, e_cap_hit, r.origin);
 		if (equal_points(*p_hit, s_cap_hit))

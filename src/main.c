@@ -6,13 +6,13 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:00:16 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/06 12:48:48 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:02:26 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_scene	scene;
 
@@ -29,9 +29,9 @@ int main(int argc, char *argv[])
 	return (0);
 }
 
-void ft_hook(void *param)
+void	ft_hook(void *param)
 {
-	t_scene *scene;
+	t_scene	*scene;
 
 	scene = param;
 	if (mlx_is_key_down(scene->mlx, MLX_KEY_ESCAPE))

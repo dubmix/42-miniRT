@@ -6,34 +6,11 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/06 12:37:31 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:01:00 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracing.h"
-
-void	ft_render(t_scene *scene)
-{
-	uint32_t		color;
-	t_ray			ray;
-	unsigned int	pixel_x;
-	unsigned int	pixel_y;
-
-	pixel_x = 0;
-	scene->camera.orientation = normalize(scene->camera.orientation);
-	while (pixel_x < scene->img->width)
-	{
-		pixel_y = 0;
-		while (pixel_y < scene->img->height)
-		{
-			ray = create_ray(scene, pixel_x, pixel_y);
-			color = trace_ray(scene, ray);
-			mlx_put_pixel(scene->img, pixel_x, pixel_y, color);
-			pixel_y++;
-		}
-		pixel_x++;
-	}
-}
 
 static t_point	pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y)
 {
@@ -153,4 +130,27 @@ uint32_t trace_ray(t_scene *scene, t_ray ray)
 		temp = temp->next;
 	}
 	return (color);
+}
+
+void	ft_render(t_scene *scene)
+{
+	uint32_t		color;
+	t_ray			ray;
+	unsigned int	pixel_x;
+	unsigned int	pixel_y;
+
+	pixel_x = 0;
+	scene->camera.orientation = normalize(scene->camera.orientation);
+	while (pixel_x < scene->img->width)
+	{
+		pixel_y = 0;
+		while (pixel_y < scene->img->height)
+		{
+			ray = create_ray(scene, pixel_x, pixel_y);
+			color = trace_ray(scene, ray);
+			mlx_put_pixel(scene->img, pixel_x, pixel_y, color);
+			pixel_y++;
+		}
+		pixel_x++;
+	}
 }

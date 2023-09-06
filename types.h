@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 08:49:13 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/06 12:22:03 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/06 14:39:31 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,14 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <unistd.h>
-# include <math.h>
 
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }				t_list;
 
-
-typedef struct 	s_point
+typedef struct s_point
 {
 	float		x;
 	float		y;
@@ -47,28 +45,28 @@ typedef struct s_result
 	float			t[2];
 }			t_result;
 
-typedef struct 	s_vector
+typedef struct s_vector
 {
 	float		x;
 	float		y;
 	float		z;
 }				t_vector;
 
-typedef struct 	s_color
+typedef struct s_color
 {
-	uint32_t r;
-	uint32_t g;
-	uint32_t b;
+	uint32_t	r;
+	uint32_t	g;
+	uint32_t	b;
 }				t_color;
 
-typedef struct 	s_ambient
+typedef struct s_ambient
 {
 	float		ratio;
 	t_color		color;
 	int			set;
 }				t_ambient;
 
-typedef struct 	s_camera
+typedef struct s_camera
 {
 	t_point		coordinates;
 	t_vector	orientation;
@@ -77,32 +75,32 @@ typedef struct 	s_camera
 	float		m[3][3];
 }				t_camera;
 
-typedef struct 	s_light
+typedef struct s_light
 {
 	t_point		coordinates;
 	float		brightness_ratio;
 	int			set;
 }				t_light;
 
-typedef struct 	s_ray
+typedef struct s_ray
 {
 	t_point		origin;
 	t_vector	direction;		
 }				t_ray;
 
-typedef struct 	s_plane
+typedef struct s_plane
 {
 	t_point		plane_point;
 	t_vector	normal_vector;
 }				t_plane;
 
-typedef struct 	s_sphere
+typedef struct s_sphere
 {
 	t_point		center;
 	float		diameter;
 }				t_sphere;
 
-typedef struct 	s_cylinder
+typedef struct s_cylinder
 {
 	t_point		center;
 	t_vector	axis;
@@ -110,7 +108,7 @@ typedef struct 	s_cylinder
 	float		height;
 }				t_cylinder;
 
-typedef struct 	s_texture
+typedef struct s_texture
 {
 	t_color	*color;
 	int		set;
@@ -118,18 +116,17 @@ typedef struct 	s_texture
 	int		height;		
 }				t_texture;
 
-typedef struct 	s_scene
+typedef struct s_scene
 {
-	t_ambient	ambient;
-	t_camera	camera;
-	t_light		light;
-	t_list		*objects;
-	mlx_image_t *img;
-	mlx_t		*mlx;
-	
-	mlx_texture_t *tx;
-	t_texture	texture;
-}				t_scene;
+	t_ambient		ambient;
+	t_camera		camera;
+	t_light			light;
+	t_list			*objects;
+	mlx_image_t		*img;
+	mlx_t			*mlx;
+	mlx_texture_t	*tx;
+	t_texture		texture;
+}					t_scene;
 
 typedef enum e_body_type
 {
