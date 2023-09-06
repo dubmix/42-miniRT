@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_camera.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:20:04 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/28 09:43:07 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:17:25 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ int	process_camera_coordinates(t_scene *scene, char *str)
 		&& ft_isnumber(sub_split[1]) == 1
 		&& ft_isnumber(sub_split[2]) == 1)
 	{
-		scene->camera.coordinates.x = ft_atoi(sub_split[0]);
-		scene->camera.coordinates.y = ft_atoi(sub_split[1]);
-		scene->camera.coordinates.z = ft_atoi(sub_split[2]);
+		scene->camera.coordinates.x = ft_stof(sub_split[0]);
+		scene->camera.coordinates.y = ft_stof(sub_split[1]);
+		scene->camera.coordinates.z = ft_stof(sub_split[2]);
 	}
 	else
 	{
