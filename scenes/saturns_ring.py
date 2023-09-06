@@ -23,7 +23,7 @@ def main():
     nb_spheres = 200
     sphere_coordinates = generate_ring(saturn_center[0], saturn_center[1], saturn_center[2], radius, nb_spheres)
     for i, (x, y, z) in enumerate(sphere_coordinates):
-        print(f"sp {x:.5f},{y:.5f},{z:.5f}               0.5                255,255,255\n")
+        print(f"sp {x:.5f},{y:.5f},{z:.5f}               0.1                255,255,255\n")
 
 if __name__ == '__main__':
     main()

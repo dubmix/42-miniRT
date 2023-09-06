@@ -7,13 +7,13 @@ A 0                                                                             
 ### Camera ###
 # XYZ coordinates of viewpoint    | Orientation vector [-1, 1]   | Field of view ° [0-180]
 
-C 0,0,-20.5                           0.0,0,1                         70
+C 0,0,-21                           0.0,0,1                         90
 
 
 ### Light ###
 # XYZ coordinates of light point                                 | Light brightness ratio [0.0, 1.0]
 
-L 35.000000,0.000000,-27.000000                                      1
+L 26.000000,0.000000,-27.000000                                      1
 
 
 ### Sphere ###
@@ -34,7 +34,7 @@ tx scenes/textures/earth.png
 sp 6.8,-0.4,-7                                                       0.3                       255,255,255
 tx scenes/textures/moon.png
 
-sp 5.5,0,-4                                                       2                      255,255,255
+sp 5,0,-5                                                       2                      255,255,255
 tx scenes/textures/mars.png
 
 sp 0,0,-4                                                       10                      255,255,255
@@ -46,7 +46,7 @@ tx scenes/textures/saturn.png
 sp -3.8,0,-13                                                       3                      255,255,255
 tx scenes/textures/uranus.png
 
-sp -3.75,0,-15.5                                                       1.7                      255,255,255
+sp -4.0,0,-15                                                       2                      255,255,255
 tx scenes/textures/neptune.png
 
 #sp -300,0.0,945                                                       1550                     255,0,255

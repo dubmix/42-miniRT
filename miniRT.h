@@ -23,7 +23,7 @@
 # include <fcntl.h>
 # include "types.h"
 
-# define WIDTH 768
+# define WIDTH 1024
 # define HEIGHT 512
 
 extern mlx_image_t *img;
