@@ -122,7 +122,7 @@ typedef struct 	s_scene
 	t_list		*objects;
 	mlx_t		*mlx;
 	mlx_texture_t *tx;
-	t_texture	texture;
+	//t_texture	texture;
 }				t_scene;
 
 typedef enum e_body_type
@@ -132,12 +132,12 @@ typedef enum e_body_type
 	CYLINDER
 }t_body_type;
 
-typedef union body
+typedef union u_body
 {
 	t_sphere	*sphere;
 	t_cylinder	*cylinder;
 	t_plane		*plane;
-}t_body;
+}				t_body;
 
 typedef struct s_object
 {
@@ -145,5 +145,6 @@ typedef struct s_object
 	t_body			body;
 	t_color			color;
 	t_vector		surface_normal;
+	t_texture		texture;
 }			t_object;
 #endif

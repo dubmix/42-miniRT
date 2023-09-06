@@ -28,12 +28,11 @@ int	process_sp(t_scene *scene, char **split)
 		return (free(sphere), 1);
 	else
 		sphere->diameter = ft_stof(split[2]);
-/* 	if (process_sp_rgb(sphere, split[3]) != 0)
-		return (free(sphere), 1); */
 	if (process_rgb_obj(new_object, split[3], "sphere") != 0)
 		return (free(sphere), 1);
 	new_object->body.sphere = sphere;
 	new_object->body_type = SPHERE;
+	new_object->texture.set = 0;
 	new_node = ft_lstnew(new_object);
 	ft_lstadd_back(&(scene->objects), new_node);
 	return (0);

@@ -24,8 +24,8 @@ int main(int argc, char *argv[])
 	//argv = NULL;
 	if (argc != 2)
 		return (ft_parsing_error("./miniRT needs one file", "", 0));
-	parsing_main(ptr, argv[1]);
-	//print_list(scene.spheres);
+	if (parsing_main(ptr, argv[1]) != 0)
+		return (0);
 	scene.mlx = mlx_init(WIDTH, HEIGHT, "miniRT", 1);
 	img = mlx_new_image(scene.mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(scene.mlx, img, 0, 0);

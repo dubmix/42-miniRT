@@ -49,6 +49,7 @@ SRCS = 	src/main.c \
 		src/utils/ft_strncmp_rev.c \
 		src/utils/ft_strncmp.c \
 		src/utils/ft_strrchr.c \
+		src/utils/ft_strtrim.c \
 		src/utils/ft_lst/ft_lstadd_back.c \
 		src/utils/ft_lst/ft_lstadd_front.c \
 		src/utils/ft_lst/ft_lstclear.c \
@@ -63,7 +64,7 @@ OBJS = $(SRCS:.c=.o)
 
 HEADERS = miniRT.h
 
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = #-Wall -Werror -Wextra -g
 
 MLXFLAG = -Iinclude -lglfw -lm
 

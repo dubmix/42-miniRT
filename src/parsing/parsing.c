@@ -34,7 +34,6 @@ void	init_parsing(t_scene *scene)
 	scene->ambient.set = 0;
 	scene->camera.set = 0;
 	scene->light.set = 0;
-	scene->texture.set = 0;
 }
 
 int	read_from_file(t_scene *scene, int fd)

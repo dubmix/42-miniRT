@@ -23,7 +23,7 @@
 # include <fcntl.h>
 # include "types.h"
 
-# define WIDTH 512
+# define WIDTH 768
 # define HEIGHT 512
 
 extern mlx_image_t *img;
@@ -31,7 +31,7 @@ extern mlx_image_t *img;
 uint32_t rgb_to_uint32(uint32_t r, uint32_t g, uint32_t b, float brightness, t_scene *scene);
 t_point	*intersection(t_object	*obj, t_ray ray, t_point *temp_hit);
 
-t_color sphere_texture(t_scene *scene, t_point closest_hit, t_object *object);
+t_color sphere_texture(t_point closest_hit, t_object *object);
 
 void    ft_hook(void *param);
 void	ft_render(void *param);
@@ -59,6 +59,8 @@ char	*ft_strjoin(char *stash, char *buf);
 int		ft_strlen_gnl(char *str);
 char	*split(char *stash);
 char	*ft_strcpy(char *stash, char *buf, char *str);
+int	     ft_isinset(char c, char const *set);
+char	*ft_strtrim(char *s1, char const *set);
 
 int		nb_of_strs(char const *s, char c);
 void	get_next_str(char **next_str, size_t *next_strlen, char c);

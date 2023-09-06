@@ -33,7 +33,7 @@ uint32_t rgb_to_uint32(uint32_t r, uint32_t g, uint32_t b, float brightness, t_s
 	return (sc_r << 24 | sc_g << 16 | sc_b << 8 | 255);
 }
 
-t_color sphere_texture(t_scene *scene, t_point closest_hit, t_object *object)
+t_color sphere_texture(t_point closest_hit, t_object *object)
 {
 	t_vector p;
 	float u;
@@ -45,6 +45,6 @@ t_color sphere_texture(t_scene *scene, t_point closest_hit, t_object *object)
 	p = normalize(subtract_points(closest_hit, sphere->center));
 	u = 0.5 - (atan2(-p.z, p.x) / (2.0 * 3.14));
 	v = 0.5 - (asin(p.y) / 3.14);
-	pixel = (int)(v * scene->texture.height) * scene->texture.width + (int)(u * scene->texture.width);
-	return (scene->texture.color[pixel]);
+	pixel = (int)(v * object->texture.height) * object->texture.width + (int)(u * object->texture.width);
+	return (object->texture.color[pixel]);
 }
