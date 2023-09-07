@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/06 16:23:16 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/07 16:10:51 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,20 +130,6 @@ uint32_t trace_ray(t_scene *scene, t_ray ray)
 		temp = temp->next;
 	}
 	return (color);
-}
-
-bool	camera_is_in_object(t_scene *scene)
-{
-	t_point	cam;
-	t_point	sphere_center;
-	float r;
-
-	cam = scene->camera.coordinates;
-	sphere_center = ((t_object *)scene->objects->content)->body.sphere->center;
-	r = ((t_object *)scene->objects->content)->body.sphere->diameter / 2;
-	if ((powf(cam.x - sphere_center.x, 2) + powf(cam.y - sphere_center.y, 2) + powf(cam.z - sphere_center.z, 2)) <= powf(r, 2))
-		return (true);
-	return (false);
 }
 
 void	ft_render(t_scene *scene)
