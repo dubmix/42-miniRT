@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 09:52:58 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/06 14:32:53 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:34:19 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,18 @@ uint32_t	rgb_to_uint32(uint32_t r, uint32_t g, uint32_t b, float brightness, t_s
 	return (sc_r << 24 | sc_g << 16 | sc_b << 8 | 255);
 }
 
-t_color	sphere_texture(t_scene *scene, t_point closest_hit, t_object *object)
+t_color sphere_texture(t_point closest_hit, t_object *object)
 {
-	t_vector		p;
-	float			u;
-	float			v;
-	unsigned int	pixel;
-	t_sphere		*sphere;
+	t_vector p;
+	float u;
+	float v;
+	unsigned int pixel;
+	t_sphere *sphere;
 
 	sphere = (t_sphere *)object->body.sphere;
 	p = normalize(subtract_points(closest_hit, sphere->center));
 	u = 0.5 - (atan2(-p.z, p.x) / (2.0 * 3.14));
 	v = 0.5 - (asin(p.y) / 3.14);
-	pixel = (int)(v * scene->texture.height) * scene->texture.width
-		+ (int)(u * scene->texture.width);
-	return (scene->texture.color[pixel]);
+	pixel = (int)(v * object->texture.height) * object->texture.width + (int)(u * object->texture.width);
+	return (object->texture.color[pixel]);
 }

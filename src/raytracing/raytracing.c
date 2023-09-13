@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/07 16:10:51 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:36:06 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,9 @@ uint32_t trace_ray(t_scene *scene, t_ray ray)
 			{
 				closest_hit = temp_hit;
 				closest_obj = object;
-				if (object->body_type == SPHERE && scene->texture.set == 1)
+				if (object->body_type == SPHERE && object->texture.set == 1)
 				{
-					test = sphere_texture(scene, closest_hit, object);
+					test = sphere_texture(closest_hit, object);
 					color = rgb_to_uint32(test.r, test.g, test.b, apply_light(scene, temp_hit, object), scene);
 				}
 				else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 08:47:55 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/06 14:22:53 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:40:50 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		ft_atoi(const char *str);
 float	ft_stof(char *str);
 int		ft_isdigit(int c);
 int		ft_isnumber(char *str);
+char	*ft_strtrim(char *s1, char const *set);
 char	*get_next_line(int fd, int flag);
 char	*ft_memcpy(char *stash);
 char	*readtext(int fd, char *stash);

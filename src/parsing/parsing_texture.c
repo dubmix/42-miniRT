@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_texture.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 09:58:49 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/05 09:58:56 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:30:48 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,32 @@
 int	process_tx(t_scene *scene, char **split)
 {
 	mlx_texture_t *mlx_texture;
+	//t_object *sphere;
+	t_object *object;
+	t_list *temp;
 
-	if (ft_count_str(split) != 3)
+	temp = scene->objects;
+	if (temp == NULL)
+		return (0);
+	if (ft_count_str(split) != 2)
 		return (ft_parsing_error("unvalid params: ", "texture", 1));
 	// if (ft_strncmp_rev(split[2], ".png", 4) != 0)
-	// 	return (ft_parsing_error("unvalid path: ", "texture", 1));
-	mlx_texture = mlx_load_png("scenes/textures/earthmap.png");
+	// return (ft_parsing_error("unvalid path: ", "texture", 1));
+	while (temp)
+	{
+		object = (t_object *)temp->content;
+		if (object->body_type != SPHERE || object->texture.set == 1)
+			temp = temp->next;
+		else
+			break ;
+	}
+	mlx_texture = mlx_load_png(ft_strtrim(split[1], "\n"));
+	//free(split[1]); malloc in ft strim 
 	if (mlx_texture == NULL)
-		return (ft_parsing_error("unvalid file: ", "texture", 1));
-	if (mlx_texture_to_color(mlx_texture, &scene->texture))
-		return (ft_parsing_error("malloc failed: ", "texture", 1));
-    scene->texture.set = 1;
+	 	return (ft_parsing_error("unvalid file: ", "texture", 1));
+	if (mlx_texture_to_color(mlx_texture, &object->texture) != 0)
+	 	return (ft_parsing_error("malloc failed: ", "texture", 1));
+	object->texture.set = 1;
 	return (0);
 }
 

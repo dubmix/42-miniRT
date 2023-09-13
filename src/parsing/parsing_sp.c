@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_sp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 09:34:40 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/01 14:56:39 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:32:26 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	process_sp(t_scene *scene, char **split)
 		return (free(sphere), 1);
 	new_object->body.sphere = sphere;
 	new_object->body_type = SPHERE;
+	new_object->texture.set = 0;
 	new_node = ft_lstnew(new_object);
 	ft_lstadd_back(&(scene->objects), new_node);
 	return (0);

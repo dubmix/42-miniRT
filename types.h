@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 08:49:13 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/06 14:39:31 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:29:35 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,6 @@ typedef struct s_scene
 	mlx_image_t		*img;
 	mlx_t			*mlx;
 	mlx_texture_t	*tx;
-	t_texture		texture;
 }					t_scene;
 
 typedef enum e_body_type
@@ -148,5 +147,6 @@ typedef struct s_object
 	t_body			body;
 	t_color			color;
 	t_vector		surface_normal;
+	t_texture		texture;
 }			t_object;
 #endif

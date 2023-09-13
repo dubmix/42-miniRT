@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+         #
+#    By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 11:47:51 by pdelanno          #+#    #+#              #
-#    Updated: 2023/09/07 16:11:25 by aehrlich         ###   ########.fr        #
+#    Updated: 2023/09/13 17:40:13 by pdelanno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRCS = 	src/main.c \
 		src/utils/ft_isnumber.c \
 		src/utils/ft_stof.c \
 		src/utils/ft_strlen.c \
+		src/utils/ft_strtrim.c \
 		src/utils/ft_strncmp_rev.c \
 		src/utils/ft_strncmp.c \
 		src/utils/ft_strrchr.c \

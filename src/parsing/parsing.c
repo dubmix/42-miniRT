@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:55:41 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/06 14:11:58 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:32:16 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	init_parsing(t_scene *scene)
 	scene->ambient.set = 0;
 	scene->camera.set = 0;
 	scene->light.set = 0;
-	scene->texture.set = 0;
 }
 
 int	read_from_file(t_scene *scene, int fd)
