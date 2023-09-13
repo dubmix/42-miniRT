@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:00:16 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/06 15:02:26 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:29:24 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	ft_hook(void *param)
 	if (mlx_is_key_down(scene->mlx, MLX_KEY_T))
 	{
 		scene->camera.coordinates.z += 1.0;
+		printf("New Z: %f\n", scene->camera.coordinates.z);
 		ft_render(scene);
 	}
 	if (mlx_is_key_down(scene->mlx, MLX_KEY_G))
