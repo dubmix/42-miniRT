@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/13 17:36:06 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:52:47 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ t_point	*intersection(t_object	*obj, t_ray ray, t_point *temp_hit)
 }
 
 
-uint32_t trace_ray(t_scene *scene, t_ray ray)
+uint32_t	trace_ray(t_scene *scene, t_ray ray)
 {
 	uint32_t	color;
 	t_list		*temp;
@@ -135,7 +135,6 @@ uint32_t trace_ray(t_scene *scene, t_ray ray)
 void	ft_render(t_scene *scene)
 {
 	uint32_t		color;
-	t_ray			ray;
 	unsigned int	pixel_x;
 	unsigned int	pixel_y;
 	bool			cam_in_object;
@@ -151,10 +150,7 @@ void	ft_render(t_scene *scene)
 			if (cam_in_object)
 				color = 255;
 			else
-			{
-				ray = create_ray(scene, pixel_x, pixel_y);
-				color = trace_ray(scene, ray);
-			}
+				color = trace_ray(scene, create_ray(scene, pixel_x, pixel_y));
 			mlx_put_pixel(scene->img, pixel_x, pixel_y, color);
 			pixel_y++;
 		}
