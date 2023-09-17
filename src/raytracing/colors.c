@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 09:52:58 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/13 17:34:19 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/15 11:39:39 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ uint32_t	rgb_to_uint32(uint32_t r, uint32_t g, uint32_t b, float brightness, t_s
 	return (sc_r << 24 | sc_g << 16 | sc_b << 8 | 255);
 }
 
-t_color sphere_texture(t_point closest_hit, t_object *object)
+t_color	sphere_texture(t_point closest_hit, t_object *object)
 {
-	t_vector p;
-	float u;
-	float v;
-	unsigned int pixel;
-	t_sphere *sphere;
+	t_vector		p;
+	float			u;
+	float			v;
+	unsigned int	pixel;
+	t_sphere		*sphere;
 
 	sphere = (t_sphere *)object->body.sphere;
 	p = normalize(subtract_points(closest_hit, sphere->center));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_texture.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 09:58:49 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/13 17:30:48 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/15 10:30:39 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 
 int	process_tx(t_scene *scene, char **split)
 {
-	mlx_texture_t *mlx_texture;
-	//t_object *sphere;
-	t_object *object;
-	t_list *temp;
+	mlx_texture_t	*mlx_texture;
+	t_object		*object;
+	t_list			*temp;
 
 	temp = scene->objects;
 	if (temp == NULL)
 		return (0);
 	if (ft_count_str(split) != 2)
 		return (ft_parsing_error("unvalid params: ", "texture", 1));
-	// if (ft_strncmp_rev(split[2], ".png", 4) != 0)
-	// return (ft_parsing_error("unvalid path: ", "texture", 1));
 	while (temp)
 	{
 		object = (t_object *)temp->content;
@@ -46,8 +43,8 @@ int	process_tx(t_scene *scene, char **split)
 
 int	mlx_texture_to_color(mlx_texture_t *mlx_texture, t_texture *texture)
 {
-	unsigned int i;
-	int	pixel;
+	unsigned int	i;
+	int				pixel;
 
 	texture->color = malloc(sizeof(t_color) * mlx_texture->width * mlx_texture->height);
 	if (texture->color == NULL)

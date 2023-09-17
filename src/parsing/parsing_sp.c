@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_sp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 09:34:40 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/13 17:32:26 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/15 10:31:22 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int	process_sp(t_scene *scene, char **split)
 		return (free(sphere), 1);
 	else
 		sphere->diameter = ft_stof(split[2]);
-/* 	if (process_sp_rgb(sphere, split[3]) != 0)
-		return (free(sphere), 1); */
 	if (process_rgb_obj(new_object, split[3], "sphere") != 0)
 		return (free(sphere), 1);
 	new_object->body.sphere = sphere;
