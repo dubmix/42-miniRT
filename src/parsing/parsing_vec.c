@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_vec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:00:43 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/05 10:00:44 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/17 08:36:31 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	process_vec(t_vector *vector, char *str, char *identifier)
 		return (ft_parsing_error("unvalid vector: ", identifier, 1));
 	}
 	if ((ft_stof(sub_split[0]) >= -1 && ft_stof(sub_split[0]) <= 1
-		&& ft_stof(sub_split[1]) >= -1 && ft_stof(sub_split[1]) <= 1
-		&& ft_stof(sub_split[2]) >= -1 && ft_stof(sub_split[2]) <= 1)
+			&& ft_stof(sub_split[1]) >= -1 && ft_stof(sub_split[1]) <= 1
+			&& ft_stof(sub_split[2]) >= -1 && ft_stof(sub_split[2]) <= 1)
 		&& check_if_vec(sub_split) == 0)
 	{
 		vector->x = ft_stof(sub_split[0]);

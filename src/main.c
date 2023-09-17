@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:00:16 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/13 16:29:24 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/17 11:21:42 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,20 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 		return (ft_parsing_error("./miniRT needs one file", "", 0));
-	parsing_main(&scene, argv[1]);
+	if (parsing_main(&scene, argv[1]) != 0)
+		return (1);
 	scene.mlx = mlx_init(WIDTH, HEIGHT, "miniRT", 1);
 	scene.img = mlx_new_image(scene.mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(scene.mlx, scene.img, 0, 0);
-	mlx_loop_hook(scene.mlx, ft_hook, &scene);
+	//mlx_loop_hook(scene.mlx, ft_hook, &scene);
 	ft_render(&scene);
 	mlx_loop(scene.mlx);
 	mlx_terminate(scene.mlx);
+	free_all(&scene);
 	return (0);
 }
 
-void	ft_hook(void *param)
+/* void	ft_hook(void *param)
 {
 	t_scene	*scene;
 
@@ -120,3 +122,4 @@ void	ft_hook(void *param)
 		ft_render(scene);
 	}
 }
+ */

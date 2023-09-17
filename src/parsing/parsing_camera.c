@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:20:04 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/06 16:17:25 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/17 08:35:45 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ int	process_camera_orientation(t_scene *scene, char *str)
 		return (ft_parsing_error("unvalid or. params: ", "camera", 1));
 	}
 	if (((ft_stof(sub_split[0]) >= -1 && ft_stof(sub_split[0]) <= 1)
-		&& (ft_stof(sub_split[1]) >= -1 && ft_stof(sub_split[1]) <= 1)
-		&& (ft_stof(sub_split[2]) >= -1 && ft_stof(sub_split[2]) <= 1))
+			&& (ft_stof(sub_split[1]) >= -1 && ft_stof(sub_split[1]) <= 1)
+			&& (ft_stof(sub_split[2]) >= -1 && ft_stof(sub_split[2]) <= 1))
 		&& check_if_vec(sub_split) == 0)
 	{
 		scene->camera.orientation.x = ft_stof(sub_split[0]);

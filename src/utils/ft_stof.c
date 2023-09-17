@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_stof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 08:46:31 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/28 08:46:37 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/17 08:40:07 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-float ft_stof(char *str)
+float	ft_stof(char *str)
 {
 	float	result;
 	int		i;

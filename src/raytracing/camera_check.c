@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   camera_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:10:09 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/07 16:18:25 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/17 10:24:51 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracing.h"
 
-bool	cam_in_cylinder(t_object *obj, t_point p_cam)
+bool	cam_in_cylinder(t_obj *obj, t_point p_cam)
 {
 	t_cylinder	c;
 	t_point		cap_center;
@@ -21,25 +21,29 @@ bool	cam_in_cylinder(t_object *obj, t_point p_cam)
 	float		t;
 
 	c = *obj->body.cylinder;
-	cap_center = vec_to_p(subtract_vectors(p_to_origin_vec(c.center), scale_vec(c.axis, c.height / 2)));
+	cap_center = vec_to_p(subtract_vectors(p_to_origin_vec(c.center),
+				scale_vec(c.axis, c.height / 2)));
 	axis_ray.direction = normalize(c.axis);
 	axis_ray.origin = cap_center;
 	t = (c.axis.x * p_cam.x + c.axis.y * p_cam.y + c.axis.z * p_cam.z
-		- (c.axis.x * cap_center.x + c.axis.y * cap_center.y + c.axis.z * cap_center.z))
+			- (c.axis.x * cap_center.x 
+				+ c.axis.y * cap_center.y + c.axis.z * cap_center.z))
 		/ (powf(c.axis.x, 2) + powf(c.axis.y, 2) + powf(c.axis.z, 2));
 	if (t < 0 || t > c.height)
 		return (false);
 	plump_point = get_ray_point(t, axis_ray);
-	if (sqrt(powf(p_cam.x - plump_point.x, 2) + powf(p_cam.y - plump_point.y, 2) + powf(p_cam.z - plump_point.z, 2)) <= c.diameter / 2)
+	if (sqrt(powf(p_cam.x - plump_point.x, 2) 
+			+ powf(p_cam.y - plump_point.y, 2)
+			+ powf(p_cam.z - plump_point.z, 2)) <= c.diameter / 2)
 		return (true);
 	return (false);
 }
 
-bool	cam_in_plane(t_object *obj, t_point cam_coordinates)
+bool	cam_in_plane(t_obj *obj, t_point cam_coordinates)
 {
 	t_point		plane_point;
 	t_vector	plane_norm;
-	
+
 	plane_norm = obj->body.plane->normal_vector;
 	plane_point = obj->body.plane->plane_point;
 	if (plane_norm.x * (cam_coordinates.x - plane_point.x) 
@@ -49,7 +53,7 @@ bool	cam_in_plane(t_object *obj, t_point cam_coordinates)
 	return (false);
 }
 
-bool	cam_in_sphere(t_object *obj, t_point cam_coordinates)
+bool	cam_in_sphere(t_obj *obj, t_point cam_coordinates)
 {
 	t_point	sphere_center;
 	float	radius;
@@ -66,14 +70,14 @@ bool	cam_in_sphere(t_object *obj, t_point cam_coordinates)
 bool	camera_is_in_object(t_scene *scene)
 {
 	t_list		*tmp_node;
-	t_object	*obj;
+	t_obj		*obj;
 	t_camera	c;
 
 	tmp_node = scene->objects;
 	c = scene->camera;
 	while (tmp_node)
 	{
-		obj = (t_object *)tmp_node->content;
+		obj = (t_obj *)tmp_node->cont;
 		if (obj->body_type == SPHERE)
 			if (cam_in_sphere(obj, c.coordinates))
 				return (true);

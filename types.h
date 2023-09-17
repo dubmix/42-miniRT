@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 08:49:13 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/13 17:29:35 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/17 09:42:17 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 typedef struct s_list
 {
-	void			*content;
+	void			*cont;
 	struct s_list	*next;
 }				t_list;
 
@@ -148,5 +148,5 @@ typedef struct s_object
 	t_color			color;
 	t_vector		surface_normal;
 	t_texture		texture;
-}			t_object;
+}			t_obj;
 #endif

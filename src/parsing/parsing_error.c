@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_error.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 08:55:08 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/01 10:16:49 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/17 09:34:54 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,19 @@ void	free_arr(char **arr)
 
 void	del_obj(void *arg)
 {
-	t_object	*obj;
+	t_obj	*obj;
 
 	if (!arg)
 		return ;
-	obj = (t_object *)arg;
+	obj = (t_obj *)arg;
 	if (obj->body_type == PLANE)
 		free(obj->body.plane);
 	if (obj->body_type == SPHERE)
+	{
+		if (obj->texture.color)
+			free(obj->texture.color);
 		free(obj->body.sphere);
+	}
 	if (obj->body_type == CYLINDER)
 		free(obj->body.cylinder);
 	free(obj);

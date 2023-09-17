@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:08:57 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/06 14:21:26 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/17 09:34:54 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		process_camera_orientation(t_scene *scene, char *str);
 int		process_light(t_scene *scene, char **split);
 int		process_light_coordinates(t_scene *scene, char *str);
 
-int		process_rgb_obj(t_object *object, char *str, char *identifier);
+int		process_rgb_obj(t_obj *object, char *str, char *identifier);
 
 int		process_pl(t_scene *scene, char **split);
 int		process_pl_coordinates(t_plane *plane, char *str);

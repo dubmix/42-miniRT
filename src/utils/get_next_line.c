@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 08:31:05 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/04/10 22:33:11 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/17 08:43:52 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	*ft_strjoin(char *stash, char *buf)
 	if (!stash || !buf)
 		return (0);
 	str = malloc(sizeof(char) * ((ft_strlen_gnl(stash)
-			+ ft_strlen_gnl(buf) + 1)));
+					+ ft_strlen_gnl(buf) + 1)));
 	if (!str)
 		return (NULL);
 	str = ft_strcpy(stash, buf, str);

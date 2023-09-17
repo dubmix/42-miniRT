@@ -6,27 +6,27 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:33:51 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/06 13:04:41 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/17 10:32:26 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "intersection.h"
 
 static t_point	*set_cylinder(
-	t_object *obj,
+	t_obj *obj,
 	t_point *p,
 	t_point hitpoint,
 	t_vector normal)
 {
 	*p = hitpoint;
-	obj->surface_normal = normal;
+	obj->surface_normal = normalize(normal);
 	return (p);
 }
 
 /* 
 	If the ray lays on the tube surface, it is marked as no intersection.
  */
-t_point	*cylinder_intersect(t_object *obj, t_ray r, t_point *p)
+t_point	*cylinder_intersect(t_obj *obj, t_ray r, t_point *p)
 {
 	t_point		cap_hit_point;
 	t_point		tube_hit_point;

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isnumber.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 08:46:56 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/28 08:47:06 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/17 08:41:35 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-int ft_isnumber(char *str)
+int	ft_isnumber(char *str)
 {
 	int	i;
-	int dec;
+	int	dec;
 
 	i = 0;
 	dec = 0;

@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 08:20:24 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/06 12:43:07 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/17 09:34:54 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static bool	set_tube_hitpoint(
 }
 
 bool	check_tube(
-	t_object *obj,
+	t_obj *obj,
 	t_ray r,
 	t_point *hit_point,
 	t_vector *tube_normal)

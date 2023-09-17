@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:01:04 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/05 10:01:06 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/17 09:34:54 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int	process_rgb_obj(t_object *object, char *str, char *identifier)
+int	process_rgb_obj(t_obj *object, char *str, char *identifier)
 {
 	char	**sub_split;
 

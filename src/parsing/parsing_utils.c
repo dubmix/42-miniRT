@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:59:46 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/28 09:36:17 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/17 08:36:16 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	check_if_nb(char **sub_split)
 int	check_if_vec(char **sub_split)
 {
 	if (ft_stof(sub_split[0]) == 0 && ft_stof(sub_split[1]) == 0
-			&& ft_stof(sub_split[2]) == 0)
+		&& ft_stof(sub_split[2]) == 0)
 		return (1);
 	else
 		return (0);

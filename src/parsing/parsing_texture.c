@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_texture.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 09:58:49 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/13 17:30:48 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/17 10:24:08 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,40 @@
 
 int	process_tx(t_scene *scene, char **split)
 {
-	mlx_texture_t *mlx_texture;
-	//t_object *sphere;
-	t_object *object;
-	t_list *temp;
+	mlx_texture_t	*mlx_texture;
+	char			*trimmed;
+	t_obj			*object;
+	t_list			*temp;
 
 	temp = scene->objects;
 	if (temp == NULL)
 		return (0);
 	if (ft_count_str(split) != 2)
 		return (ft_parsing_error("unvalid params: ", "texture", 1));
-	// if (ft_strncmp_rev(split[2], ".png", 4) != 0)
-	// return (ft_parsing_error("unvalid path: ", "texture", 1));
-	while (temp)
+	while (temp || object->body_type != SPHERE || object->texture.set == 1)
 	{
-		object = (t_object *)temp->content;
-		if (object->body_type != SPHERE || object->texture.set == 1)
-			temp = temp->next;
-		else
-			break ;
+		object = (t_obj *)temp->cont;
+		temp = temp->next;
 	}
-	mlx_texture = mlx_load_png(ft_strtrim(split[1], "\n"));
-	//free(split[1]); malloc in ft strim 
+	trimmed = ft_strtrim(split[1], "\n");
+	mlx_texture = mlx_load_png(trimmed);
 	if (mlx_texture == NULL)
-	 	return (ft_parsing_error("unvalid file: ", "texture", 1));
+		return (ft_parsing_error("unvalid file: ", "texture", 1));
 	if (mlx_texture_to_color(mlx_texture, &object->texture) != 0)
-	 	return (ft_parsing_error("malloc failed: ", "texture", 1));
+		return (ft_parsing_error("malloc failed: ", "texture", 1));
+	free(mlx_texture);
+	free(trimmed);
 	object->texture.set = 1;
 	return (0);
 }
 
 int	mlx_texture_to_color(mlx_texture_t *mlx_texture, t_texture *texture)
 {
-	unsigned int i;
-	int	pixel;
+	unsigned int	i;
+	int				pixel;
 
-	texture->color = malloc(sizeof(t_color) * mlx_texture->width * mlx_texture->height);
+	texture->color = malloc(sizeof(t_color) 
+			* mlx_texture->width * mlx_texture->height);
 	if (texture->color == NULL)
 		return (1);
 	i = 0;

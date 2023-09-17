@@ -6,13 +6,13 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:42:00 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/06 12:43:20 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/17 11:02:02 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "intersection.h"
 
-t_point	*sphere_intersect(t_object *obj, t_ray r, t_point *p)
+t_point	*sphere_intersect(t_obj *obj, t_ray r, t_point *p)
 {
 	t_vector	origin_center;
 	t_result	result;
@@ -28,7 +28,8 @@ t_point	*sphere_intersect(t_object *obj, t_ray r, t_point *p)
 	else
 	{
 		*p = get_nearest_ray_point(result, r);
-		obj->surface_normal = subtract_points(*p, obj->body.sphere->center);
+		obj->surface_normal = normalize(
+				subtract_points(*p, obj->body.sphere->center));
 	}
 	return (p);
 }

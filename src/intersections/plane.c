@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:41:24 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/06 12:43:17 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/17 09:34:54 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 	from parsing does not go in the same direction as the ray. If so, we reverse it.
 	If the ray lays in the plane, it is marked as no intersection.
  */
-t_point	*plane_intersect(t_object *obj, t_ray r, t_point *point)
+t_point	*plane_intersect(t_obj *obj, t_ray r, t_point *point)
 {
 	t_vector	x;
 	float		a;

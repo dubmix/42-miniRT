@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:52:07 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/08/23 11:01:47 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/17 09:42:17 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	ret = 0;
 	while (lst)
 	{
-		node = ft_lstnew((*f)(lst->content));
+		node = ft_lstnew((*f)(lst->cont));
 		if (!node)
 		{
 			ft_lstclear(&ret, del);

@@ -6,64 +6,11 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:59:42 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/13 17:52:47 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/17 10:15:06 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracing.h"
-
-static t_point	pixel_to_coord(t_scene *scene, int pixel_x, int pixel_y)
-{
-	t_point	coord;
-	float	fov_ratio;
-	float	image_ratio;
-	float	width;
-	float	height;
-
-	width = (float)scene->mlx->width;
-	height = (float)scene->mlx->height;
-	fov_ratio = tan(scene->camera.field_of_view / 2 * M_PI / 180);
-	image_ratio = width / height;
-	coord.x = (2 * ((pixel_x + 0.5) / width) - 1) * fov_ratio * image_ratio;
-	coord.y = (1 - 2 * ((pixel_y + 0.5) / height)) * fov_ratio;
-	coord.z = 1;
-	return (coord);
-}
-
-static void	set_transformation(t_camera *camera)
-{
-	t_vector	temp;
-	t_vector	right;
-	t_vector	up;
-
-	temp = init_vector(0, 1, 0);
-	if (equal_vec(temp, camera->orientation) ||
-		equal_vec(scale_vec(temp, -1), camera->orientation))
-		temp = init_vector(0, 0, 1);
-	right = normalize(cross_product(temp, camera->orientation));
-	up = normalize(cross_product(camera->orientation, right));
-	camera->m[0][0] = right.x;
-	camera->m[0][1] = right.y;
-	camera->m[0][2] = right.z;
-	camera->m[1][0] = up.x;
-	camera->m[1][1] = up.y;
-	camera->m[1][2] = up.z;
-	camera->m[2][0] = camera->orientation.x;
-	camera->m[2][1] = camera->orientation.y;
-	camera->m[2][2] = camera->orientation.z;
-}
-
-static t_point	transform_point(t_camera c, t_point p)
-{
-	t_point	r;
-	t_point	translate;
-
-	translate = c.coordinates;
-	r.x = p.x * c.m[0][0] + p.y * c.m[1][0] + p.z * c.m[2][0] + translate.x;
-	r.y = p.x * c.m[0][1] + p.y * c.m[1][1] + p.z * c.m[2][1] + translate.y;
-	r.z = p.x * c.m[0][2] + p.y * c.m[1][2] + p.z * c.m[2][2] + translate.z;
-	return (r);
-}
 
 t_ray	create_ray(t_scene *scene, int pixel_x, int pixel_y)
 {
@@ -80,7 +27,7 @@ t_ray	create_ray(t_scene *scene, int pixel_x, int pixel_y)
 	return (ray);
 }
 
-t_point	*intersection(t_object	*obj, t_ray ray, t_point *temp_hit)
+t_point	*intersection(t_obj	*obj, t_ray ray, t_point *temp_hit)
 {
 	if (obj->body_type == SPHERE)
 		if (sphere_intersect(obj, ray, temp_hit))
@@ -94,42 +41,50 @@ t_point	*intersection(t_object	*obj, t_ray ray, t_point *temp_hit)
 	return (NULL);
 }
 
+/* 
+	This function gets a ray with direction from camera through a pixel
+	and checks for intersection with the objects. It determines the
+	intersection with the closest object and calculates the 
+	color taking care if the light situation.
+	@arguments:	s:		scene
+				ray:	ray from camera throug hcurrent pixel
+				c:		color in form of int to set accordingly
+	@variables:	t:		temp node of the list to iterate over
+				th:		Temporary hit with the curent object
+				ch:		Closet hit. Gets replaced by the
+						temporary hit, if it is closer
+						than the old closest hit
+				co:		Closest object the ray hit, used
+						to get color information
+ */
 
-uint32_t	trace_ray(t_scene *scene, t_ray ray)
+void	trace_ray(t_scene *s, t_ray ray, uint32_t *c)
 {
-	uint32_t	color;
-	t_list		*temp;
-	t_object	*object;
-	t_point		temp_hit;
-	t_point		closest_hit;
-	t_object	*closest_obj;
-	t_color test;
+	t_list		*t;
+	t_point		th;
+	t_point		ch;
+	t_obj		*co;
 
-	temp = scene->objects;
-	closest_obj = NULL;
-	color = rgb_to_uint32(0, 0, 0, 0, scene);
-	while (temp)
+	t = s->objects;
+	co = NULL;
+	while (t)
 	{
-		object = (t_object *)temp->content;
-		if (intersection(object, ray, &temp_hit))
+		if (intersection((t_obj *)t->cont, ray, &th))
 		{
-			if (!closest_obj || equal_points(get_nearest_point(temp_hit, closest_hit, ray.origin), temp_hit))
+			if (!co || equal_points(get_nearest_point(th, ch, ray.origin), th))
 			{
-				closest_hit = temp_hit;
-				closest_obj = object;
-				if (object->body_type == SPHERE && object->texture.set == 1)
-				{
-					test = sphere_texture(closest_hit, object);
-					color = rgb_to_uint32(test.r, test.g, test.b, apply_light(scene, temp_hit, object), scene);
-				}
+				ch = th;
+				co = (t_obj *)t->cont;
+				if (((t_obj *)t->cont)->body_type == SPHERE
+					&& ((t_obj *)t->cont)->texture.set == 1)
+					*c = c_int(sp_tx(ch, ((t_obj *)t->cont)),
+							light(s, th, ((t_obj *)t->cont)), s);
 				else
-					color = rgb_to_uint32(closest_obj->color.r,
-						closest_obj->color.g, closest_obj->color.b, apply_light(scene, temp_hit, object), scene);
+					*c = c_int(co->color, light(s, th, ((t_obj *)t->cont)), s);
 			}
 		}
-		temp = temp->next;
+		t = t->next;
 	}
-	return (color);
 }
 
 void	ft_render(t_scene *scene)
@@ -147,10 +102,10 @@ void	ft_render(t_scene *scene)
 		pixel_y = 0;
 		while (pixel_y < scene->img->height)
 		{
-			if (cam_in_object)
-				color = 255;
-			else
-				color = trace_ray(scene, create_ray(scene, pixel_x, pixel_y));
+			color = 255;
+			if (!cam_in_object)
+				trace_ray(scene,
+					create_ray(scene, pixel_x, pixel_y), &color);
 			mlx_put_pixel(scene->img, pixel_x, pixel_y, color);
 			pixel_y++;
 		}

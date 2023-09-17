@@ -6,7 +6,7 @@
 /*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 08:19:20 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/06 13:03:46 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/17 10:23:12 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static bool	check_cap(t_ray r,
 t_point cap_center,
-t_object *obj,
+t_obj *obj,
 t_point *p_hit)
 {
-	t_object	plane_obj;
+	t_obj		plane_obj;
 	t_plane		cap_plane;
 	t_point		intersection;
 	t_vector	intersec_center;
@@ -40,7 +40,7 @@ t_point *p_hit)
 }
 
 static	void	init_cap_centers(
-	t_object *obj,
+	t_obj *obj,
 	t_vector *start_cap_center_vec,
 	t_point *end_cap_center)
 {
@@ -67,7 +67,7 @@ static bool	set_cap(
 }
 
 bool	check_caps(
-	t_object *obj,
+	t_obj *obj,
 	t_ray r,
 	t_point *p_hit,
 	t_vector *normal)

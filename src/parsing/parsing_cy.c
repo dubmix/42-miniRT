@@ -3,25 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_cy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 09:35:25 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/01 14:56:17 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/17 10:23:55 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int	process_cy(t_scene *scene, char **split)
+static int	process_cy_sub(char **split, t_cylinder *cylinder)
 {
-	t_list		*new_node;
-	t_object	*new_object;
-	t_cylinder	*cylinder;
-
-	if (ft_count_str(split) != 6)
-		return (ft_parsing_error("unvalid params: ", "cylinder", 1));
-	cylinder = (t_cylinder *)malloc(sizeof(t_cylinder));
-	new_object = malloc(sizeof(t_object));
 	if (process_cy_coordinates(cylinder, split[1]) != 0)
 		return (free(cylinder), 1);
 	if (process_vec(&cylinder->axis, split[2], "cylinder") != 0)
@@ -34,13 +26,31 @@ int	process_cy(t_scene *scene, char **split)
 		return (free(cylinder), 1);
 	else
 		cylinder->height = ft_stof(split[4]);
-	if (process_rgb_obj(new_object, split[5], "cylinder") != 0)
+	return (0);
+}
+
+int	process_cy(t_scene *scene, char **split)
+{
+	t_list		*new_node;
+	t_obj		*new_object;
+	t_cylinder	*cylinder;
+
+	if (ft_count_str(split) != 6)
+		return (ft_parsing_error("unvalid params: ", "cylinder", 1));
+	cylinder = (t_cylinder *)malloc(sizeof(t_cylinder));
+	if (!cylinder)
+		return (1);
+	new_object = malloc(sizeof(t_obj));
+	if (!new_object)
 		return (free(cylinder), 1);
+	if (process_cy_sub(split, cylinder) != 0)
+		return (free(new_object), 1);
+	if (process_rgb_obj(new_object, split[5], "cylinder") != 0)
+		return (free(cylinder), free(new_object), 1);
 	new_object->body.cylinder = cylinder;
 	new_object->body_type = CYLINDER;
 	new_node = ft_lstnew(new_object);
-	ft_lstadd_back(&(scene->objects), new_node);
-	return (0);
+	return (ft_lstadd_back(&(scene->objects), new_node), 0);
 }
 
 int	process_cy_coordinates(t_cylinder *cylinder, char *str)

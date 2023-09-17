@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:21:57 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/04/10 22:22:03 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/17 08:40:56 by aehrlich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ int	ft_strlen_gnl(char *str)
 	{
 		while (str[i] != '\0')
 			i++;
-	}	
+	}
 	return (i);
 }
