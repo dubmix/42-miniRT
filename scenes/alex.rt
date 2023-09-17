@@ -3,7 +3,7 @@
 A 0.5                                                                                    0,0,0
 ### Camera ###
 # XYZ coordinates of viewpoint    | Orientation vector [-1, 1]   | Field of view ° [0-180]
-C 0,0,0                             0.0,0.0,0.1                          70
+C 0,0,9.1                             0.0,0.0,1                          70
 ### Light ###
 # XYZ coordinates of light point                                 | Light brightness ratio [0.0, 1.0]
 #L 16.000000,0.000000,48.000000                                      1

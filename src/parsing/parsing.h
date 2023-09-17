@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:08:57 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/17 09:34:54 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/17 13:16:56 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		check_if_nb(char **sub_split);
 int		check_if_vec(char **sub_split);
 
 int		process_tx(t_scene *scene, char **split);
-int		mlx_texture_to_color(mlx_texture_t *mlx_texture, t_texture *texture);
+int		mlx_texture_to_color(mlx_texture_t *mlx_texture, t_obj *obj);
 int		process_vec(t_vector *vector, char *str, char *identifier);
 
 int		ft_parsing_error(char *str, char *object, int return_value);

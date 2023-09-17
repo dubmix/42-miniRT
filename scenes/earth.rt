@@ -1,13 +1,13 @@
 ### Ambient lighting ###
 # Ambient lighting ratio in range [0.0, 1.0]                                                 | RGB
 
-A 0.8                                                                                      0,0,0
+A 0.6                                                                                      0,0,0
 
 
 ### Camera ###
 # XYZ coordinates of viewpoint    | Orientation vector [-1, 1]   | Field of view ° [0-180]
 
-C 0,0,-1                           0,0,1                         90
+C 0,0,-5                           0,0,1                         90
 
 
 ### Light ###
@@ -23,8 +23,8 @@ L 0.000000,0.000000,0.000000                                      1
 # XYZ coordinates of sphere center                               | Sphere diameter           | RGB
 
 sp 0.0,0.0,3                                                5                      0,255,0
-
-
+sp 25.0,0.0,60                                                110                      0,255,0
+sp -25.0,0.0,60                                                110                      0,255,0
 
 
 ### Plane ###
@@ -41,4 +41,6 @@ sp 0.0,0.0,3                                                5                   
 
 #cy 0.0,-10,20                    1,0.0,0                    20          50        10,0,200
 
-tx earth scenes/textures/earthmap.png
+tx scenes/textures/earth.png
+tx scenes/textures/universe.png
+tx scenes/textures/universe.png

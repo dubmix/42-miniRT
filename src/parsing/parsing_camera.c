@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_camera.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:20:04 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/17 08:35:45 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/17 13:25:16 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	process_camera_coordinates(t_scene *scene, char *str)
 	if (ft_count_str(sub_split) != 3 || check_if_nb(sub_split) != 0)
 	{
 		free_arr(sub_split);
-		return (ft_parsing_error("unvalid coordinates: ", "camera", 0));
+		return (ft_parsing_error("unvalid coordinates: ", "camera", 1));
 	}
 	if (ft_isnumber(sub_split[0]) == 1
 		&& ft_isnumber(sub_split[1]) == 1

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:00:16 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/17 11:21:42 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/17 13:23:45 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char *argv[])
 	scene.mlx = mlx_init(WIDTH, HEIGHT, "miniRT", 1);
 	scene.img = mlx_new_image(scene.mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(scene.mlx, scene.img, 0, 0);
-	//mlx_loop_hook(scene.mlx, ft_hook, &scene);
+	mlx_loop_hook(scene.mlx, ft_hook, &scene);
 	ft_render(&scene);
 	mlx_loop(scene.mlx);
 	mlx_terminate(scene.mlx);
@@ -31,7 +31,7 @@ int	main(int argc, char *argv[])
 	return (0);
 }
 
-/* void	ft_hook(void *param)
+ void	ft_hook(void *param)
 {
 	t_scene	*scene;
 
@@ -122,4 +122,3 @@ int	main(int argc, char *argv[])
 		ft_render(scene);
 	}
 }
- */
