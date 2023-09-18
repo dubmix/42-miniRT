@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:55:41 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/17 08:38:36 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/18 08:07:05 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ int	parsing_main(t_scene *scene, char *file_name)
 	if (read_from_file(scene, fd) == 1)
 		return (EXIT_FAILURE);
 	close(fd);
+	if (!scene->camera.set || !scene->ambient.set || !scene->light.set)
+	{
+		free_all(scene);
+		return (ft_parsing_error("ambient, cam, light must be used", "", 1));
+	}
 	return (0);
 }
 
@@ -71,6 +76,7 @@ int	parsing_line(t_scene *scene, char *line)
 		split = ft_split(line, ' ');
 		if (!split)
 			return (ft_parsing_error("split failed", "", 1));
+		rm_nl(split);
 		if (find_id(scene, split) != 0)
 		{
 			free_arr(split);
@@ -100,5 +106,5 @@ int	find_id(t_scene *scene, char **split)
 	else if (ft_strncmp(split[0], "tx", 2) == 0)
 		return (process_tx(scene, split));
 	else
-		return (ft_parsing_error("unvalid id", "", 0));
+		return (ft_parsing_error("unvalid id", "", 1));
 }

@@ -6,7 +6,7 @@
 /*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:20:04 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/17 13:25:16 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/18 08:03:53 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	process_camera(t_scene *scene, char **split)
 		return (ft_parsing_error("cannot redefine: ", "camera", 1));
 	else
 		scene->camera.set = 1;
-	if (ft_count_str(split) != 4)
+	if (ft_count_str(split) != 4 || ft_isnumber(split[3]) != 1)
 		return (ft_parsing_error("unvalid params: ", "camera", 1));
 	if (process_camera_coordinates(scene, split[1]) != 0)
 		return (1);

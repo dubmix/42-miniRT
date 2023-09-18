@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_error.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 08:55:08 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/17 09:34:54 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/17 16:37:23 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_parsing_error(char *str, char *object, int return_value)
 {
-	write(STDERR_FILENO, "Parsing error: ", 15);
+	write(STDERR_FILENO, "Error\nParser: ", 15);
 	write(STDERR_FILENO, str, ft_strlen(str));
 	write(STDERR_FILENO, object, ft_strlen(object));
 	write(STDERR_FILENO, "\n", 1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_light.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdelanno <pdelanno@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 19:47:48 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/08/28 09:45:31 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/17 16:48:57 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	process_light(t_scene *scene, char **split)
 		return (ft_parsing_error("cannot redefine: ", "light", 1));
 	else
 		scene->light.set = 1;
-	if (ft_count_str(split) != 3)
+	if (ft_count_str(split) != 3 || ft_isnumber(split[2]) != 1)
 		return (ft_parsing_error("unvalid params: ", "light", 1));
 	if (process_light_coordinates(scene, split[1]) != 0)
 		return (1);

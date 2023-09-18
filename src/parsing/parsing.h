@@ -6,7 +6,7 @@
 /*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:08:57 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/17 13:16:56 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/18 08:09:15 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	init_parsing(t_scene *scene);
 int		read_from_file(t_scene *scene, int fd);
 int		parsing_line(t_scene *scene, char *line);
 int		find_id(t_scene *scene, char **split);
+void	rm_nl(char **split);
+void	rm_nlpng(char **split);
 
 int		process_ambient(t_scene *scene, char **split);
 int		process_rgb(char *str, char *def, t_color *rgb);

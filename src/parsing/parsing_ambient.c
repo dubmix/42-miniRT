@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_ambient.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:16:25 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/01 11:14:50 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/18 08:00:15 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int	process_ambient(t_scene *scene, char **split)
 		return (ft_parsing_error("cannot redefine: ", "ambient", 1));
 	else
 		scene->ambient.set = 1;
-	if (ft_count_str(split) != 3)
+	if (ft_count_str(split) != 3 || ft_isnumber(split[1]) != 1)
 		return (ft_parsing_error("unvalid params: ", "ambient", 1));
 	if (ft_stof(split[1]) >= 0.0 && ft_stof(split[1]) <= 1.0)
 		scene->ambient.ratio = ft_stof(split[1]);
 	else
 		return (ft_parsing_error("ratio out of range: ", "ambient", 1));
 	if (process_rgb(split[2], "ambient", &scene->ambient.color) != 0)
-		return (0);
+		return (1);
 	return (0);
 }
 
@@ -34,7 +34,8 @@ int	process_rgb(char *str, char *def, t_color *rgb)
 	char	**sub_split;
 
 	sub_split = ft_split(str, ',');
-	if (ft_count_str(sub_split) != 3)
+	rm_nl(sub_split);
+	if (ft_count_str(sub_split) != 3 || check_if_nb(sub_split) != 0)
 	{
 		free_arr(sub_split);
 		return (ft_parsing_error("unvalid rgb params: ", def, 1));

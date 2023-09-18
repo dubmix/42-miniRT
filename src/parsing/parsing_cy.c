@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_cy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 09:35:25 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/17 10:23:55 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/18 08:06:53 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static int	process_cy_sub(char **split, t_cylinder *cylinder)
 		return (free(cylinder), 1);
 	if (process_vec(&cylinder->axis, split[2], "cylinder") != 0)
 		return (free(cylinder), 1);
-	if (ft_isnumber(split[3]) != 1 || ft_stof(split[3]) <= 0)
+	if (ft_stof(split[3]) <= 0)
 		return (free(cylinder), 1);
 	else
 		cylinder->diameter = ft_stof(split[3]);
-	if (ft_isnumber(split[4]) != 1 || ft_stof(split[4]) <= 0)
+	if (ft_stof(split[4]) <= 0)
 		return (free(cylinder), 1);
 	else
 		cylinder->height = ft_stof(split[4]);
@@ -35,7 +35,8 @@ int	process_cy(t_scene *scene, char **split)
 	t_obj		*new_object;
 	t_cylinder	*cylinder;
 
-	if (ft_count_str(split) != 6)
+	if (ft_count_str(split) != 6 || ft_isnumber(split[3]) != 1
+		|| ft_isnumber(split[4]) != 1)
 		return (ft_parsing_error("unvalid params: ", "cylinder", 1));
 	cylinder = (t_cylinder *)malloc(sizeof(t_cylinder));
 	if (!cylinder)

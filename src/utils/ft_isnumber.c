@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isnumber.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 08:46:56 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/17 08:41:35 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/17 16:54:40 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_isnumber(char *str)
 	dec = 0;
 	if (str[i] == '-' && str[i + 1] != '\0')
 		i++;
-	while (str[i])
+	while (str[i] && str[i] != '\n')
 	{
 		if (str[i] == '.' && dec == 0 && i != 0)
 		{

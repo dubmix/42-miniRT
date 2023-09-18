@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:01:04 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/17 09:34:54 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/09/18 07:56:03 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	process_rgb_obj(t_obj *object, char *str, char *identifier)
 	char	**sub_split;
 
 	sub_split = ft_split(str, ',');
-	if (ft_count_str(sub_split) != 3 || check_if_nb(sub_split) != 1)
+	rm_nl(sub_split);
+	if (ft_count_str(sub_split) != 3 || check_if_nb(sub_split) != 0)
 	{
-		printf("CT: %d\n", ft_count_str(sub_split));
 		free_arr(sub_split);
 		return (ft_parsing_error("unvalid rgb params: ", identifier, 1));
 	}
@@ -34,7 +34,7 @@ int	process_rgb_obj(t_obj *object, char *str, char *identifier)
 	else
 	{
 		free_arr(sub_split);
-		return (ft_parsing_error("colors out of range", identifier, 1));
+		return (ft_parsing_error("colors out of range: ", identifier, 1));
 	}
 	free_arr(sub_split);
 	return (0);

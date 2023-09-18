@@ -8,7 +8,7 @@
     "name":"Launch",
     "type":"cppdbg",
     "program":"${workspaceFolder}/miniRT",
-    "args":["scenes/template.rt"],
+    "args":["scenes/alex.rt"],
     "cwd":"${workspaceFolder}",
     "request":"launch",
     "MIMode":"gdb"
