@@ -6,7 +6,7 @@
 /*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 09:34:40 by pdelanno          #+#    #+#             */
-/*   Updated: 2023/09/18 07:48:04 by pdelanno         ###   ########.fr       */
+/*   Updated: 2023/09/19 07:12:33 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	process_sp(t_scene *scene, char **split)
 		return (1);
 	new_object = malloc(sizeof(t_obj));
 	if (!new_object || process_sp_coordinates(sphere, split[1]) != 0)
-		return (free(sphere), 1);
+		return (free(new_object), free(sphere), 1);
 	sphere->diameter = ft_stof(split[2]);
 	if (process_rgb_obj(new_object, split[3], "sphere") != 0)
 		return (free(sphere), free(new_object), 1);

@@ -8,7 +8,7 @@ C 0,0,0                             0.0,0.0,1                      70
 
 ### Light ###
 # XYZ coordinates of light point                                 | Light brightness ratio [0.0, 1.0]
-L 16.000000,0.000000,48.000000                                     1
+L 16,0,48                                                          1
 
 ### Sphere ###
 # XYZ coordinates of sphere center                               | Sphere diameter           | RGB
