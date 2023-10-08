@@ -9,11 +9,11 @@ The goal of the project is to generate basic 3D images usinf Raytracing algorith
 images will each represent a scene, as seen from a specific angle and position, defined by geometric objects,
 and each with its own lighting system.
 
-Done in C by dubmix & alexehrlich @42Berlin
+Done in C by alexehrlich & me @42Berlin
 
 A few images rendered with our Raytracer:
 
-WIP
+![miniRT1](https://github.com/dubmix/42-miniRT/assets/104844198/adeba6a2-e39b-4740-b101-6756a7d9350b)
 
 Main resources:
 
