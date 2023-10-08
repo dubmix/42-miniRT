@@ -1,27 +1,20 @@
 # MiniRT
 
-This 42 group project is an introduction to the beautiful and complex world of Raytracing.
+This 42 group project is an introduction to the beautiful and complex world of ✨ **Raytracing** ✨.
 
 Raytracing is a widely used rendering technique in computer graphics that uses mathematical algorithms to simulate the behavior and reflection of light in a 3D scene, creating realistic images that can be used in CGI, movies, or video games for example.
 
-The goal of this project is to reproduce and use Raytracing algorithms to generate basic 3D images. The computer-generated images will then each represent a scene, as seen from a specific angle and position, defined by geometric objects, and each with its own lighting system.
+The goal of this project is to reproduce Raytracing algorithms in C and to use them to to generate basic 3D images. The computer-generated images will then each represent a scene, as seen from a specific angle and position, defined by geometric objects, and each with its own lighting system.
 
 Done in C by alexehrlich & me @42Berlin
 
-A few images rendered with our Raytracer:
+## A few images rendered with our Raytracer:
 
 ![miniRT1](https://github.com/dubmix/42-miniRT/assets/104844198/adeba6a2-e39b-4740-b101-6756a7d9350b)
 
-# Main resources:
+## Main resources:
 
-Lecture on Raytracing basics (US Davis Academics): https://www.youtube.com/watch?v=Ahp6LDQnK4Y
-Our favorite guide to Raytracing maths: https://www.gabrielgambetta.com/computer-graphics-from-scratch/
-For the sphere intersection: https://www.cl.cam.ac.uk/teaching/1718/AdvGraph/1. Ray Tracing - All the Maths.pdf
-Interesting read: https://blogs.nvidia.com/blog/2018/08/01/ray-tracing-global-illumination-turner-whitted/
-
-
-
-
-
-
-
+- A lecture on Raytracing basics (US Davis Academics): https://www.youtube.com/watch?v=Ahp6LDQnK4Y
+- Our favorite guide to Raytracing maths: https://www.gabrielgambetta.com/computer-graphics-from-scratch/
+- Sphere intersection: https://www.cl.cam.ac.uk/teaching/1718/AdvGraph/1. Ray Tracing - All the Maths.pdf
+- Trivia: https://blogs.nvidia.com/blog/2018/08/01/ray-tracing-global-illumination-turner-whitted/
