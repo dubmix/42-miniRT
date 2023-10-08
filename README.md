@@ -8,13 +8,13 @@ The goal of this project is to reproduce Raytracing algorithms in C and to use t
 
 Done in C by alexehrlich & me @42Berlin
 
-## A few images rendered with our Raytracer:
+## A few images rendered with our Raytracer
 
 ![miniRT1](https://github.com/dubmix/42-miniRT/assets/104844198/adeba6a2-e39b-4740-b101-6756a7d9350b)
 
-## Main resources:
+## Main resources
 
-- A lecture on Raytracing basics (US Davis Academics): https://www.youtube.com/watch?v=Ahp6LDQnK4Y
-- Our favorite guide to Raytracing maths: https://www.gabrielgambetta.com/computer-graphics-from-scratch/
-- Sphere intersection: https://www.cl.cam.ac.uk/teaching/1718/AdvGraph/1. Ray Tracing - All the Maths.pdf
-- Trivia: https://blogs.nvidia.com/blog/2018/08/01/ray-tracing-global-illumination-turner-whitted/
+- A lecture on Raytracing basics (US Davis Academics): ![](https://www.youtube.com/watch?v=Ahp6LDQnK4Y)
+- Our favorite guide to Raytracing maths: ![](https://www.gabrielgambetta.com/computer-graphics-from-scratch/)
+- Sphere intersection: ![](https://www.cl.cam.ac.uk/teaching/1718/AdvGraph/1. Ray Tracing - All the Maths.pdf)
+- Trivia: ![](https://blogs.nvidia.com/blog/2018/08/01/ray-tracing-global-illumination-turner-whitted/)
