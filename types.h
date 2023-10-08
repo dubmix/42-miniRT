@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aehrlich <aehrlich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pdelanno <pdelanno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 08:49:13 by aehrlich          #+#    #+#             */
-/*   Updated: 2023/09/17 09:42:17 by aehrlich         ###   ########.fr       */
+/*   Updated: 2023/10/08 11:04:07 by pdelanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_list
 {
 	void			*cont;
 	struct s_list	*next;
-}				t_list;
+}					t_list;
 
 typedef struct s_point
 {
@@ -37,13 +37,20 @@ typedef enum e_solution_type
 	ONE,
 	TWO,
 	NONE,
-}			t_solution_type;
+}	t_solution_type;
+
+typedef enum e_body_type
+{
+	SPHERE,
+	PLANE,
+	CYLINDER
+}	t_body_type;
 
 typedef struct s_result
 {
 	t_solution_type	solution_type;
 	float			t[2];
-}			t_result;
+}					t_result;
 
 typedef struct s_vector
 {
@@ -110,10 +117,10 @@ typedef struct s_cylinder
 
 typedef struct s_texture
 {
-	t_color	*color;
-	int		set;
-	int		width;
-	int		height;		
+	t_color		*color;
+	int			set;
+	int			width;
+	int			height;		
 }				t_texture;
 
 typedef struct s_scene
@@ -127,26 +134,21 @@ typedef struct s_scene
 	mlx_texture_t	*tx;
 }					t_scene;
 
-typedef enum e_body_type
-{
-	SPHERE,
-	PLANE,
-	CYLINDER
-}t_body_type;
 
 typedef union body
 {
 	t_sphere	*sphere;
 	t_cylinder	*cylinder;
 	t_plane		*plane;
-}t_body;
+}				t_body;
 
 typedef struct s_object
 {
-	t_body_type		body_type;
-	t_body			body;
-	t_color			color;
-	t_vector		surface_normal;
-	t_texture		texture;
-}			t_obj;
+	t_body_type	body_type;
+	t_body		body;
+	t_color		color;
+	t_vector	surface_normal;
+	t_texture	texture;
+}				t_obj;
+
 #endif

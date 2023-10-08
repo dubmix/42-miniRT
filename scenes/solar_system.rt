@@ -14,34 +14,34 @@ L 35,0,-27                                                         1
 # XYZ coordinates of sphere center                               | Sphere diameter           | RGB
 
 sp 23,0.0,15                                                       40                          255,255,255
-tx scenes/textures/sun.png
+#tx scenes/textures/sun.png
 
 sp 12.0,0.0,-2.5                                                   0.9                         255,255,255
-tx scenes/textures/mercury.png 
+#tx scenes/textures/mercury.png 
 
 sp 10.5,0.0,-2.0                                                   3.2                         255,255,255
-tx scenes/textures/venus.png
+#tx scenes/textures/venus.png
  
 sp 8.0,0,-3.0                                                      4                           255,255,255
-tx scenes/textures/earth.png
+#tx scenes/textures/earth.png
 
 sp 6.8,-0.4,-7                                                     0.3                         255,255,255
-tx scenes/textures/moon.png
+#tx scenes/textures/moon.png
 
 sp 5.5,0,-4                                                        2                           255,255,255
-tx scenes/textures/mars.png
+#tx scenes/textures/mars.png
 
 sp 0,0,-4                                                          10                          255,255,255
-tx scenes/textures/jupiter.png
+#tx scenes/textures/jupiter.png
 
 sp -3.0,0,-10                                                      5                           255,255,255
-tx scenes/textures/saturn.png
+#tx scenes/textures/saturn.png
 
 sp -3.8,0,-13                                                      3                           255,255,255
-tx scenes/textures/uranus.png
+#tx scenes/textures/uranus.png
 
 sp -3.75,0,-15.5                                                   1.7                         255,255,255
-tx scenes/textures/neptune.png
+#tx scenes/textures/neptune.png
 
 #sp -300,0.0,945                                                    1550                        255,0,255
 #tx scenes/textures/universe.png
