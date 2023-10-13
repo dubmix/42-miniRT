@@ -15,8 +15,8 @@
 
 # include "types.h"
 
-# define WIDTH 1024
-# define HEIGHT 512
+# define WIDTH 800
+# define HEIGHT 600
 
 void	ft_hook(void *param);
 void	ft_render(t_scene *scene);
