@@ -1,6 +1,6 @@
 # MiniRT
 
-This 42 group project is an introduction to the beautiful and complex world of ✨ **Raytracing** ✨
+This 42 group project is an introduction to the beautiful and complex world of **Raytracing**.
 
 Raytracing is a widely used rendering technique in computer graphics that can simulate the behavior and reflection of light in a 3D scene, creating realistic images for use in CGI, movies, or video games for instance.
 
@@ -11,6 +11,7 @@ Coded in C with [alexehrlich](https://github.com/alexehrlich) @42Berlin
 ## A few images rendered with our Raytracer
 
 ![miniRT1](https://github.com/dubmix/42-miniRT/assets/104844198/adeba6a2-e39b-4740-b101-6756a7d9350b)
+![miniRT2](https://github.com/dubmix/42-miniRT/assets/104844198/5ae903b0-59d2-4625-9328-ee97a6c8246a)
 
 ## Main resources
 
